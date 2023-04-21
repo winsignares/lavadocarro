@@ -5,7 +5,7 @@ class turnos(db.Model):
 
     
     id = db.Column(db.String(50), primary_key=True)
-    id_vehiculo = db.Column(db.Integer, db.ForeignKey('tblvehiculos.id'))
+    id_vehiculo = db.Column(db.String(50), db.ForeignKey('tblvehiculos.Matricula'))
     id_paquete = db.Column(db.Integer, db.ForeignKey('tblpaquetes.id'))
     Hora_inicio = db.Column(db.Time)
     Hora_Fin = db.Column(db.Time)
