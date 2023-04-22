@@ -1,4 +1,4 @@
-from flask import Flask,  redirect, request, jsonify, json, session, render_template
+from flask import Flask,  redirect, request, jsonify, json, session, render_html
 from db import db, app, ma
 
 #importar routes de las tablas 
@@ -24,3 +24,10 @@ from rutas.login import routes_login
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
+
+#------------------------------------------------
+
+@app.route("/")
+def index():
+    titulo= "Pagina Princiapl"
+    return render_html('login.html', titles=titulo)
