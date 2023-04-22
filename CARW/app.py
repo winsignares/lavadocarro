@@ -24,4 +24,3 @@ from rutas.login import routes_login
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
-app.register_blueprint(routes_ventas, url_prefix="/api")
