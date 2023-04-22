@@ -17,7 +17,7 @@ app.register_blueprint(routes_servicios, url_prefix="/api")
 app.register_blueprint(routes_vehiculos, url_prefix="/api")
 app.register_blueprint(routes_usuarios, url_prefix="/api")
 app.register_blueprint(routes_turnos, url_prefix="/api")
-app.register_blueprint(routes_servicios, url_prefix="/api")
+app.register_blueprint(routes_ventas, url_prefix="/api")
 
 #importar routes de los html
 from rutas.login import routes_login
