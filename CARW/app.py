@@ -8,7 +8,7 @@ from api.servicio import routes_servicios
 from api.vehiculo import routes_vehiculos
 from api.usuario import routes_usuarios
 from api.turno import routes_turnos
-from api.servicio import routes_servicios
+from api.venta import routes_ventas
 
 #ubicacion del api de las tablas 
 app.register_blueprint(routes_paquetes, url_prefix="/api")
@@ -24,3 +24,4 @@ from rutas.login import routes_login
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
+app.register_blueprint(routes_ventas, url_prefix="/api")

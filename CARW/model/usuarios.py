@@ -11,7 +11,7 @@ class usuarios(db.Model):
     Descripcion = db.Column(db.String(500))
     Telefono = db.Column(db.Integer)
     Contraseña = db.Column(db.String(20))
-    id_vehiculo = db.Column(db.Integer, db.ForeignKey('tblvehiculos.id'))
+    id_vehiculo = db.Column(db.String(50), db.ForeignKey('tblvehiculos.Matricula'))
     id_rol = db.Column(db.Integer, db.ForeignKey('tblroles.id'))
     
 
