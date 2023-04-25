@@ -8,7 +8,6 @@ class usuarios(db.Model):
     Nombre = db.Column(db.String(50))
     Apellido = db.Column(db.String(50))
     Correo = db.Column(db.String(100))
-    Descripcion = db.Column(db.String(500))
     Telefono = db.Column(db.Integer)
     Contraseña = db.Column(db.String(20))
     id_vehiculo = db.Column(db.String(50), db.ForeignKey('tblvehiculos.Matricula'))
