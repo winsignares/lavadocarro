@@ -7,7 +7,7 @@ body {
     height: 100vh;
 }
 
-.caja-login {
+.login-box {
     width: 320px;
     height: 420px;
     background: #000;
@@ -15,4 +15,5 @@ body {
     top: 50%;
     left: 50%;
     position: absolute;
+    transform: translate(-50%, -50%);
 }
