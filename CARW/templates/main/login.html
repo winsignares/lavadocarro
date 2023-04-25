@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login carwash</title>
-    <link rel="stylesheet" href="CARW/css/master.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/master.css')}}">
 </head>
 
 <body>
     <div clas="caja-login">
-        <img src="img/logo.jpg" alt="logo CW">
+        <img src="{{url_for('static', filename='img/logo.jpg')}}" alt="logo CW">
         <h1>Ingrese aqui</h1>
         <form>
             <label for="nombre usuario">Nombre De Usuario</label>

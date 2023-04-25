@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: url(../img/lavado-y-aspirado-domicilio-tulum-2-1024x684.jpg) no-repeat center top;
+    background-size: cover;
+    font-family: sans-serif;
+    height: 100vh;
+}
+
+.caja-login {
+    width: 320px;
+    height: 420px;
+    background: #000;
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+}
