@@ -10,7 +10,7 @@ function ingresar() {
             let nombreu = usuario.value;
             let password = contra.value;
             for (let i = 1; i <= Object.keys(datos).length; i++) {
-                if (datos[i].nombreu === nombreu && datos[i].password === password) {
+                if (datos[i].nombreu == nombreu && datos[i].password == password) {
                     window.alert("esta chinga funciona we")
                     return;
                 }
