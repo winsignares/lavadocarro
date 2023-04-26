@@ -1,7 +1,7 @@
 const usuario = document.getElementById("nombre");
 const contra = document.getElementById("contraseña");
 
-function ingresar() {
+function ingresar2() {
     axios.get('consulusuario', {
             responseType: 'json'
         })
@@ -16,4 +16,20 @@ function ingresar() {
     .catch(function(error) {
         console.log(error);
     });
+}
+
+function ingresar() {
+    axios.get('consulusuario', {
+            responseType: 'json'
+        })
+        .then(function(response) {
+            let datos = response.data
+            if (datos.hasOwnProperty(usuario.value) && datos[usuario.value] == contra.value) {
+                window.alert("esta chinga funciona we")
+            }
+
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
 }
