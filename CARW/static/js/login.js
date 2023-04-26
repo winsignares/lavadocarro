@@ -6,9 +6,9 @@ function ingresar() {
             responseType: 'json'
         })
         .then(function(response) {
-            nombreu = usuario
+            let nombreu = usuario.value
             let datos = response.data
-            if (datos.hasOwnProperty(nombreu.value) && datos[password.value] == contra.value) {
+            if (datos.hasOwnProperty(nombreu.value) && datos.password.value == contra.value) {
                 window.alert("esta chinga funciona we")
             }
 
