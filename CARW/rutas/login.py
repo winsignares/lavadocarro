@@ -16,12 +16,12 @@ def consullist():
     resultado = db.session.query(usuarios, roles).select_from(db.Model.metadata.tables['tblusuarios']).join(db.Model.metadata.tables['tblroles']).all()
     users = []
     i = 0
-    for usuarios, roles in resultado:
+    for usuario, roles in resultado:
         i += 1
         datos[i] = {
-		'nombreu':usuarios.Usuario,
-		'password':usuarios.Contraseña,
-		'rolsito': usuarios.id_rol                     
+            'nombreu':usuario.Usuario,
+            'password':usuario.Contraseña,
+            'rolsito': usuario.id_rol                     
         }
     users.append(datos)
     print(users)
