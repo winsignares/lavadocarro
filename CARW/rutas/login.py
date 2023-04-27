@@ -1,7 +1,7 @@
 from db import db, app, ma
 from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, render_template
 from model.usuarios  import usuarios, usuariosSchema
-from model.roles  import roles, rolesSchema
+from model.roles import roles, rolesSchema
 
 routes_login = Blueprint("routes_login", __name__)
 
@@ -13,15 +13,17 @@ def indexlogin():
 @routes_login.route('/consulusuario', methods=['GET'])
 def consullist():
     datos= {}
-    resultado = db.session.query(usuarios, roles).select_from(db.Model.metadata.tables['tblusuarios']).join(db.Model.metadata.tables['tblroles']).all()
+    usuarios_table = db.Model.metadata.tables['tblusuarios']
+    roles_table = db.Model.metadata.tables['tblroles']
+    resultado = db.session.query(usuarios, roles).select_from(usuarios_table).join(roles_table).all()
     users = []
     i = 0
-    for usuario, roles in resultado:
+    for usuario, rol in resultado:
         i += 1
         datos[i] = {
             'nombreu':usuario.Usuario,
             'password':usuario.Contraseña,
-            'rolsito': usuario.id_rol.roles                     
+            'rolsito': rol.id                   
         }
     users.append(datos)
     print(users)
