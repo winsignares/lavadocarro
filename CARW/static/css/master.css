@@ -1,3 +1,5 @@
+/* fondo para todo */
+
 body {
     margin: 0;
     padding: 0;
@@ -6,6 +8,9 @@ body {
     font-family: sans-serif;
     height: 100vh;
 }
+
+
+/* Login */
 
 .login-box {
     width: 320px;
@@ -73,4 +78,63 @@ body {
 .login-box button[class="btn-login"] {
     position: absolute;
     left: calc(50% - 50px);
+}
+
+
+/* principal */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans';
+}
+
+nav {
+    max-width: 900px;
+    margin: auto;
+    background-color: #333333e1;
+    font-size: 20px;
+    margin-top: 50px;
+}
+
+.menu-horizontal {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu-horizontal>li>a {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-horizontal>li:hover {
+    background-color: red;
+}
+
+.menu-vertical {
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 200px;
+    background-color: rgb(0, 0, 0, .5);
+}
+
+.menu-horizontal li:hover .menu-vertical {
+    display: block;
+}
+
+.menu-vertical li:hover {
+    background-color: black;
+}
+
+.menu-vertical li a {
+    display: block;
+    color: white;
+    padding: 15px 15px 15px 20px;
+    text-decoration: none;
 }
