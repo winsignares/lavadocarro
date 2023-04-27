@@ -21,9 +21,11 @@ app.register_blueprint(routes_ventas, url_prefix="/api")
 
 #importar routes de los html
 from rutas.login import routes_login
+from rutas.Principal import routes_principal
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
+app.register_blueprint(routes_principal, url_prefix="/fronted")
 
 #------------------------------------------------
 
