@@ -21,7 +21,7 @@ def consullist():
         datos[i] = {
             'nombreu':usuario.Usuario,
             'password':usuario.Contraseña,
-            'rolsito': usuario.id_rol                     
+            'rolsito': usuario.id_rol.roles                     
         }
     users.append(datos)
     print(users)
