@@ -13,7 +13,7 @@ def indexlogin():
 @routes_login.route('/consulusuario', methods=['GET'])
 def consullist():
     datos= {}
-    resultado = db.session.query(usuarios, roles).select_from(usuarios).join(roles).all()
+    resultado = db.session.query(usuarios, roles).select_from(db.Model.metadata.tables['tblusuarios']).join(db.Model.metadata.tables['tblroles']).all()
     users = []
     i = 0
     for usuarios, roles in resultado:
