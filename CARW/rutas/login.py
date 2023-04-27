@@ -10,10 +10,10 @@ def indexlogin():
     
     return render_template('/main/login.html')
 
-@routes_login.route('/consulusuario2', methods=['GET'])
+@routes_login.route('/consulusuario', methods=['GET'])
 def consullist():
     datos= {}
-    resultado = db.session.query(usuarios, roles).select_from(tblusuarios).join(tblroles).all()
+    resultado = db.session.query(usuarios, roles).select_from(usuarios).join(roles).all()
     users = []
     i = 0
     for usuarios, roles in resultado:
@@ -26,13 +26,3 @@ def consullist():
     users.append(datos)
     print(users)
     return jsonify(datos)
-
-@routes_login.route('/consulusuario', methods=['GET'])
-def consullist():
-    resultado = db.session.query(usuarios, roles).select_from(usuarios).join(roles).all()
-    users = []
-    for usuario, rol in resultado:
-        usuario_serializado = usuario_schema.dump(usuario)
-        usuario_serializado['rol'] = rol.nombre
-        users.append(usuario_serializado)
-    return jsonify(users)
