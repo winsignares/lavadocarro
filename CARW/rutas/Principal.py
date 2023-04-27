@@ -6,4 +6,4 @@ routes_principal = Blueprint("routes_principal", __name__)
 @routes_principal.route('/indexprincipal', methods=['GET'] )
 def indexprincipal():
     
-    return render_template('/main/principal.html')
+    return render_template('/main/Principal.html')
