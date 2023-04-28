@@ -11,7 +11,7 @@ function ingresar() {
             let password = contra.value;
             for (let i = 1; i <= Object.keys(datos).length; i++) {
                 if (datos[i].nombreu == nombreu && datos[i].password == password) {
-                    window.location.href = "{{url_for('templates', filename='main/Principal.html')}}";
+                    window.location.href = '/main/Principal.html';
                     return;
                 }
             }
