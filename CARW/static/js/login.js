@@ -11,7 +11,15 @@ function ingresar() {
             let password = contra.value;
             for (let i = 1; i <= Object.keys(datos).length; i++) {
                 if (datos[i].nombreu == nombreu && datos[i].password == password) {
-                    window.location.href = '/Principal';
+                    axios.post('/set-session', {
+                            newSessionValue: datos[i].rolito
+                        })
+                        .then(response => {
+                            console.log(response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        });
                     return;
                 }
             }
