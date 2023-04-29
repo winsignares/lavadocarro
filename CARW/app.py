@@ -39,18 +39,9 @@ def index():
     titulo= "Pagina Princiapl"
     return render_template('/main/login.html', titles=titulo)
 
-@app.route('/set-session', methods=['POST'])
-def set_session():
-    new_value = request.json['newSessionValue']
-    session['session_value'] = new_value
-    return 'Valor de sesión actualizado'
-
 @app.route('/Principal')
 def principal():
-    if 'session_value' in session:
-        return render_template('/main/Principal.html')
-    else:
-        return"no se a iniciado sesion"
+    return render_template('/main/Principal.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
