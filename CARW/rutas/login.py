@@ -28,5 +28,3 @@ def consullist():
     users.append(datos)
     print(users)
     return jsonify(datos)
-
-
