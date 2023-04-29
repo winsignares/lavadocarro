@@ -1,5 +1,6 @@
 from flask import Flask,  redirect, request, jsonify, json, session, render_template
 from db import db, app, ma
+import os
 
 #importar routes de las tablas 
 from api.paquete import routes_paquetes
@@ -27,12 +28,19 @@ from rutas.Principal import routes_principal
 app.register_blueprint(routes_login, url_prefix="/fronted")
 app.register_blueprint(routes_principal, url_prefix="/fronted")
 
+#generar llave 
+app.secret_key = os.urandom(24)
+
 #------------------------------------------------
 
 @app.route("/")
 def index():
     titulo= "Pagina Princiapl"
     return render_template('/main/login.html', titles=titulo)
+
+@app.route('/Principal')
+def principal():
+    return render_template('/main/Principal.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
