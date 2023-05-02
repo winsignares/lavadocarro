@@ -26,10 +26,14 @@ app.register_blueprint(routes_ventas, url_prefix="/api")
 #importar routes de los html
 from rutas.login import routes_login
 from rutas.Principal import routes_principal
+from rutas.Paquetes_predeterminados import routes_Ppredeterminados
+from rutas.Paquetes_editables import routes_Peditables
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
 app.register_blueprint(routes_principal, url_prefix="/fronted")
+app.register_blueprint(routes_Ppredeterminados, url_prefix="/fronted")
+app.register_blueprint(routes_Peditables, url_prefix="/fronted")
 
 
 #------------------------------------------------
@@ -52,6 +56,14 @@ def principal():
         return render_template('/main/Principal.html')
     else:
         return redirect(url_for('routes_login.indexlogin'))
+    
+@app.route('/Ppredeterminados')
+def Ppredeterminados():
+    return render_template('/main/Paquetes_predeterminados.html')
+
+@app.route('/Peditables')
+def Peditables():
+    return render_template('/main/Paquetes_editables.html')
 
 
 if __name__ == '__main__':
