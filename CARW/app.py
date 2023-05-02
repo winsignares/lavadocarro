@@ -27,7 +27,7 @@ app.register_blueprint(routes_ventas, url_prefix="/api")
 from rutas.login import routes_login
 from rutas.Principal import routes_principal
 from rutas.Ppredeterminados import routes_Ppredeterminados
-from rutas.Paquetes_editables import routes_Peditables
+from rutas.Peditables import routes_Peditables
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
@@ -60,7 +60,7 @@ def Paquetes_predeterminados():
 
 @app.route('/Peditables')
 def Peditables():
-    return render_template('/main/Paquetes_editables.html')
+    return render_template('/main/Peditables.html')
 
 
 if __name__ == '__main__':

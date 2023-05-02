@@ -6,4 +6,4 @@ routes_Peditables = Blueprint("routes_Peditables", __name__)
 @routes_Peditables.route('/indexPeditables', methods=['GET'] )
 def indexPeditables():
     
-    return render_template('/main/Paqeutes_editables.html')
+    return render_template('/main/Peditables.html')

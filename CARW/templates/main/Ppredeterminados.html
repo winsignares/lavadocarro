@@ -1,34 +1,10 @@
 {% extends "./layout.html" %} {% block body %}
-<nav>
-    <ul class="menu-horizontal">
-        <li>
-            <a href="#">Opciones De Lavado</a>
-            <ul class="menu-vertical">
-                <li><a href="{{ url_for('/main/Paquetes_predeterminados.html') }}">Lavados Predeterminados alv</a></li>
-                <li><a href="#">Lavados Editables</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Pagos</a>
-            <ul class="menu-vertical">
-                <li><a href="#">Centro De Pago</a></li>
-            </ul>
-        </li>
-        <li>
-            <a href="#">Turnos</a>
-            <ul class="menu-vertical">
-            </ul>
-        </li>
-        <li>
-            <a href="#">Balances</a>
-            <ul class="menu-vertical">
-            </ul>
-        </li>
-        <li>
-            <a href="#">Ajustes</a>
-            <ul class="menu-vertical">
-            </ul>
-        </li>
-    </ul>
-</nav>
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
 {% endblock %}
