@@ -26,7 +26,7 @@ app.register_blueprint(routes_ventas, url_prefix="/api")
 #importar routes de los html
 from rutas.login import routes_login
 from rutas.Principal import routes_principal
-from rutas.Paquetes_predeterminados import routes_Ppredeterminados
+from rutas.Ppredeterminados import routes_Ppredeterminados
 from rutas.Paquetes_editables import routes_Peditables
 
 #ubicacion de los html
@@ -52,14 +52,11 @@ def update_session():
 
 @app.route('/Principal')
 def principal():
-    if 'aprovado' in session:
-        return render_template('/main/Principal.html')
-    else:
-        return redirect(url_for('routes_login.indexlogin'))
+    return render_template('/main/Principal.html')
     
 @app.route('/Ppredeterminados')
-def Ppredeterminados():
-    return render_template('/main/Paquetes_predeterminados.html')
+def Paquetes_predeterminados():
+    return render_template('/main/Ppredeterminados.html')
 
 @app.route('/Peditables')
 def Peditables():

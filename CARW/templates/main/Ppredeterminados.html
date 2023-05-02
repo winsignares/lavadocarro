@@ -4,7 +4,7 @@
         <li>
             <a href="#">Opciones De Lavado</a>
             <ul class="menu-vertical">
-                <li><a onclick="gopredeterminados()">Lavados Predeterminados a</a></li>
+                <li><a href="{{ url_for('/main/Paquetes_predeterminados.html') }}">Lavados Predeterminados alv</a></li>
                 <li><a href="#">Lavados Editables</a></li>
             </ul>
         </li>
@@ -31,5 +31,4 @@
         </li>
     </ul>
 </nav>
-<script src="{{url_for('static', filename='js/principal.js')}} "></script>
 {% endblock %}

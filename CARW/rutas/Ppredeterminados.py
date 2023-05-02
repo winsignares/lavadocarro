@@ -6,4 +6,4 @@ routes_Ppredeterminados = Blueprint("routes_Ppredeterminados", __name__)
 @routes_Ppredeterminados.route('/indexPpredeterminados', methods=['GET'] )
 def indexPpredeterminados():
     
-    return render_template('/main/Paquetes_predeterminados.html')
+    return render_template('/main/Ppredeterminados.html')
