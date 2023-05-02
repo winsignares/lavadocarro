@@ -1,8 +1,8 @@
-from flask import Flask,  redirect, request, jsonify, json, session, render_template
+from flask import Flask,  redirect, request, jsonify, json, session, render_template, url_for
 from db import db, app, ma
 import os
 
-#generar llave
+#generar llave y sesion
 app.secret_key = os.urandom(24)
 
 #importar routes de las tablas 
@@ -37,11 +37,22 @@ app.register_blueprint(routes_principal, url_prefix="/fronted")
 @app.route("/")
 def index():
     titulo= "Pagina Princiapl"
+    session['my_variable'] = 'initial_value'
     return render_template('/main/login.html', titles=titulo)
+
+@app.route('/update_session', methods=['POST'])
+def update_session():
+    new_value = request.json['new_value']
+    session['my_variable'] = new_value
+    return jsonify({'success': True})
 
 @app.route('/Principal')
 def principal():
-    return render_template('/main/Principal.html')
+    if 'aprovado' in session:
+        return render_template('/main/Principal.html')
+    else:
+        return redirect(url_for('routes_login.indexlogin'))
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
