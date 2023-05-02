@@ -138,3 +138,16 @@ nav {
     padding: 15px 15px 15px 20px;
     text-decoration: none;
 }
+
+
+/* paquetes predetermionados */
+
+.card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    margin: 10px;
+}
