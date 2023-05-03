@@ -142,12 +142,30 @@ nav {
 
 /* paquetes predetermionados */
 
-.card-wrapper {
+.mi-div {
+    background-color: white;
+    width: 400px;
+    height: 200px;
+    overflow-y: scroll;
+    flex: 1;
+    margin: 10px;
+    border-radius: 5%;
+}
+
+.container {
+    width: 80%;
+    /* ancho del contenedor */
+    margin: 0 auto;
+    /* centrar horizontalmente */
+    padding: 20px;
+    /* espacio interno del contenedor */
+    border: none;
+    /* borde del contenedor */
+    box-sizing: border-box;
+    /* incluir el borde en el tamaño total del contenedor */
     display: flex;
     flex-wrap: wrap;
 }
 
-.card {
-    flex: 1;
-    margin: 10px;
-}
+
+/*Menù lateral*/
