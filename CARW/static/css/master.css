@@ -9,6 +9,16 @@ body {
     height: 100vh;
 }
 
+.capa-oscura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
 
 /* Login */
 
@@ -103,6 +113,10 @@ nav {
     list-style-type: none;
     display: flex;
     justify-content: space-around;
+    position: absolute;
+    top: 0;
+    right: 20%;
+    z-index: 2;
 }
 
 .menu-horizontal>li>a {
@@ -129,7 +143,7 @@ nav {
 }
 
 .menu-vertical li:hover {
-    background-color: black;
+    background-color: red;
 }
 
 .menu-vertical li a {
@@ -146,26 +160,40 @@ nav {
     background-color: white;
     width: 400px;
     height: 200px;
-    overflow-y: scroll;
     flex: 1;
     margin: 10px;
-    border-radius: 5%;
+    border-radius: 2%;
+}
+
+.card-content {
+    overflow-y: auto;
+    max-height: 150px;
+    margin-top: 10px;
 }
 
 .container {
     width: 80%;
-    /* ancho del contenedor */
     margin: 0 auto;
-    /* centrar horizontalmente */
     padding: 20px;
-    /* espacio interno del contenedor */
     border: none;
-    /* borde del contenedor */
     box-sizing: border-box;
-    /* incluir el borde en el tamaño total del contenedor */
     display: flex;
     flex-wrap: wrap;
+    position: absolute;
+    right: 0;
+    top: 10%;
 }
 
 
 /*Menù lateral*/
+
+.list-group {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: 20%;
+}
+
+.list-group li:hover {
+    background-color: red;
+}

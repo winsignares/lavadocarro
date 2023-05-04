@@ -12,19 +12,19 @@ function ver_paquetes() {
             for (let index = 1; index < length; index++) {
                 opciones +=
                     `<div class="mi-div d-flex flex-wrap col-md-5" style="max-width: 100%;">
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="text-align: center;">
                         <img src="/static/img/logo.jpg" class="img-fluid rounded-start" alt="...">
+                        <a href="#" class="btn btn-primary">Botón</a>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">${datos[index].titulo}</h5>
-                            <p class="card-text">${datos[index].descripcion}</p>
-                            <p class="card-text">$${datos[index].valor}</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <h5 class="card-title">${datos[index].titulo} $${datos[index].valor}</h5>
+                            <div class="card-content">
+                                <p class="card-text">${datos[index].descripcion}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>                
             </br>`;
             }
             remplazo.innerHTML = opciones;
