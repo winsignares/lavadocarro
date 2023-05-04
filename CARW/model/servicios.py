@@ -5,13 +5,13 @@ class servicios(db.Model):
 
     
     id  = db.Column(db.Integer, primary_key=True)
-    Titulo = db.Column(db.String(50))
+    Valor = db.Column(db.Integer)
     Descripcion = db.Column(db.String(250))
     
 
-    def __init__(self,Titulo, Descripcion):
+    def __init__(self,Valor, Descripcion):
         
-        self.Titulo = Titulo
+        self.Valor = Valor
         self.Descripcion = Descripcion
         
     
@@ -20,4 +20,4 @@ with app.app_context():
 
 class serviciosSchema(ma.Schema):
     class Meta:
-        fields = ('id','Titulo','Descripcion')
+        fields = ('id','Valor','Descripcion')

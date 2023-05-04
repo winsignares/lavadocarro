@@ -6,7 +6,7 @@ class paquetes(db.Model):
     
     id  = db.Column(db.Integer, primary_key=True)
     Nombre = db.Column(db.String(50))
-    Descripcion = db.Column(db.String(500))
+    Descripcion = db.Column(db.String(5000))
     Valor = db.Column(db.Integer)
     
 

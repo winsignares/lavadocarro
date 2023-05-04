@@ -21,6 +21,6 @@ def consulpaquetes():
         datos[i] = {
             'titulo':paqutes_table.Nombre,
             'descripcion':paqutes_table.Descripcion,
-            'valor': paqutes_table.Valor                   
+            'valor': paqutes_table.Valor                  
         }
     return jsonify(datos)

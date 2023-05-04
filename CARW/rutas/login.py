@@ -25,6 +25,4 @@ def consullist():
             'password':usuario.Contraseña,
             'rolsito': rol.id                   
         }
-    users.append(datos)
-    print(users)
     return jsonify(datos)
