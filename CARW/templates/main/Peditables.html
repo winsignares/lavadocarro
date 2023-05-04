@@ -1,1 +1,31 @@
-{% extends "./layout.html" %} {% block body %} {% endblock %}
+{% extends "./layout.html" %} {% block body %}
+<ul class="list-group">
+    <li class="list-group-item" onclick="ver_paquetes()">Mostrar Paquetes</li>
+    <li class="list-group-item" onclick="goeditables()">Crear Paquete</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+</ul>
+<div class="container2">
+    <form>
+        <h1 style="text-align: center;">Diseñe Un Paquete</h1>
+        </br>
+        <label for="nombre paquete">Titulo :</label>
+        <input id="Titulo" type="text" placeholder=" coloque el Titulo">
+
+        <label for="valor paquete">Valor Total $</label>
+        <input id="Valor" type="text" placeholder="$">
+        </br>
+        <button type="button" class="btn btn-info">Guardar</button>
+        </br>
+
+    </form>
+</div>
+<div class="container3">
+    <h1 style="text-align: center;">Lista De Procedimientos</h1>
+    </br>
+    <ul class="list-group2">
+        <li class="list-group-item" onclick="ver_paquetes()">Mostrar Paquetes</li>
+    </ul>
+</div>
+{% endblock %}

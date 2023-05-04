@@ -23,6 +23,4 @@ def consulpaquetes():
             'descripcion':paqutes_table.Descripcion,
             'valor': paqutes_table.Valor                   
         }
-    users.append(datos)
-    print(users)
     return jsonify(datos)
