@@ -14,7 +14,7 @@ function ver_paquetes() {
                     `<div class="mi-div d-flex flex-wrap col-md-5" style="max-width: 100%;">
                     <div class="col-md-4" style="text-align: center;">
                         <img src="/static/img/logo.jpg" class="img-fluid rounded-start" alt="...">
-                        <a href="#" class="btn btn-primary">Botón</a>
+                        <a href="#" class="btn btn-primary">Seleccionar</a>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

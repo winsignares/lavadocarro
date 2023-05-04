@@ -6,7 +6,9 @@ body {
     background: url(../img/fondo\ lavado.jpg) no-repeat center top;
     background-size: cover;
     font-family: sans-serif;
-    height: 100vh;
+    max-height: 90vh;
+    max-width: 90vh;
+    overflow-y: auto;
 }
 
 .capa-oscura {
@@ -211,7 +213,9 @@ nav {
     right: 40%;
     top: 20%;
     background-color: rgba(255, 255, 255, 0.797);
-    border-radius: 5%;
+    border-radius: 2%;
+    max-height: 700px;
+    height: 700px;
 }
 
 .container3 {
@@ -224,5 +228,20 @@ nav {
     right: 10%;
     top: 20%;
     background-color: rgba(255, 255, 255, 0.797);
-    border-radius: 5%;
+    border-radius: 2%;
+    overflow-y: auto;
+    max-height: 700px;
+    height: 700px;
+}
+
+.container4 {
+    overflow-y: auto;
+    max-height: 450px;
+    height: 450px;
+    background-color: white;
+    border-radius: 2%;
+}
+
+.list-group2 li:hover {
+    background-color: red;
 }

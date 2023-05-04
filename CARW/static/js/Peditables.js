@@ -1,6 +1,6 @@
 let remplazo = document.getElementById('cambio');
 
-function ver_paquetes() {
+function ver_procedimientos() {
     axios.get('fronted/consulprocedimientos', {
         responseType: 'json'
     })
@@ -11,8 +11,8 @@ function ver_paquetes() {
             let opciones = '';
             for (let index = 1; index < length; index++) {
                 opciones +=
-                    `<ul id="cambio" class=" list-group2 ">
-                    <li class="list-group-item " onclick="ver_paquetes() ">${datos[index].descripcion} $${datos[index].valor}</li>
+                    `<ul id="${index}" class=" list-group2 ">
+                    <li class="list-group-item " onclick="Añadir() ">${datos[index].descripcion} $${datos[index].valor}</li>
                 </ul>`;
             }
             remplazo.innerHTML = opciones;
@@ -20,4 +20,9 @@ function ver_paquetes() {
         .catch(function(error) {
             console.log(error);
         });
+}
+
+function gopredeterminados2() {
+    window.location.href = '/Ppredeterminados';
+    return;
 }
