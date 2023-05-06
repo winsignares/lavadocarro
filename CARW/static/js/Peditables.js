@@ -2,6 +2,7 @@ let remplazo = document.getElementById('cambio');
 let valorcito = document.getElementById('Valor');
 const inputValor = document.getElementById("Valor");
 
+// odtener los procedimientos inicio
 function ver_procedimientos() {
     axios.get('fronted/consulprocedimientos', {
         responseType: 'json'
@@ -23,7 +24,8 @@ function ver_procedimientos() {
             console.log(error);
         });
 }
-
+// odtener los procedimientos fin
+// sumar los valores en el div inicio
 function sumarValores() {
     const contenedores = document.querySelectorAll("#miContainer li");
     let suma = 0;
@@ -32,12 +34,14 @@ function sumarValores() {
     });
     return suma;
 }
-
+// sumar los valores en el div fin
+// actualizar la suma inicio
 function mostrarSuma() {
     const suma = sumarValores();
     inputValor.value = `$${suma}`;
 }
-
+// actualizar la suma fin
+// añadir procedimientos al div inicio
 function añadir(event) {
     const boton = event.target;
     const contenedorOriginal = boton.parentNode;
@@ -64,24 +68,22 @@ function añadir(event) {
     mostrarSuma();
 
 }
-
-
+// añadir procedimientos al div fin
+// eliminar elementos de forma individual inicio
 function eliminar(elemento) {
     const contenedor = elemento.parentNode;
     contenedor.removeChild(elemento);
-    mostrarSuma();
 }
-
-new Promise(function(resolve) {
-
-    resolve(eliminar(elemento));
-
-}).then(function(result) {
-
+// eliminar elementos de forma individual fin
+// controlar el estado del container inicio
+const contenedor = document.querySelector('#miContainer');
+const observer = new MutationObserver(() => {
     mostrarSuma();
-
-})
-
+});
+const config = { childList: true };
+observer.observe(contenedor, config);
+// controlar el estado del container fin
+// eliminar todos los  elementos inicio
 function eliminarTodo() {
     const contenedor = document.getElementById("miContainer");
     while (contenedor.firstChild) {
@@ -89,8 +91,35 @@ function eliminarTodo() {
     }
     mostrarSuma();
 }
-
+// eliminar todos los  elementos fin
+// cambiar html inicio
 function gopredeterminados2() {
     window.location.href = '/Ppredeterminados';
     return;
 }
+// cambiar html fin
+// guardarpaquetes inicio
+function guardar_paquete() {
+    const newNombre = document.getElementById("Titulo");
+    const newDescripcion = document.querySelector('#miContainer');
+    const newValor = document.getElementById("Valor");
+    console.log(newNombre, newDescripcion, newValor);
+
+    axios.post('guardarpaq', {
+            Nombre: newNombre,
+            Descripcion: newDescripcion,
+            alor: newValor
+        }, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+
+            }
+        }).then((res) => {
+            console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
+}
+// guardarpaquetes fin

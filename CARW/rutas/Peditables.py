@@ -1,6 +1,7 @@
 from db import db, app, ma
 from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, render_template
 from model.servicios import servicios,serviciosSchema
+from model.paquetes import paquetes, paquetesSchema
 
 routes_Peditables = Blueprint("routes_Peditables", __name__)
 
@@ -22,3 +23,11 @@ def consulprocedimientos():
             'valor': procedimientos_table.Valor                   
         }
     return jsonify(datos)
+
+@routes_Peditables.route('/guardarpaq', methods=['POST'])
+def guardarpaq():
+    newpaquetes = request.json['Nombre','Descripcion','Valor']
+    new_paq = paquetes(newpaquetes)
+    db.session.add(new_paq)
+    db.session.commit()
+    return redirect('/paquetes')

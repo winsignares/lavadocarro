@@ -15,7 +15,7 @@ def obtenerpaquetes():
     resultado_paquetes = paquetes_schema.dump(returnall)
     return jsonify(resultado_paquetes)
 
-@routes_paquetes.route('/savepaquetes', methods=['POST'])
+@routes_paquetes.route('/guardarpaq', methods=['POST'])
 def guardarpaq():    
     newpaquetes = request.json['Nombre','Descripcion','Valor']
     new_paq = paquetes(newpaquetes)
@@ -31,7 +31,7 @@ def eliminarPaq(id):
     return jsonify(paquetes_schema.dump(paq)) 
 
 @routes_paquetes.route('/actualizarpaquetes', methods=['POST'] )
-def actualizarPaq():
+def actualizarpaquetes():
     id = request.json['id']
     paq = request.json['Nombre','Descripcion','Valor']
     pusuario = paquetes.query.get(id)
