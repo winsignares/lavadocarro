@@ -41,7 +41,6 @@ function mostrarSuma() {
 function añadir(event) {
     const boton = event.target;
     const contenedorOriginal = boton.parentNode;
-    const descripcion = contenedorOriginal.querySelector('.list-group-item').innerText;
 
     const elementoCopia = contenedorOriginal.querySelector('.list-group-item').cloneNode(true);
 
@@ -72,6 +71,16 @@ function eliminar(elemento) {
     contenedor.removeChild(elemento);
     mostrarSuma();
 }
+
+new Promise(function(resolve) {
+
+    resolve(eliminar(elemento));
+
+}).then(function(result) {
+
+    mostrarSuma();
+
+})
 
 function eliminarTodo() {
     const contenedor = document.getElementById("miContainer");
