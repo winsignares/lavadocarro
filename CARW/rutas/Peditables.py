@@ -24,10 +24,10 @@ def consulprocedimientos():
         }
     return jsonify(datos)
 
-@routes_Peditables.route('/guardarpaq', methods=['POST'])
-def guardarpaq():
-    newpaquetes = request.json['Nombre','Descripcion','Valor']
-    new_paq = paquetes(newpaquetes)
+@routes_Peditables.route('/guardarpaquetes', methods=['POST'])
+def guardarpaquetes():
+    data = request.json
+    new_paq = paquetes(Nombre=data['Nombre'], Descripcion=data['Descripcion'], Valor=data['Valor'])
     db.session.add(new_paq)
     db.session.commit()
     return redirect('/paquetes')

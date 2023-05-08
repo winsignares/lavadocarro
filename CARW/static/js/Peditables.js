@@ -46,7 +46,8 @@ function añadir(event) {
     const boton = event.target;
     const contenedorOriginal = boton.parentNode;
 
-    const elementoCopia = contenedorOriginal.querySelector('.list-group-item').cloneNode(true);
+    const elementoCopia = contenedorOriginal.querySelector('.list-group-item');
+    const texto = elementoCopia.textContent;
 
     elementoCopia.removeAttribute('onclick');
 
@@ -100,26 +101,21 @@ function gopredeterminados2() {
 // cambiar html fin
 // guardarpaquetes inicio
 function guardar_paquete() {
-    const newNombre = document.getElementById("Titulo");
-    const newDescripcion = document.querySelector('#miContainer');
-    const newValor = document.getElementById("Valor");
+    const newNombre = document.getElementById("Titulo").value;
+    const newDescripcion = document.getElementById("miContainer").innerHTML;
+    const newValor = inputValor.value;
     console.log(newNombre, newDescripcion, newValor);
 
-    axios.post('guardarpaq', {
+    axios.post('fronted/guardarpaquetes', {
             Nombre: newNombre,
             Descripcion: newDescripcion,
-            alor: newValor
-        }, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-
-            }
+            Valor: newValor
         }).then((res) => {
             console.log(res.data)
         })
         .catch((err) => {
             console.log(err);
         })
-
 }
+
 // guardarpaquetes fin

@@ -14,7 +14,6 @@ def consulpaquetes():
     datos= {}
     paqutes_table = db.Model.metadata.tables['tblpaquetes']
     resultado = db.session.query(paqutes_table).select_from(paqutes_table).all()
-    users = []
     i = 0
     for paqutes_table in resultado:
         i += 1
