@@ -266,3 +266,14 @@ nav {
     display: none;
     /* Oculta el elemento por defecto */
 }
+
+
+/* pagos */
+
+.container5 {
+    overflow-y: auto;
+    max-height: 450px;
+    height: 450px;
+    background-color: white;
+    border-radius: 2%;
+}
