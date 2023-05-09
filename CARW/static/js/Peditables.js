@@ -1,6 +1,7 @@
 let remplazo = document.getElementById('cambio');
 let valorcito = document.getElementById('Valor');
-const inputValor = document.getElementById("Valor");
+let inputValor = document.getElementById("Valor");
+let titulo = document.getElementById("Titulo");
 
 // odtener los procedimientos inicio
 function ver_procedimientos() {
@@ -15,7 +16,7 @@ function ver_procedimientos() {
             for (let index = 1; index < length; index++) {
                 opciones +=
                     `<ul id="${index}" class=" list-group2 ">
-                    <li class="list-group-item " onclick="añadir(event)" value="${datos[index].valor}">${datos[index].descripcion} $${datos[index].valor}</li>
+                    <li class="list-group-item " onclick="añadir(event)" value="${datos[index].valor}">>${datos[index].descripcion}</li><li class="list-group-item ">$${datos[index].valor}</li>
                 </ul>`;
             }
             remplazo.innerHTML = opciones;
@@ -46,13 +47,13 @@ function añadir(event) {
     const boton = event.target;
     const contenedorOriginal = boton.parentNode;
 
-    const elementoCopia = contenedorOriginal.querySelector('.list-group-item');
+    const elementoOriginal = contenedorOriginal.querySelector('.list-group-item');
+    const elementoCopia = elementoOriginal.cloneNode(true);
     const texto = elementoCopia.textContent;
-
     elementoCopia.removeAttribute('onclick');
 
     const botonEliminar = document.createElement('button');
-    botonEliminar.innerText = 'Eliminar';
+    botonEliminar.innerText = '';
     botonEliminar.classList.add('btn', 'btn-danger', 'ms-3');
     botonEliminar.addEventListener('click', function() {
         const contenedorCopia = this.parentNode;
@@ -67,7 +68,6 @@ function añadir(event) {
     const container = document.getElementById("miContainer");
     container.appendChild(contenedorCopia);
     mostrarSuma();
-
 }
 // añadir procedimientos al div fin
 // eliminar elementos de forma individual inicio
@@ -91,6 +91,7 @@ function eliminarTodo() {
         contenedor.removeChild(contenedor.firstChild);
     }
     mostrarSuma();
+    titulo.value = "";
 }
 // eliminar todos los  elementos fin
 // cambiar html inicio
@@ -101,9 +102,10 @@ function gopredeterminados2() {
 // cambiar html fin
 // guardarpaquetes inicio
 function guardar_paquete() {
+    const suma = sumarValores();
     const newNombre = document.getElementById("Titulo").value;
-    const newDescripcion = document.getElementById("miContainer").innerHTML;
-    const newValor = inputValor.value;
+    const newDescripcion = document.getElementById("miContainer").textContent;
+    const newValor = suma;
     console.log(newNombre, newDescripcion, newValor);
 
     axios.post('fronted/guardarpaquetes', {
@@ -111,11 +113,20 @@ function guardar_paquete() {
             Descripcion: newDescripcion,
             Valor: newValor
         }).then((res) => {
-            console.log(res.data)
+            console.log(res.data);
+            const alerta = document.getElementById("alerta");
+            alerta.classList.remove("oculto");
+            alerta.classList.add("alerta-exito");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+                alerta.classList.remove("alerta-exito");
+            }, 3000);
         })
         .catch((err) => {
             console.log(err);
         })
+    eliminarTodo();
 }
+
 
 // guardarpaquetes fin

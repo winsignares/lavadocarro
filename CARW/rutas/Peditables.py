@@ -30,4 +30,4 @@ def guardarpaquetes():
     new_paq = paquetes(Nombre=data['Nombre'], Descripcion=data['Descripcion'], Valor=data['Valor'])
     db.session.add(new_paq)
     db.session.commit()
-    return redirect('/paquetes')
+    return redirect('/Peditables')
