@@ -12,10 +12,10 @@ class turnos(db.Model):
 
     
 
-    def __init__(self ,id_vehiculo,id_rol,Hora_inicio,Hora_Fin ):
+    def __init__(self ,id_vehiculo,id_paquete,Hora_inicio,Hora_Fin ):
         
         self.id_vehiculo = id_vehiculo
-        self.id_rol = id_rol
+        self.id_paquete = id_paquete
         self.Hora_inicio = Hora_inicio
         self.Hora_Fin = Hora_Fin
         
@@ -25,4 +25,4 @@ with app.app_context():
 
 class turnosSchema(ma.Schema):
     class Meta:
-        fields = ('id','id_vehiculo','id_rol','Hora_inicio','Hora_Fin')
+        fields = ('id','id_vehiculo','id_paquete','Hora_inicio','Hora_Fin')
