@@ -28,12 +28,14 @@ from rutas.login import routes_login
 from rutas.Principal import routes_principal
 from rutas.Ppredeterminados import routes_Ppredeterminados
 from rutas.Peditables import routes_Peditables
+from rutas.Pagos import routes_Pagos
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
 app.register_blueprint(routes_principal, url_prefix="/fronted")
 app.register_blueprint(routes_Ppredeterminados, url_prefix="/fronted")
 app.register_blueprint(routes_Peditables, url_prefix="/fronted")
+app.register_blueprint(routes_Pagos, url_prefix="/fronted")
 
 
 #------------------------------------------------
@@ -61,6 +63,10 @@ def Paquetes_predeterminados():
 @app.route('/Peditables')
 def Peditables():
     return render_template('/main/Peditables.html')
+
+@app.route('/Pagos')
+def Pagos():
+    return render_template('/main/Pagos.html')
 
 
 if __name__ == '__main__':

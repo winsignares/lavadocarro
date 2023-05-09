@@ -257,6 +257,9 @@ nav {
     /* Margen inferior */
     border-radius: 5px;
     /* Bordes redondeados */
+    position: absolute;
+    right: 63%;
+    top: 12%;
 }
 
 .oculto {
