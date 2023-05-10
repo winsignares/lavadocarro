@@ -5,7 +5,6 @@
 <div class="container2">
     <form>
         <h1 style="text-align: center;">Centro De Pagos</h1>
-        </br>
         <label for="nombre Usuario">Usuario :</label>
         <select class="form-select" aria-label="Default select example">
             <option selected>Lista Usuarios</option>
@@ -14,8 +13,11 @@
             <option value="3">Three</option>
           </select>
         </br>
-        <label for="valor paquete">Matricula: </label>
+        <label for="Matricula">Matricula: </label>
         <li class="list-group-item"># De Matricula</li>
+        </br>
+        <label for="Descripcion">Descripcion Del Vehiculo: </label>
+        <li class="list-group-item">,,</li>
         </br>
         <label for="nombre paquete">Paquetes :</label>
         <select class="form-select" aria-label="Default select example">
@@ -25,10 +27,19 @@
             <option value="3">Three</option>
           </select>
         </br>
-        <button type="button" class="btn btn-info" onclick="guardar_paquete()">Guardar</button>
-
-        <button type="button" class="btn btn-danger" onclick="eliminarTodo()">Descartar Lista</button>
+        <label for="valor paquete">Valor: </label>
+        <li class="list-group-item">$</li>
         </br>
+        <label for="Fecha">Fecha: </label>
+        <li class="list-group-item" style="display: inline;">Dia/Mes/Año</li>
+
+        <label for="Duracion Proseso" style="display: inline;">Tiempo Estimado: </label>
+        <li class="list-group-item" style="display: inline;">00:00</li>
+        </br>
+        </br>
+        <button type="button" class="btn btn-danger" onclick="eliminarTodo()">Descartar</button>
+        </br>
+
 
     </form>
 </div>
@@ -37,6 +48,11 @@
     </br>
     <div id="miContainer" class="container5">
     </div>
+    </br>
+    <button type="button" class="btn btn-info" onclick="guardar_paquete()">Pago Fisico</button>
+
+    <button type="button" class="btn btn-success" onclick="eliminarTodo()">Pago PSE</button>
+    </br>
 </div>
 <script src="{{url_for('static', filename='js/Pagos.js')}} "></script>
 {% endblock %}

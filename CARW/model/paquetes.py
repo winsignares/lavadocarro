@@ -8,13 +8,15 @@ class paquetes(db.Model):
     Nombre = db.Column(db.String(50))
     Descripcion = db.Column(db.String(5000))
     Valor = db.Column(db.Integer)
+    Duracion = db.Column(db.TIME)
     
 
-    def __init__(self, Nombre,Descripcion,Valor ):
+    def __init__(self, Nombre,Descripcion,Valor,Duracion ):
         
         self.Nombre = Nombre
         self.Descripcion = Descripcion
         self.Valor = Valor
+        self.Duracion = Duracion
         
     
 with app.app_context():
@@ -22,4 +24,4 @@ with app.app_context():
 
 class paquetesSchema(ma.Schema):
     class Meta:
-        fields = ('id','Nombre','Descripcion','Valor')
+        fields = ('id','Nombre','Descripcion','Valor','Duracion')
