@@ -36,10 +36,10 @@ function ver_paquetes() {
             let opciones = '';
             for (let index = 1; index < length; index++) {
                 opciones +=
-                    `
-                    
-                    <option selected>Lista Paquetes</option>
-                    <option id="${index}" value="${index}">${datos[index].titulo}</option>`;
+                    `<select id="${index}" class="form-select " aria-label="Default select example " onclick="false">
+                    <option selected></option>
+                    <option value="${index}">${datos[index].titulo}</option>
+                  </select>`;
             }
             Lpaquetes.innerHTML = opciones;
         })
