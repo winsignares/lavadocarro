@@ -14,7 +14,7 @@ function ver_usuarios() {
             let opciones = '';
             for (let index = 1; index < length; index++) {
                 opciones +=
-                    `<option id="${index}" value="${index}">${datos[index].nombreu}</option>`;
+                    `<option value="${index}">${datos[index].nombreu}</option>`;
             }
             Lusuarios.innerHTML = opciones;
         })
