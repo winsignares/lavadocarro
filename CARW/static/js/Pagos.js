@@ -1,5 +1,5 @@
-let Lusuarios = document.getElementById('lusuarios');
 let Lpaquetes = document.getElementById('lpaquetes');
+let cedula = document.getElementById("lusuarios");
 let Cmatri = document.getElementById('matri');
 
 // odtener los usuarios inicio
@@ -45,3 +45,22 @@ function ver_paquetes() {
         });
 }
 // odtener los paquetes fin
+function verificarCedula() {
+    axios.get('fronted/consulusuarioPAG', {
+            responseType: 'json'
+        })
+        .then(function(response) {
+            let datos = response.data
+            let password = cedula.value;
+            for (let i = 1; i <= Object.keys(datos).length; i++) {
+                if (datos[i].cedula == password) {
+                    window.alert("Cedula encontrada");
+                    return;
+                }
+            }
+            window.alert("Cedula incorrecta");
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}

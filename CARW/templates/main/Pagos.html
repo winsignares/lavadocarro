@@ -6,16 +6,8 @@
     <form>
         <h1 style="text-align: center;">Centro De Pagos</h1>
         <label for="nombre Usuario">Usuario :</label>
-        <div style="display: inline; ">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-        <select class="form-select" aria-label="Default select example" onclick="ver_usuarios()">
-            <option selected >Lista Usuarios</option>
-            <option id="lusuarios">One</option>
-          </select>
+        <input id="lusuario" type="text" placeholder="coloque su usuario">
+        <button class="btn-login" type="submit" onclick="verificarCedula()">Buscar</button></br>
         </br>
         <label for="Matricula">Matricula: </label>
         <li id="matri" class=" list-group-item "># De Matricula</li>

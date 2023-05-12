@@ -12,24 +12,23 @@ def indexPagos():
     
     return render_template('/main/Pagos.html')
 
-@routes_Pagos.route('/consulusuario', methods=['GET'])
+@routes_Pagos.route('/consulusuarioPAG', methods=['GET'])
 def consullist():
     datos= {}
     usuarios_table = db.Model.metadata.tables['tblusuarios']
-    roles_table = db.Model.metadata.tables['tblroles']
-    cars_table = db.Model.metadata.tables['tblvehiculos']
-    resultado = db.session.query(usuarios, roles, vehiculos).select_from(usuarios_table).join(roles_table).join(cars_table).all()
+    vehiculos_table = db.Model.metadata.tables['tblvehiculos']
+    resultado = db.session.query(usuarios, vehiculos).select_from(usuarios_table).join(vehiculos_table).all()
+    users = []
     i = 0
-    for usuario, rol , vehiculo in resultado:
+    for usuario, vehiculo in resultado:
         i += 1
         datos[i] = {
+            'cedula':usuario.Cedula,
             'nombreu':usuario.Usuario,
-            'rolsito': rol.id,
-            'matricula': vehiculo.Matricula,
-            'modelito': vehiculo.Modelo,
-            'colorsito': vehiculo.Color,
-            'tipo': vehiculo.Tipo                
+            'matricula': vehiculo.Matricula            
         }
+        users.append(datos)
+        print(users)
     return jsonify(datos)
 
 @routes_Pagos.route('/consulpaquetes', methods=['GET'])
