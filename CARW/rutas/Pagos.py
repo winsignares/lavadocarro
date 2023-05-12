@@ -23,8 +23,8 @@ def consullist():
     for usuario, vehiculo in resultado:
         i += 1
         datos[i] = {
-            'cedula':usuario.Cedula,
             'nombreu':usuario.Usuario,
+            'cedula':usuario.Cedula,
             'matricula': vehiculo.Matricula            
         }
         users.append(datos)

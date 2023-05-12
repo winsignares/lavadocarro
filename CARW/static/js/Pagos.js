@@ -3,20 +3,19 @@ let cedula = document.getElementById("lusuarios");
 let Cmatri = document.getElementById('matri');
 
 // odtener los usuarios inicio
-function ver_usuarios() {
-    axios.get('fronted/consulusuario', {
-        responseType: 'json'
-    })
-
-    .then(function(response) {
-            let datos = response.data
-            var length = (Object.keys(datos).length) + 1;
-            let opciones = '';
-            for (let index = 1; index < length; index++) {
-                opciones +=
-                    `<option value="${index}">${datos[index].nombreu}</option>`;
+function verificarCedula() {
+    axios.get('fronted/consulusuarioPAG', {
+            responseType: 'json'
+        })
+        .then(function(response) {
+            let usuarios = response.data;
+            let password = document.getElementById("lusuarios").value;
+            for (let i = 0; i < usuarios.length; i++) {
+                if (usuarios[i].cedula == password) {
+                    window.alert("Cedula encontrada");
+                }
             }
-            Lusuarios.innerHTML = opciones;
+            window.alert("Cedula incorrecta");
         })
         .catch(function(error) {
             console.log(error);
@@ -45,22 +44,3 @@ function ver_paquetes() {
         });
 }
 // odtener los paquetes fin
-function verificarCedula() {
-    axios.get('fronted/consulusuarioPAG', {
-            responseType: 'json'
-        })
-        .then(function(response) {
-            let datos = response.data
-            let password = cedula.value;
-            for (let i = 1; i <= Object.keys(datos).length; i++) {
-                if (datos[i].cedula == password) {
-                    window.alert("Cedula encontrada");
-                    return;
-                }
-            }
-            window.alert("Cedula incorrecta");
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-}
