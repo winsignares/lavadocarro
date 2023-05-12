@@ -1,17 +1,19 @@
-let Lpaquetes = document.getElementById('lpaquetes');
-let cedula = document.getElementById("lusuarios");
-let Cmatri = document.getElementById('matri');
+const Lpaquetes = document.getElementById('lpaquetes');
+const cedula = document.getElementById("lusuarios");
+const Cmatri = document.getElementById('matri');
 
 // odtener los usuarios inicio
-function verificarCedula() {
+function verificarCedula(event) {
+    event.preventDefault();
     axios.get('fronted/consulusuarioPAG', {
-            responseType: 'json'
-        })
-        .then(function(response) {
-            let usuarios = response.data;
-            let password = document.getElementById("lusuarios").value;
-            for (let i = 0; i < usuarios.length; i++) {
-                if (usuarios[i].cedula == password) {
+        responseType: 'json'
+    })
+
+    .then(function(response) {
+            let datos = response.data
+            let password = cedula.value;
+            for (let i = 0; i < Object.keys(datos).length; i++) {
+                if (datos[i].cedula == password) {
                     window.alert("Cedula encontrada");
                 }
             }
