@@ -11,9 +11,9 @@ function verificarCedula(event) {
 
     .then(function(response) {
             let datos = response.data
-            let password = cedula.value;
+            let cedulita = cedula.value;
             for (let i = 0; i < Object.keys(datos).length; i++) {
-                if (datos[i].cedula == password) {
+                if (datos[i].cedula == cedulita) {
                     window.alert("Cedula encontrada");
                 }
             }
