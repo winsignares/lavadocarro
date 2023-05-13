@@ -27,7 +27,7 @@ def consulprocedimientos():
 @routes_Peditables.route('/guardarpaquetes', methods=['POST'])
 def guardarpaquetes():
     data = request.json
-    new_paq = paquetes(Nombre=data['Nombre'], Descripcion=data['Descripcion'], Valor=data['Valor'])
+    new_paq = paquetes(Nombre=data['Nombre'], Descripcion=data['Descripcion'], Valor=data['Valor'], Duracion=data['Duracion'])
     db.session.add(new_paq)
     db.session.commit()
     return redirect('/Peditables')

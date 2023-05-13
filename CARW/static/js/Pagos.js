@@ -1,15 +1,26 @@
 const Lpaquetes = document.getElementById('lpaquetes');
-const cedula = document.getElementById("lusuarios");
+const cedula = document.getElementById("Ncedula");
 const Cmatri = document.getElementById('matri');
 
 // odtener los usuarios inicio
-function verificarCedula(event) {
-    event.preventDefault();
-    axios.get('fronted/consulusuarioPAG', {
-        responseType: 'json'
-    })
+function verificarCedula() {
 
-    .then(function(response) {
+    if (cedula.trim() === "") {
+        console.log("Debe llenarse todos los campos");
+        const alerta = document.getElementById("alerta2");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-exito");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-exito");
+        }, 3000);
+        return;
+    }
+
+    axios.get('fronted/consulusuarioPAG', {
+            responseType: 'json'
+        })
+        .then(function(response) {
             let datos = response.data
             let cedulita = cedula.value;
             for (let i = 0; i < Object.keys(datos).length; i++) {

@@ -262,6 +262,22 @@ nav {
     top: 12%;
 }
 
+.alerta-campo-vacio {
+    background-color: rgba(255, 0, 0, 0.83);
+    /* Color de fondo verde */
+    color: white;
+    /* Color del texto blanco */
+    padding: 10px;
+    /* Espacio interior */
+    margin-bottom: 10px;
+    /* Margen inferior */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    position: absolute;
+    right: 75%;
+    top: 12%;
+}
+
 .oculto {
     display: none;
     /* Oculta el elemento por defecto */

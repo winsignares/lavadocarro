@@ -108,10 +108,23 @@ function guardar_paquete() {
     const newValor = suma;
     console.log(newNombre, newDescripcion, newValor);
 
+    if (newNombre.trim() === "" || newDescripcion.trim() === "") {
+        console.log("Debe llenarse todos los campos");
+        const alerta = document.getElementById("alerta2");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-exito");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-exito");
+        }, 3000);
+        return;
+    }
+
     axios.post('fronted/guardarpaquetes', {
             Nombre: newNombre,
             Descripcion: newDescripcion,
-            Valor: newValor
+            Valor: newValor,
+            Duracion: '00: 30: 00'
         }).then((res) => {
             console.log(res.data);
             const alerta = document.getElementById("alerta");
@@ -127,6 +140,4 @@ function guardar_paquete() {
         })
     eliminarTodo();
 }
-
-
 // guardarpaquetes fin
