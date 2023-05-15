@@ -1,40 +1,36 @@
-const Lpaquetes = document.getElementById('lpaquetes');
-const cedula = document.getElementById("Ncedula");
-const Cmatri = document.getElementById('matri');
+const cedula = document.getElementById("identificacion");
+const usuarioN = document.getElementById("Nusuario");
+const matriculaN = document.getElementById("Nmatricula");
+const vehiculoT = document.getElementById("Tvehiculo");
 
-// odtener los usuarios inicio
-function verificarCedula() {
-
-    if (cedula.trim() === "") {
-        console.log("Debe llenarse todos los campos");
-        const alerta = document.getElementById("alerta2");
-        alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-exito");
-        setTimeout(function() {
-            alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-exito");
-        }, 3000);
-        return;
-    }
-
-    axios.get('fronted/consulusuarioPAG', {
-            responseType: 'json'
-        })
+function verificarCedula(event) {
+    event.preventDefault();
+    axios.get('fronted/consulusuarioPAG')
         .then(function(response) {
-            let datos = response.data
-            let cedulita = cedula.value;
-            for (let i = 0; i < Object.keys(datos).length; i++) {
-                if (datos[i].cedula == cedulita) {
-                    window.alert("Cedula encontrada");
+            let datos = response.data;
+            let identidad = cedula.value.trim();
+            for (let i = 1; i <= Object.keys(datos).length; i++) {
+                if (datos[i].Cedula == identidad) {
+                    usuarioN.innerHTML = `<li id="Nusuario" class="list-group-item" style="display: inline;">${datos[i].Nombre} ${datos[i].Apellido}</li>`;
+                    matriculaN.innerHTML = `<li id="Nmatricula" class="list-group-item" style="display: inline;">${datos[i].Matricula}</li>`;
+                    vehiculoT.innerHTML = `<li id="Tvehiculo" class="list-group-item" style="display: inline;">${datos[i].Tipo}</li>`;
+                    return;
                 }
             }
-            window.alert("Cedula incorrecta");
+            const alerta = document.getElementById("alerta");
+            alerta.classList.remove("oculto");
+            alerta.classList.add("alerta-campo-vacio");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+                alerta.classList.remove("alerta-campo-vacio");
+            }, 3000);
+            return;
         })
         .catch(function(error) {
             console.log(error);
         });
 }
-// odtener los usuarios fin
+
 
 // odtener los paquetes inicio
 function ver_paquetes() {

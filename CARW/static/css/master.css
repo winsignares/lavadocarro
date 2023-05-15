@@ -293,3 +293,18 @@ nav {
     background-color: white;
     border-radius: 2%;
 }
+
+.caja-pagos {
+    width: 35%;
+    margin: 0 auto;
+    padding: 20px;
+    border: none;
+    box-sizing: border-box;
+    position: absolute;
+    right: 40%;
+    top: 10%;
+    background-color: rgba(255, 255, 255, 0.797);
+    border-radius: 2%;
+    max-height: 700px;
+    height: 700px;
+}

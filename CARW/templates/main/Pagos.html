@@ -1,51 +1,36 @@
 {% extends "./layout.html" %} {% block body %}
-<div id="alerta2" class="alerta-exito oculto">
-    Coloque una cedula!
+<div id="alerta" class="alerta-exito oculto">
+    Cedula No Registrada!
 </div>
-<div class="container2">
+<div class="caja-pagos">
+    <h1>Ingrese aquí</h1>
     <form>
-        <h1 style="text-align: center;">Centro De Pagos</h1>
-        <label for="nombre Usuario">Usuario :</label>
-        <input id="Ncedula" type="text" placeholder="coloque la cedula">
-        <button class="button" onclick="verificarCedula()">Buscar</button></br>
-        </br>
-        <label for="Matricula">Matricula: </label>
-        <li id="matri" class=" list-group-item "># De Matricula</li>
-        </br>
-        <label for="Descripcion ">Descripcion Del Vehiculo: </label>
-        <li class="list-group-item ">,,</li>
-        </br>
-        <label for="nombre paquete ">Paquetes :</label>
-        <select id="lpaquetes" class="form-select " aria-label="Default select example " onclick="ver_paquetes()">
-            <option selected>Lista Paquetes</option>
-            <option value="1 ">One</option>
-          </select>
-        </br>
-        <label for="valor paquete ">Valor: </label>
-        <li class="list-group-item ">$</li>
-        </br>
-        <label for="Fecha ">Fecha: </label>
-        <li class="list-group-item " style="display: inline; ">Dia/Mes/Año</li>
+        <label for="nombre-usuario">Usuario:</label>
+        <li id="Nusuario" class="list-group-item" style="display: inline;">Nombre Del Usuario</li>
+        <input id="identificacion" type="text" placeholder="Coloque la cédula">
+        <button class="btn btn-info" type="submit" onclick="verificarCedula(event)">Buscar</button>
+        <br><br>
+        <label for="matricula">Matricula:</label>
+        <li id="Nmatricula" class="list-group-item" style="display: inline;"># De Matricula</li>
 
-        <label for="Duracion Proseso " style="display: inline; ">Tiempo Estimado: </label>
-        <li class="list-group-item " style="display: inline; ">00:00</li>
+        <label for="Duracion Proseso " style="display: inline; ">Tipo De Vehiculo: </label>
+        <li id="Tvehiculo" class="list-group-item" style="display: inline;">---</li>
         </br>
-        </br>
-        <button type="button " class="btn btn-danger " onclick="eliminarTodo() ">Descartar</button>
-        </br>
-
     </form>
 </div>
-<div class="container3 ">
-    <h1 style="text-align: center; ">Descripcion Del Paquete</h1>
-    </br>
-    <div id="miContainer " class="container5 ">
-    </div>
-    </br>
-    <button type="button " class="btn btn-info " onclick="guardar_paquete() ">Pago Fisico</button>
 
-    <button type="button " class="btn btn-success " onclick="eliminarTodo() ">Pago PSE</button>
-    </br>
+<div class="container3">
+    <h1 style="text-align: center;">Descripción Del Paquete</h1>
+    <br>
+    <div id="miContainer" class="container5">
+    </div>
+    <br>
+    <button type="button" class="btn btn-info" onclick="guardar_paquete()">Pago Físico</button>
+
+    <button type="button" class="btn btn-success" onclick="eliminarTodo()">Pago PSE</button>
+    <br>
 </div>
-<script src="{{url_for( 'static', filename='js/Pagos.js' )}} "></script>
+
+<script src="{{url_for('static', filename='js/Pagos.js')}}"></script>
+
 {% endblock %}
