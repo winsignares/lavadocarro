@@ -308,3 +308,10 @@ nav {
     max-height: 700px;
     height: 700px;
 }
+
+.payuL {
+    position: absolute;
+    right: 0%;
+    top: 10%;
+    height: 700px;
+}

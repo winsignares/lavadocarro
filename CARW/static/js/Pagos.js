@@ -40,8 +40,7 @@ function verificarCedula(event) {
 // odtener el usuario fin
 
 // odtener los paquetes inicio
-function verificarpaquete(event) {
-    event.preventDefault();
+function verificarpaquete() {
     axios.get('fronted/consulpaquetesPAG')
         .then(function(response) {
             let datos = response.data;
@@ -70,8 +69,7 @@ function verificarpaquete(event) {
 // odtener los paquetes fin
 
 // odtener fecha inicio
-function obtenerFechaActual(event) {
-    event.preventDefault();
+function obtenerFechaActual() {
     var fechaActual = new Date();
 
 
@@ -112,11 +110,14 @@ function ver_descrpcion() {
 // auto seleccion del paquete elegido por el cliente inicio
 document.addEventListener('DOMContentLoaded', function() {
     miFuncion();
+    setTimeout(function() {
+        document.removeEventListener('DOMContentLoaded', arguments.callee);
+    }, 1000);
 });
 
 function miFuncion() {
-    verificarpaquete(event);
+    verificarpaquete();
     ver_descrpcion();
-    obtenerFechaActual(event);
+    obtenerFechaActual();
 }
 // auto seleccion del paquete elegido por el cliente fin

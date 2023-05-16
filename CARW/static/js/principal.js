@@ -1,5 +1,3 @@
-const IDC = "1";
-
 function gopredeterminados() {
     window.location.href = '/Ppredeterminados';
     return;
@@ -20,5 +18,4 @@ function seleccionado(id) {
     const IDC = id;
     localStorage.setItem('IDC', IDC);
     window.location.href = '/Pagos';
-    window.alert(IDC);
 }
