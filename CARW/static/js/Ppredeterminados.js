@@ -2,11 +2,10 @@ let remplazo = document.getElementById('cambio');
 
 function ver_paquetes() {
     axios.get('fronted/consulpaquetes', {
-        responseType: 'json'
-    })
-
-    .then(function(response) {
-            let datos = response.data
+            responseType: 'json'
+        })
+        .then(function(response) {
+            let datos = response.data;
             var length = (Object.keys(datos).length) + 1;
             let opciones = '';
             for (let index = 1; index < length; index++) {
@@ -14,7 +13,7 @@ function ver_paquetes() {
                     `<div id="${datos[index].id}" class="mi-div d-flex flex-wrap col-md-5" style="max-width: 100%;">
                     <div class="col-md-4" style="text-align: center;">
                         <img src="/static/img/logo.jpg" class="img-fluid rounded-start" alt="...">
-                        <a onclick="seleccionado(id)" class="btn btn-primary">Seleccionar</a>
+                        <a onclick="seleccionado(${datos[index].id})" class="btn btn-primary">Seleccionar</a>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -25,7 +24,7 @@ function ver_paquetes() {
                         </div>
                     </div>
                 </div>                
-            </br>`;
+                </br>`;
             }
             remplazo.innerHTML = opciones;
         })

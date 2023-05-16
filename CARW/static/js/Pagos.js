@@ -6,8 +6,10 @@ const paqueteT = document.getElementById("Tpaquete");
 const valorP = document.getElementById("Pvalor");
 const FechaACT = document.getElementById("Fecha");
 const Tduracion = document.getElementById("Testimado");
-const IDC = "1";
+const IDC = localStorage.getItem('IDC');
+let remplazo = document.getElementById('cambio');
 
+// odtener el usuario inicio
 function verificarCedula(event) {
     event.preventDefault();
     axios.get('fronted/consulusuarioPAG')
@@ -35,7 +37,7 @@ function verificarCedula(event) {
             console.log(error);
         });
 }
-
+// odtener el usuario fin
 
 // odtener los paquetes inicio
 function verificarpaquete(event) {
@@ -83,3 +85,38 @@ function obtenerFechaActual(event) {
     return fechaFormateada;
 }
 // odtener fecha fin
+
+// llenar descripcion del paquete inicio
+function ver_descrpcion() {
+    axios.get('fronted/consulpaquetes', {
+            responseType: 'json'
+        })
+        .then(function(response) {
+            let datos = response.data;
+            var length = (Object.keys(datos).length) + 1;
+            let opciones = '';
+            for (let index = 1; index < length; index++) {
+                if (datos[index].id == IDC) {
+                    opciones +=
+                        `<p class="card-text">${datos[index].descripcion}</p>`;
+                }
+            }
+            remplazo.innerHTML = opciones;
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+// llenar descripcion del paquetefin
+
+// auto seleccion del paquete elegido por el cliente inicio
+document.addEventListener('DOMContentLoaded', function() {
+    miFuncion();
+});
+
+function miFuncion() {
+    verificarpaquete(event);
+    ver_descrpcion();
+    obtenerFechaActual(event);
+}
+// auto seleccion del paquete elegido por el cliente fin

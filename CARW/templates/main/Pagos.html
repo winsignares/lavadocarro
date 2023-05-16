@@ -3,7 +3,8 @@
     Cedula No Registrada!
 </div>
 <div class="caja-pagos">
-    <h1>Ingrese aquí</h1>
+    <h1 style="text-align: center;">Ingrese aquí</h1>
+    <br>
     <form>
         <label for="nombre-usuario">Usuario:</label>
         <li id="Nusuario" class="list-group-item" style="display: inline;">Nombre Del Usuario</li>
@@ -12,19 +13,18 @@
         <br><br>
         <label for="matricula">Matricula:</label>
         <li id="Nmatricula" class="list-group-item" style="display: inline;"># De Matricula</li>
-
+        <br><br>
         <label for="tipo vehiculo" style="display: inline; ">Tipo De Vehiculo: </label>
         <li id="Tvehiculo" class="list-group-item" style="display: inline;">---</li>
         <br><br>
         <label for="nombre-paquete">Paquete:</label>
         <li id="Tpaquete" class="list-group-item" style="display: inline;">Tipo De Paquete</li>
-
+        <br><br>
         <label for="valor" style="display: inline; ">Valor: </label>
         <li id="Pvalor" class="list-group-item" style="display: inline;">$</li>
         <br><br>
         <label for="Fecha ">Fecha: </label>
         <li id="Fecha" class="list-group-item " style="display: inline; ">Dia/Mes/Año</li>
-        <button class="btn btn-info" type="submit" onclick="obtenerFechaActual(event)">cargar</button>
         <br><br>
         <label for="Duracion Proseso " style="display: inline; ">Tiempo Estimado: </label>
         <li id="Testimado" class="list-group-item " style="display: inline; ">00:00</li>
@@ -36,6 +36,7 @@
     <h1 style="text-align: center;">Descripción Del Paquete</h1>
     <br>
     <div id="miContainer" class="container5">
+        <p id="cambio" class="card-text"></p>
     </div>
     <br>
     <button type="button" class="btn btn-info" onclick="verificarpaquete(event)">Pago Físico</button>
