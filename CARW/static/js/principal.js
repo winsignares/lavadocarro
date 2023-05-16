@@ -2,6 +2,7 @@ const paqueteT = document.getElementById("Tpaquete");
 const valorP = document.getElementById("Pvalor");
 const FechaACT = document.getElementById("Fecha");
 const Tduracion = document.getElementById("Testimado");
+const IDC = 1;
 
 function gopredeterminados() {
     window.location.href = '/Ppredeterminados';
@@ -23,9 +24,9 @@ function verificarpaquete(event) {
     axios.get('fronted/consulpaquetesPAG')
         .then(function(response) {
             let datos = response.data;
-            let identidad = cedula.value.trim();
+            let identidad = IDC.value.trim();
             for (let i = 1; i <= Object.keys(datos).length; i++) {
-                if (datos[i].Cedula == identidad) {
+                if (datos[i].id == identidad) {
                     paqueteT.innerHTML = `<li id="Tpaquete" class="list-group-item" style="display: inline;">${datos[i].Nombre}</li>`;
                     valorP.innerHTML = `<li id="Pvalor" class="list-group-item" style="display: inline;">${datos[i].Matricula}</li>`;
                     FechaACT.innerHTML = `<li id="Fecha" class="list-group-item" style="display: inline;">${datos[i].Tipo}</li>`;
@@ -45,4 +46,11 @@ function verificarpaquete(event) {
         .catch(function(error) {
             console.log(error);
         });
+}
+
+function seleccionado(id) {
+    window.location.href = '/Pagos';
+    const IDC = id;
+
+    return;
 }
