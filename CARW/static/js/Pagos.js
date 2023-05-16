@@ -2,6 +2,11 @@ const cedula = document.getElementById("identificacion");
 const usuarioN = document.getElementById("Nusuario");
 const matriculaN = document.getElementById("Nmatricula");
 const vehiculoT = document.getElementById("Tvehiculo");
+const paqueteT = document.getElementById("Tpaquete");
+const valorP = document.getElementById("Pvalor");
+const FechaACT = document.getElementById("Fecha");
+const Tduracion = document.getElementById("Testimado");
+const IDC = "1";
 
 function verificarCedula(event) {
     event.preventDefault();
@@ -33,23 +38,48 @@ function verificarCedula(event) {
 
 
 // odtener los paquetes inicio
-function ver_paquetes() {
-    axios.get('fronted/consulpaquetes', {
-        responseType: 'json'
-    })
-
-    .then(function(response) {
-            let datos = response.data
-            var length = (Object.keys(datos).length) + 1;
-            let opciones = '';
-            for (let index = 1; index < length; index++) {
-                opciones +=
-                    `<option id="${index}" value="${index}">${datos[index].titulo}</option>`;
+function verificarpaquete(event) {
+    event.preventDefault();
+    axios.get('fronted/consulpaquetesPAG')
+        .then(function(response) {
+            let datos = response.data;
+            let identidad = IDC;
+            for (let i = 1; i <= Object.keys(datos).length; i++) {
+                if (datos[i].id == identidad) {
+                    paqueteT.innerHTML = `<li id="Tpaquete" class="list-group-item" style="display: inline;">${datos[i].titulo}</li>`;
+                    valorP.innerHTML = `<li id="Pvalor" class="list-group-item" style="display: inline;">${datos[i].valor}</li>`;
+                    Tduracion.innerHTML = `<li id="Testimado" class="list-group-item" style="display: inline;">${datos[i].tiempo}</li>`;
+                    return;
+                }
             }
-            Lpaquetes.innerHTML = opciones;
+            const alerta = document.getElementById("alerta");
+            alerta.classList.remove("oculto");
+            alerta.classList.add("alerta-campo-vacio");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+                alerta.classList.remove("alerta-campo-vacio");
+            }, 3000);
+            return;
         })
         .catch(function(error) {
             console.log(error);
         });
 }
 // odtener los paquetes fin
+
+// odtener fecha inicio
+function obtenerFechaActual(event) {
+    event.preventDefault();
+    var fechaActual = new Date();
+
+
+    var dia = fechaActual.getDate();
+    var mes = fechaActual.getMonth() + 1;
+    var anio = fechaActual.getFullYear();
+
+    var fechaFormateada = dia + '/' + mes + '/' + anio;
+    FechaACT.innerHTML = `<li id="Fecha" class="list-group-item" style="display: inline;">${fechaFormateada}</li>`;
+
+    return fechaFormateada;
+}
+// odtener fecha fin

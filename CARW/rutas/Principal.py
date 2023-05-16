@@ -18,6 +18,7 @@ def consulpaquetes():
     for paqutes_table in resultado:
         i += 1
         datos[i] = {
+            'id': paqutes_table.id,
             'titulo': paqutes_table.Nombre,
             'descripcion': paqutes_table.Descripcion,
             'valor': paqutes_table.Valor,
