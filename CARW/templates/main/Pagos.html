@@ -11,6 +11,9 @@
         <input id="identificacion" type="text" placeholder="Coloque la cédula">
         <button class="btn btn-info" type="submit" onclick="verificarCedula(event)">Buscar</button>
         <br><br>
+        <label for="correo">Correo:</label>
+        <li id="Email" class="list-group-item" style="display: inline;">Email</li>
+        <br><br>
         <label for="matricula">Matricula:</label>
         <li id="Nmatricula" class="list-group-item" style="display: inline;"># De Matricula</li>
         <br><br>
@@ -29,6 +32,10 @@
         <label for="Duracion Proseso " style="display: inline; ">Tiempo Estimado: </label>
         <li id="Testimado" class="list-group-item " style="display: inline; ">00:00</li>
         </br>
+        <br>
+        <button type="button" class="btn btn-info" onclick="verificarpaquete(event)">Pago Físico</button>
+
+        <button type="button" class="btn btn-success" onclick="eliminarTodo()">Pago PSE</button>
     </form>
 </div>
 
@@ -38,10 +45,28 @@
     <div id="miContainer" class="container5">
         <p id="cambio" class="card-text"></p>
     </div>
-    <br>
-    <button type="button" class="btn btn-info" onclick="verificarpaquete(event)">Pago Físico</button>
+    <br><br>
+    <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+        <input name="merchantId" type="hidden" value="508029">
+        <input name="accountId" type="hidden" value="512321">
+        <input name="description" type="hidden" value="Test PAYU">
+        <input name="referenceCode" type="hidden" value="TestPayU">
+        <input name="amount" type="hidden" value="20000">
+        <input name="tax" type="hidden" value="3193">
+        <input name="taxReturnBase" type="hidden" value="16806">
+        <input name="currency" type="hidden" value="COP">
+        <input name="signature" type="hidden" value="7ee7cf808ce6a39b17481c54f2c57acc">
+        <input name="test" type="hidden" value="0">
+        <input id="CHB" name="buyerEmail" type="hidden" value="test@test.com">
+        <input name="responseUrl" type="hidden" value="/Pagos">
+        <input name="confirmationUrl" type="hidden" value="http://www.test.com/confirmation">
+        <input name="Submit" type="image" src="{{ url_for('static', filename='img/boton_pagar_mediano.png') }}" alt="Enviar">
+    </form>
 
-    <button type="button" class="btn btn-success" onclick="eliminarTodo()">Pago PSE</button>
+    <script type="text/javascript" src="https://maf.pagosonline.net/ws/fp/tags.js?id={{ device_session_id }}80200"></script>
+    <noscript>
+    <iframe style="width: 100px; height: 100px; border: 0; position: absolute; top: -5000px;" src="https://maf.pagosonline.net/ws/fp/tags.js?id={{ device_session_id }}80200"></iframe>
+  </noscript>
 </div>
 <img class="payuL" src="{{ url_for('static', filename='img/Medios_Pago_Verde_Oscuro_120x60.jpg') }}" title="PayU - Medios de pago" alt="PayU - Medios de pago" width="120" height="600" />
 <script src="{{url_for('static', filename='js/Pagos.js')}}"></script>

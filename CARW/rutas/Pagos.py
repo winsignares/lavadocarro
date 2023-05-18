@@ -18,17 +18,17 @@ def consullist():
     datos = {}
     usuarios_table = db.Model.metadata.tables['tblusuarios']
     vehiculos_table = db.Model.metadata.tables['tblvehiculos']
-    resultado = db.session.query(usuarios_table.c.Nombre,usuarios_table.c.Apellido, usuarios_table.c.Cedula, vehiculos_table.c.Matricula, vehiculos_table.c.Tipo).select_from(usuarios_table).join(vehiculos_table).all()
+    resultado = db.session.query(usuarios_table.c.Nombre, usuarios_table.c.Apellido, usuarios_table.c.Cedula, usuarios_table.c.Correo, vehiculos_table.c.Matricula, vehiculos_table.c.Tipo).select_from(usuarios_table).join(vehiculos_table).all()
     
     i = 0
-    for nombre, apellido, cedula, matricula, tipo in resultado:
+    for nombre, apellido, cedula, correo, matricula, tipo in resultado:
         i += 1
         datos[i] = {
             'Nombre': nombre,
             'Apellido': apellido,
             'Cedula': cedula,
+            'Correo': correo,
             'Matricula': matricula,
             'Tipo': tipo            
         }
-    
     return jsonify(datos)
