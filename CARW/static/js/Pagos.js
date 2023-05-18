@@ -9,7 +9,6 @@ const FechaACT = document.getElementById("Fecha");
 const Tduracion = document.getElementById("Testimado");
 const IDC = localStorage.getItem('IDC');
 let remplazo = document.getElementById('cambio');
-let remplazo2 = document.getElementById('CHB');
 
 // odtener el usuario inicio
 function verificarCedula(event) {
@@ -24,6 +23,7 @@ function verificarCedula(event) {
                     correo.innerHTML = `<li id="Email" class="list-group-item" style="display: inline;">${datos[i].Correo}</li>`;
                     matriculaN.innerHTML = `<li id="Nmatricula" class="list-group-item" style="display: inline;">${datos[i].Matricula}</li>`;
                     vehiculoT.innerHTML = `<li id="Tvehiculo" class="list-group-item" style="display: inline;">${datos[i].Tipo}</li>`;
+
                     return;
                 }
             }
@@ -55,7 +55,6 @@ function verificarpaquete() {
                     Tduracion.innerHTML = `<li id="Testimado" class="list-group-item" style="display: inline;">${datos[i].tiempo}</li>`;
                     return;
                 }
-                ACTBPY();
             }
             const alerta = document.getElementById("alerta");
             alerta.classList.remove("oculto");
@@ -110,27 +109,6 @@ function ver_descrpcion() {
         });
 }
 // llenar descripcion del paquetefin
-
-
-// actualizar boton pagos payu inicio
-function ACTBPY() {
-    axios.get('fronted/consulusuarioPAG')
-        .then(function(response) {
-            let datos = response.data;
-            let opciones = '';
-            for (let i = 1; i <= Object.keys(datos).length; i++) {
-                opciones +=
-                    `<input id="CHB" name="buyerEmail" type="hidden" value="${datos[i].Correo}">`;
-                return;
-
-            }
-            remplazo2.innerHTML = opciones;
-        })
-        .catch(function(error) {
-            console.log(error);
-        });
-}
-// actualizar boton pagos payu inicio
 
 // auto seleccion del paquete elegido por el cliente inicio
 document.addEventListener('DOMContentLoaded', function() {
