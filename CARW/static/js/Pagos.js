@@ -24,6 +24,8 @@ function verificarCedula(event) {
                     matriculaN.innerHTML = `<li id="Nmatricula" class="list-group-item" style="display: inline;">${datos[i].Matricula}</li>`;
                     vehiculoT.innerHTML = `<li id="Tvehiculo" class="list-group-item" style="display: inline;">${datos[i].Tipo}</li>`;
 
+                    document.getElementsByName('buyerEmail')[0].value = datos[i].Correo;
+
                     return;
                 }
             }
