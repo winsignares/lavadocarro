@@ -9,6 +9,7 @@ const FechaACT = document.getElementById("Fecha");
 const Tduracion = document.getElementById("Testimado");
 const IDC = localStorage.getItem('IDC');
 let remplazo = document.getElementById('cambio');
+let resultadoPayU = "";
 
 // odtener el usuario inicio
 function verificarCedula(event) {
@@ -114,6 +115,59 @@ function ver_descrpcion() {
 
 // auto seleccion del paquete elegido por el cliente inicio
 document.addEventListener('DOMContentLoaded', function() {
+    // Código para guardar y recuperar datos del almacenamiento local
+    const cedula = document.getElementById("identificacion");
+    const usuarioN = document.getElementById("Nusuario");
+    const correo = document.getElementById("Email");
+    const matriculaN = document.getElementById("Nmatricula");
+    const vehiculoT = document.getElementById("Tvehiculo");
+    const paqueteT = document.getElementById("Tpaquete");
+    const valorP = document.getElementById("Pvalor");
+    const FechaACT = document.getElementById("Fecha");
+    const Tduracion = document.getElementById("Testimado");
+
+    // Recuperar los datos del almacenamiento local
+    const storedData = JSON.parse(localStorage.getItem("datosFormulario"));
+
+    if (storedData) {
+        cedula.value = storedData.cedula;
+        usuarioN.textContent = storedData.usuario;
+        correo.textContent = storedData.correo;
+        matriculaN.textContent = storedData.matricula;
+        vehiculoT.textContent = storedData.vehiculo;
+        paqueteT.textContent = storedData.paquete;
+        valorP.textContent = storedData.valor;
+        FechaACT.textContent = storedData.fecha;
+        Tduracion.textContent = storedData.duracion;
+    }
+
+    document.querySelector("form").addEventListener("submit", function(event) {
+        // Guardar los datos en el almacenamiento local
+        const data = {
+            cedula: cedula.value,
+            usuario: usuarioN.textContent,
+            correo: correo.textContent,
+            matricula: matriculaN.textContent,
+            vehiculo: vehiculoT.textContent,
+            paquete: paqueteT.textContent,
+            valor: valorP.textContent,
+            fecha: FechaACT.textContent,
+            duracion: Tduracion.textContent
+        };
+
+        localStorage.setItem("datosFormulario", JSON.stringify(data));
+    });
+
+    // Código adicional para verificar el resultado de PayU al regresar
+    const urlParams = new URLSearchParams(window.location.search);
+    const resultado = urlParams.get('resultado');
+
+    // Verificar si hay un resultado válido de PayU
+    if (resultado && (resultado === "exitoso" || resultado === "fallido")) {
+        resultadoPayU = resultado;
+    }
+
+    // Código adicional que quieres agregar
     miFuncion();
     setTimeout(function() {
         document.removeEventListener('DOMContentLoaded', arguments.callee);
@@ -126,3 +180,63 @@ function miFuncion() {
     obtenerFechaActual();
 }
 // auto seleccion del paquete elegido por el cliente fin
+
+// Función para verificar si se puede usar el botón dependiendo del resultado de PayU
+function verificarResultadoPayU() {
+    if (resultadoPayU === "exitoso") {
+        // Habilitar el botón para seguir utilizando los datos
+        document.getElementById("miboton").disabled = false;
+    } else {
+        // Deshabilitar el botón porque el resultado fue fallido o no hay resultado
+        document.getElementById("miboton").disabled = true;
+    }
+}
+// Función para verificar si se puede usar el botón dependiendo del resultado de PayU fin
+
+// Función para verificar si se puede usar el botón PayU
+function verificarCampos() {
+    const usuario = document.getElementById("Nusuario").textContent.trim();
+
+    if (usuario === "Nombre Del Usuario") {
+        const alerta = document.getElementById("alerta2");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio");
+        }, 3000);
+        return false; // Evita que el formulario se envíe
+    }
+    return true; // Permite continuar con el envío del formulario
+}
+// Función para verificar si se puede usar el botón PayU fin
+
+// Función para generar el turno y guardar el pago 
+function guardar_ventas() {
+    const suma = sumarValores();
+    const newNombre = document.getElementById("Titulo").value;
+    const newDescripcion = document.getElementById("miContainer").textContent;
+    const newValor = suma;
+    console.log(newNombre, newDescripcion, newValor);
+
+    axios.post('fronted/guardarventa', {
+            Nombre: newNombre,
+            Descripcion: newDescripcion,
+            Valor: newValor,
+            Duracion: '00: 30: 00'
+        }).then((res) => {
+            console.log(res.data);
+            const alerta = document.getElementById("alerta");
+            alerta.classList.remove("oculto");
+            alerta.classList.add("alerta-exito");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+                alerta.classList.remove("alerta-exito");
+            }, 3000);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    eliminarTodo();
+}
+// Función para generar el turno y guardar el pago fin

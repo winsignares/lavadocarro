@@ -32,3 +32,11 @@ def consullist():
             'Tipo': tipo            
         }
     return jsonify(datos)
+
+@routes_Pagos.route('/guardarventa', methods=['POST'])
+def guardarventa():
+    data = request.json
+    new_paq = paquetes(Fecha=data['Fecha'], id_vehiculo=data['Matricula'], id_paquete=data['id_paquete'], Descripcion=data['Descripcion'])
+    db.session.add(new_paq)
+    db.session.commit()
+    return redirect('/Pagos')

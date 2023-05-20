@@ -8,7 +8,7 @@ class ventas(db.Model):
     id_vehiculo = db.Column(db.String(50), db.ForeignKey('tblvehiculos.Matricula'))
     id_paquete = db.Column(db.Integer, db.ForeignKey('tblpaquetes.id'))
     Total = db.Column(db.Integer)
-    Vendedor = db.Column(db.String(50))
+    Descripcion = db.Column(db.String(5000))
 
     
 

@@ -2,6 +2,9 @@
 <div id="alerta" class="alerta-exito oculto">
     Cedula No Registrada!
 </div>
+<div id="alerta2" class="alerta-exito oculto">
+    Coloque Un Usuario!
+</div>
 <div class="caja-pagos">
     <h1 style="text-align: center;">Ingrese aquí</h1>
     <br>
@@ -35,7 +38,7 @@
         <br>
         <button type="button" class="btn btn-info" onclick="verificarpaquete(event)">Pago Físico</button>
 
-        <button type="button" class="btn btn-success" onclick="eliminarTodo()">Pago PSE</button>
+        <button type="button" class="btn btn-success" onclick="guardar_ventas()">Generar Turno</button>
     </form>
 </div>
 
@@ -46,16 +49,16 @@
         <p id="cambio" class="card-text"></p>
     </div>
     <br><br>
-    <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/">
+    <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/" onsubmit="return verificarCampos();">
         <input name="merchantId" type="hidden" value="508029">
         <input name="accountId" type="hidden" value="512321">
         <input name="description" type="hidden" value="Test PAYU">
-        <input name="referenceCode" type="hidden" value="paquete/lavado2">
+        <input name="referenceCode" type="hidden" value="paquete">
         <input name="amount" type="hidden" value="25000">
         <input name="tax" type="hidden" value="3193">
         <input name="taxReturnBase" type="hidden" value="16806">
         <input name="currency" type="hidden" value="COP">
-        <input name="signature" type="hidden" value="4045cba445cd4ba05127a518f37b06b4">
+        <input name="signature" type="hidden" value="228328d080207f9247c1addac58193b9">
         <input name="test" type="hidden" value="0">
         <input name="buyerEmail" type="hidden" value="test@test.com">
         <input name="responseUrl" type="hidden" value="http://192.168.1.8:5000/Pagos">
