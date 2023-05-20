@@ -3,7 +3,7 @@ from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, 
 from model.usuarios  import usuarios, usuariosSchema
 from model.roles import roles, rolesSchema
 from model.vehiculos import vehiculos,vehiculosSchema
-from model.paquetes import paquetes,paquetesSchema
+from model.ventas import ventas,ventasSchema
 
 routes_Pagos = Blueprint("routes_Pagos", __name__)
 
@@ -36,7 +36,7 @@ def consullist():
 @routes_Pagos.route('/guardarventa', methods=['POST'])
 def guardarventa():
     data = request.json
-    new_paq = paquetes(Fecha=data['Fecha'], id_vehiculo=data['Matricula'], id_paquete=data['id_paquete'], Total=data['Total'], Descripcion=data['Descripcion'])
+    new_paq = ventas(Fecha=data['Fecha'], id_vehiculo=data['Matricula'], id_paquete=data['id_paquete'], Total=data['Total'], Descripcion=data['Descripcion'])
     db.session.add(new_paq)
     db.session.commit()
     return redirect('/Pagos')

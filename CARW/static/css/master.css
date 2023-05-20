@@ -315,3 +315,20 @@ nav {
     top: 10%;
     height: 700px;
 }
+
+.contenedordepagos {
+    background-color: black;
+    /* Color de fondo verde */
+    color: white;
+    /* Color del texto blanco */
+    padding: 10px;
+    /* Espacio interior */
+    margin-bottom: 10px;
+    /* Margen inferior */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    position: absolute;
+    right: 40%;
+    top: 30%;
+    z-index: 3;
+}

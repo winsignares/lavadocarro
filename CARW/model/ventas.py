@@ -12,12 +12,12 @@ class ventas(db.Model):
 
     
 
-    def __init__(self ,id_vehiculo,id_paquete,Total,Vendedor ):
+    def __init__(self ,id_vehiculo,id_paquete,Total,Descripcion ):
         
         self.id_vehiculo = id_vehiculo
         self.id_paquete = id_paquete
         self.Total = Total
-        self.Vendedor = Vendedor
+        self.Descripcion = Descripcion
         
     
 with app.app_context():
@@ -25,4 +25,4 @@ with app.app_context():
 
 class ventasSchema(ma.Schema):
     class Meta:
-        fields = ('Fecha','id_vehiculo','id_paquete','Total','Vendedor')
+        fields = ('Fecha','id_vehiculo','id_paquete','Total','Descripcion')

@@ -5,6 +5,27 @@
 <div id="alerta2" class="alerta-exito oculto">
     Coloque Un Usuario!
 </div>
+<div id="alerta3" class="alerta-exito oculto">
+    No puedes pagar menos del valor!
+</div>
+<div id="alerta4" class="alerta-exito oculto">
+    Pago Realizado!
+</div>
+<div id="pagofisico" class="contenedordepagos oculto">
+    <h1 style="text-align: center;">Realize su pago</h1>
+    <br>
+    <label for="valor-a-cancelar">Valor a cancelar: $</label>
+    <li id="Vacan" class="list-group-item" style="display: inline;">$$$</li>
+    <br><br>
+    <label for="nombre-usuario">Valor cancelado:</label>
+    <input id="Vacancel" type="text" placeholder="Ingrese el valor">
+    <br><br>
+    <label for="valor-a-retornar">Valor a retornar: $</label>
+    <li id="Vareturn" class="list-group-item" style="display: inline;">$$$</li>
+    <br><br>
+    <button class="btn btn-info" type="submit" onclick="calcularpago()">Realizar Pago</button>
+    <br><br>
+</div>
 <div class="caja-pagos">
     <h1 style="text-align: center;">Ingrese aquí</h1>
     <br>
@@ -36,7 +57,7 @@
         <li id="Testimado" class="list-group-item " style="display: inline; ">00:00</li>
         </br>
         <br>
-        <button type="button" class="btn btn-info" onclick="verificarpaquete(event)">Pago Físico</button>
+        <button type="button" class="btn btn-info" onclick="pagofisico()">Pago Físico</button>
 
         <button type="button" class="btn btn-success" onclick="guardar_ventas()">Generar Turno</button>
     </form>

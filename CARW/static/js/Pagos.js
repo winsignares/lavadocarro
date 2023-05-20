@@ -9,6 +9,7 @@ const FechaACT = document.getElementById("Fecha");
 const Tduracion = document.getElementById("Testimado");
 const idpaquete = "0";
 const IDC = localStorage.getItem('IDC');
+const apagar = document.getElementById("Vacan");
 let remplazo = document.getElementById('cambio');
 let resultadoPayU = "";
 
@@ -57,6 +58,7 @@ function verificarpaquete() {
                     paqueteT.innerHTML = `<li id="Tpaquete" class="list-group-item" style="display: inline;">${datos[i].titulo}</li>`;
                     valorP.innerHTML = `<li id="Pvalor" class="list-group-item" style="display: inline;">${datos[i].valor}</li>`;
                     Tduracion.innerHTML = `<li id="Testimado" class="list-group-item" style="display: inline;">${datos[i].tiempo}</li>`;
+                    apagar.innerHTML = `<li id="Vacan" class="list-group-item" style="display: inline;">${datos[i].valor}</li>`;
                     idpaquete = datos[i].id;
                     return;
                 }
@@ -114,6 +116,40 @@ function ver_descrpcion() {
         });
 }
 // llenar descripcion del paquetefin
+
+// calcular pago 
+function calcularpago() {
+    const apagar = document.getElementById("Vacan").innerText;
+    const valorcito = parseFloat(apagar);
+
+    const pagado = document.getElementById("Vacancel").value;
+    const valorPagado = parseFloat(pagado);
+
+    const resultado = document.getElementById("Vareturn");
+
+    if (valorcito <= valorPagado) {
+        resultado.innerHTML = valorPagado - valorcito;
+        resultadoPayU = "exitoso";
+        const alerta = document.getElementById("alerta4");
+        const alerta2 = document.getElementById("pagofisico");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-exito");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-exito");
+            alerta2.classList.add("oculto");
+        }, 3000);
+    } else {
+        const alerta = document.getElementById("alerta3");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio");
+        }, 3000);
+    }
+}
+// calcular pago fin
 
 // auto seleccion del paquete elegido por el cliente inicio
 document.addEventListener('DOMContentLoaded', function() {
@@ -201,6 +237,25 @@ function verificarCampos() {
 }
 // Función para verificar si se puede usar el botón PayU fin
 
+// Función para pago fisico
+function pagofisico() {
+    const usuario = document.getElementById("Nusuario").textContent.trim();
+
+    if (usuario === "Nombre Del Usuario") {
+        const alerta = document.getElementById("alerta2");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio");
+        }, 3000);
+        return;
+    }
+    const alerta = document.getElementById("pagofisico");
+    alerta.classList.remove("oculto");
+}
+// Función para pago fisico fin 
+
 // Función para generar el turno y guardar el pago 
 function guardar_ventas() {
     const newFecha = FechaACT.value;
@@ -230,6 +285,7 @@ function guardar_ventas() {
             .catch((err) => {
                 console.log(err);
             })
+        window.alert("Venta Registrada y turno elavorado");
     } else {
         window.alert("Pago No registrado o Fallido");
     }
