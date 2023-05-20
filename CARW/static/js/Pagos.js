@@ -7,6 +7,7 @@ const paqueteT = document.getElementById("Tpaquete");
 const valorP = document.getElementById("Pvalor");
 const FechaACT = document.getElementById("Fecha");
 const Tduracion = document.getElementById("Testimado");
+const idpaquete = "0";
 const IDC = localStorage.getItem('IDC');
 let remplazo = document.getElementById('cambio');
 let resultadoPayU = "";
@@ -56,6 +57,7 @@ function verificarpaquete() {
                     paqueteT.innerHTML = `<li id="Tpaquete" class="list-group-item" style="display: inline;">${datos[i].titulo}</li>`;
                     valorP.innerHTML = `<li id="Pvalor" class="list-group-item" style="display: inline;">${datos[i].valor}</li>`;
                     Tduracion.innerHTML = `<li id="Testimado" class="list-group-item" style="display: inline;">${datos[i].tiempo}</li>`;
+                    idpaquete = datos[i].id;
                     return;
                 }
             }
@@ -181,18 +183,6 @@ function miFuncion() {
 }
 // auto seleccion del paquete elegido por el cliente fin
 
-// Función para verificar si se puede usar el botón dependiendo del resultado de PayU
-function verificarResultadoPayU() {
-    if (resultadoPayU === "exitoso") {
-        // Habilitar el botón para seguir utilizando los datos
-        document.getElementById("miboton").disabled = false;
-    } else {
-        // Deshabilitar el botón porque el resultado fue fallido o no hay resultado
-        document.getElementById("miboton").disabled = true;
-    }
-}
-// Función para verificar si se puede usar el botón dependiendo del resultado de PayU fin
-
 // Función para verificar si se puede usar el botón PayU
 function verificarCampos() {
     const usuario = document.getElementById("Nusuario").textContent.trim();
@@ -213,30 +203,35 @@ function verificarCampos() {
 
 // Función para generar el turno y guardar el pago 
 function guardar_ventas() {
-    const suma = sumarValores();
-    const newNombre = document.getElementById("Titulo").value;
-    const newDescripcion = document.getElementById("miContainer").textContent;
-    const newValor = suma;
-    console.log(newNombre, newDescripcion, newValor);
+    const newFecha = FechaACT.value;
+    const newidvehiculo = matriculaN.value;
+    const newidpaquete = idpaquete;
+    const newtotal = valorP.value;
+    const newdescripcion = document.getElementById("miContainer").textContent;
+    console.log(newFecha, newidvehiculo, newidpaquete, newtotal, newdescripcion);
 
-    axios.post('fronted/guardarventa', {
-            Nombre: newNombre,
-            Descripcion: newDescripcion,
-            Valor: newValor,
-            Duracion: '00: 30: 00'
-        }).then((res) => {
-            console.log(res.data);
-            const alerta = document.getElementById("alerta");
-            alerta.classList.remove("oculto");
-            alerta.classList.add("alerta-exito");
-            setTimeout(function() {
-                alerta.classList.add("oculto");
-                alerta.classList.remove("alerta-exito");
-            }, 3000);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    eliminarTodo();
+    if (resultadoPayU === "exitoso") {
+        axios.post('fronted/guardarventa', {
+                Fecha: newFecha,
+                Matricula: newidvehiculo,
+                id_paquete: newidpaquete,
+                Total: newtotal,
+                Descripcion: newdescripcion
+            }).then((res) => {
+                console.log(res.data);
+                const alerta = document.getElementById("alerta");
+                alerta.classList.remove("oculto");
+                alerta.classList.add("alerta-exito");
+                setTimeout(function() {
+                    alerta.classList.add("oculto");
+                    alerta.classList.remove("alerta-exito");
+                }, 3000);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    } else {
+        window.alert("Pago No registrado o Fallido");
+    }
 }
 // Función para generar el turno y guardar el pago fin

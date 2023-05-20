@@ -36,7 +36,7 @@ def consullist():
 @routes_Pagos.route('/guardarventa', methods=['POST'])
 def guardarventa():
     data = request.json
-    new_paq = paquetes(Fecha=data['Fecha'], id_vehiculo=data['Matricula'], id_paquete=data['id_paquete'], Descripcion=data['Descripcion'])
+    new_paq = paquetes(Fecha=data['Fecha'], id_vehiculo=data['Matricula'], id_paquete=data['id_paquete'], Total=data['Total'], Descripcion=data['Descripcion'])
     db.session.add(new_paq)
     db.session.commit()
     return redirect('/Pagos')
