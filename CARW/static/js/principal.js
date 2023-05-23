@@ -13,6 +13,11 @@ function gopagos() {
     return;
 }
 
+function goturnos() {
+    window.location.href = '/Turnos';
+    return;
+}
+
 function seleccionado(id) {
     console.log("ID seleccionado:", id);
     const IDC = id;

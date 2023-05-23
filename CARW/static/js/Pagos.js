@@ -7,7 +7,7 @@ const paqueteT = document.getElementById("Tpaquete");
 const valorP = document.getElementById("Pvalor");
 const FechaACT = document.getElementById("Fecha");
 const Tduracion = document.getElementById("Testimado");
-const idpaquete = "0";
+const idpaquete = document.getElementById("GID");
 const IDC = localStorage.getItem('IDC');
 const apagar = document.getElementById("Vacan");
 let remplazo = document.getElementById('cambio');
@@ -59,7 +59,7 @@ function verificarpaquete() {
                     valorP.innerHTML = `<li id="Pvalor" class="list-group-item" style="display: inline;">${datos[i].valor}</li>`;
                     Tduracion.innerHTML = `<li id="Testimado" class="list-group-item" style="display: inline;">${datos[i].tiempo}</li>`;
                     apagar.innerHTML = `<li id="Vacan" class="list-group-item" style="display: inline;">${datos[i].valor}</li>`;
-                    idpaquete = datos[i].id;
+                    idpaquete.value = datos[i].id;
                     return;
                 }
             }
@@ -258,23 +258,21 @@ function pagofisico() {
 
 // Función para generar el turno y guardar el pago 
 function guardar_ventas() {
-    const newFecha = FechaACT.value;
-    const newidvehiculo = matriculaN.value;
-    const newidpaquete = idpaquete;
-    const newtotal = valorP.value;
+    const newidvehiculo = matriculaN.textContent;
+    const newidpaquete = idpaquete.value;
+    const newtotal = valorP.textContent;
     const newdescripcion = document.getElementById("miContainer").textContent;
-    console.log(newFecha, newidvehiculo, newidpaquete, newtotal, newdescripcion);
+    console.log(newidvehiculo, newidpaquete, newtotal, newdescripcion);
 
     if (resultadoPayU === "exitoso") {
         axios.post('fronted/guardarventa', {
-                Fecha: newFecha,
                 Matricula: newidvehiculo,
                 id_paquete: newidpaquete,
                 Total: newtotal,
                 Descripcion: newdescripcion
             }).then((res) => {
                 console.log(res.data);
-                const alerta = document.getElementById("alerta");
+                const alerta = document.getElementById("alerta6");
                 alerta.classList.remove("oculto");
                 alerta.classList.add("alerta-exito");
                 setTimeout(function() {
@@ -285,9 +283,14 @@ function guardar_ventas() {
             .catch((err) => {
                 console.log(err);
             })
-        window.alert("Venta Registrada y turno elavorado");
     } else {
-        window.alert("Pago No registrado o Fallido");
+        const alerta = document.getElementById("alerta5");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio");
+        }, 3000);
     }
 }
 // Función para generar el turno y guardar el pago fin
