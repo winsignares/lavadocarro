@@ -4,6 +4,7 @@ from model.usuarios  import usuarios, usuariosSchema
 from model.roles import roles, rolesSchema
 from model.vehiculos import vehiculos,vehiculosSchema
 from model.ventas import ventas,ventasSchema
+from model.turnos import turnos,turnosSchema
 
 routes_Pagos = Blueprint("routes_Pagos", __name__)
 
@@ -37,6 +38,14 @@ def consullist():
 def guardarventa():
     data = request.json
     new_paq = ventas(id_vehiculo=data['Matricula'], id_paquete=data['id_paquete'], Total=data['Total'], Descripcion=data['Descripcion'])
+    db.session.add(new_paq)
+    db.session.commit()
+    return redirect('/Pagos')
+
+@routes_Pagos.route('/guardarturno', methods=['POST'])
+def guardarturno():
+    data = request.json
+    new_paq = turnos(id_vehiculo=data['Matricula'], id_paquete=data['id_paquete'])
     db.session.add(new_paq)
     db.session.commit()
     return redirect('/Pagos')
