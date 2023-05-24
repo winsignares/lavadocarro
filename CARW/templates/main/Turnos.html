@@ -1,1 +1,28 @@
-{% extends "./layout.html" %} {% block body %} {% endblock %}
+{% extends "./layout.html" %} {% block body %}
+<div id="miTabla">
+    <table>
+        <thead>
+            <tr>
+                <th># De Turno</th>
+                <th>Matricula</th>
+                <th>Paquete</th>
+                <th>Hora Inicio</th>
+                <th>Hora Fin</th>
+                <th>Estado</th>
+                <th>Btones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Fila 1, Columna 1</td>
+                <td>Fila 1, Columna 2</td>
+                <td>Fila 1, Columna 3</td>
+                <td>Fila 1, Columna 4</td>
+                <td>Fila 1, Columna 5</td>
+                <td>Fila 1, Columna 6</td>
+                <td><button type="button" class="btn btn-dark">Cambio</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

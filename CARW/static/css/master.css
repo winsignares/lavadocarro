@@ -1,388 +1,408 @@
-/* fondo para todo */
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-#sidebar-container {
-    display: flex;
-}
-
-#sidebar {
-    position: fixed;
-    width: 200px;
-    height: 100%;
-    background: #151719;
-    left: -200px;
-    transition: all 500ms linear;
-    display: flex;
-    flex-direction: column;
-    z-index: 5;
-}
-
-#sidebar.active {
-    left: 0;
-}
-
-#sidebar ul li {
-    color: rgb(230, 230, 230, .9);
-    text-align: center;
-    padding: 15px 10px;
-    list-style: none;
-    border-bottom: 1px solid rgb(100, 100, 100, .3);
-    cursor: pointer;
-}
-
-.logop {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    display: block;
-    margin: 0 auto;
-}
-
-.toggle-btn {
-    cursor: pointer;
-}
-
-.toggle-btn span {
-    display: block;
-    width: 40px;
-    text-align: center;
-    font-size: 30px;
-    border: 1px solid white;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    background: url(../img/fondo\ lavado.jpg) no-repeat center top;
-    background-size: cover;
-    font-family: sans-serif;
-    max-height: 90vh;
-    max-width: 90vh;
-    overflow-y: auto;
-}
-
-.capa-oscura {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-}
-
-
-/* Login */
-
-.login-box {
-    width: 320px;
-    height: 420px;
-    background: rgba(0, 0, 0, 0.796);
-    color: #fff;
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    box-sizing: border-box;
-    padding: 70px 30px;
-    border-radius: 15%;
-}
-
-.login-box .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    position: absolute;
-    top: -50px;
-    left: calc(50% - 50px);
-}
-
-.login-box h1 {
-    margin: 0;
-    padding: 0 0 20px;
-    text-align: center;
-    font-size: 22px;
-}
-
-.login-box label {
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    display: block;
-}
-
-.login-box input {
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.login-box input[type="text"],
-.login-box input[type="password"] {
-    border: none;
-    border-bottom: lpx solid #fff;
-    background: transparent;
-    outline: none;
-    height: 40px;
-    color: #fff;
-    font-size: 16px;
-}
-
-.login-box a {
-    color: #fff;
-    line-height: 20px;
-    text-decoration: none;
-}
-
-.login-box a:hover {
-    color: blue;
-}
-
-.login-box button[class="btn-login"] {
-    position: absolute;
-    left: calc(50% - 50px);
-}
-
-
-/* principal */
-
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans';
-}
-
-nav {
-    max-width: 900px;
-    margin: auto;
-    background-color: #333333e1;
-    font-size: 20px;
-    margin-top: 50px;
-}
-
-.menu-horizontal {
-    list-style-type: none;
-    display: flex;
-    justify-content: space-around;
-    position: absolute;
-    top: 0;
-    right: 20%;
-    z-index: 2;
-}
-
-.menu-horizontal>li>a {
-    display: block;
-    padding: 15px 20px;
-    color: white;
-    text-decoration: none;
-}
-
-.menu-horizontal>li:hover {
-    background-color: red;
-}
-
-.menu-vertical {
-    position: absolute;
-    display: none;
-    list-style: none;
-    width: 200px;
-    background-color: rgb(0, 0, 0, .5);
-}
-
-.menu-horizontal li:hover .menu-vertical {
-    display: block;
-}
-
-.menu-vertical li:hover {
-    background-color: red;
-}
-
-.menu-vertical li a {
-    display: block;
-    color: white;
-    padding: 15px 15px 15px 20px;
-    text-decoration: none;
-}
-
-
-/* paquetes predetermionados */
-
-.mi-div {
-    background-color: white;
-    width: 400px;
-    height: 250px;
-    flex: 1;
-    margin: 10px;
-    border-radius: 2%;
-}
-
-.card-content {
-    overflow-y: auto;
-    max-height: 150px;
-    margin-top: 10px;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    border: none;
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    right: 0;
-    top: 10%;
-}
-
-
-/*Menù lateral*/
-
-.list-group {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    top: 20%;
-}
-
-.list-group li:hover {
-    background-color: red;
-}
-
-
-/* paquetes editables */
-
-.container2 {
-    width: 35%;
-    margin: 0 auto;
-    padding: 20px;
-    border: none;
-    box-sizing: border-box;
-    position: absolute;
-    right: 40%;
-    top: 10%;
-    background-color: rgba(255, 255, 255, 0.797);
-    border-radius: 2%;
-    max-height: 700px;
-    height: 700px;
-}
-
-.container3 {
-    width: 30%;
-    margin: 0 auto;
-    padding: 20px;
-    border: none;
-    box-sizing: border-box;
-    position: absolute;
-    right: 10%;
-    top: 10%;
-    background-color: rgba(255, 255, 255, 0.797);
-    border-radius: 2%;
-    overflow-y: auto;
-    max-height: 700px;
-    height: 700px;
-}
-
-.container4 {
-    overflow-y: auto;
-    max-height: 450px;
-    height: 450px;
-    background-color: white;
-    border-radius: 2%;
-}
-
-.list-group2 li:hover {
-    background-color: red;
-}
-
-.alerta-exito {
-    background-color: #4CAF50;
-    /* Color de fondo verde */
-    color: white;
-    /* Color del texto blanco */
-    padding: 10px;
-    /* Espacio interior */
-    margin-bottom: 10px;
-    /* Margen inferior */
-    border-radius: 5px;
-    /* Bordes redondeados */
-    position: absolute;
-    right: 75%;
-    top: 12%;
-}
-
-.alerta-campo-vacio {
-    background-color: rgba(255, 0, 0, 0.83);
-    /* Color de fondo verde */
-    color: white;
-    /* Color del texto blanco */
-    padding: 10px;
-    /* Espacio interior */
-    margin-bottom: 10px;
-    /* Margen inferior */
-    border-radius: 5px;
-    /* Bordes redondeados */
-    position: absolute;
-    right: 75%;
-    top: 12%;
-}
-
-.oculto {
-    display: none;
-    /* Oculta el elemento por defecto */
-}
-
-
-/* pagos */
-
-.container5 {
-    overflow-y: auto;
-    max-height: 435px;
-    height: 435px;
-    background-color: white;
-    border-radius: 2%;
-}
-
-.caja-pagos {
-    width: 35%;
-    margin: 0 auto;
-    padding: 20px;
-    border: none;
-    box-sizing: border-box;
-    position: absolute;
-    right: 40%;
-    top: 10%;
-    background-color: rgba(255, 255, 255, 0.797);
-    border-radius: 2%;
-    max-height: 700px;
-    height: 700px;
-}
-
-.payuL {
-    position: absolute;
-    right: 0%;
-    top: 10%;
-    height: 700px;
-}
-
-.contenedordepagos {
-    background-color: black;
-    /* Color de fondo verde */
-    color: white;
-    /* Color del texto blanco */
-    padding: 10px;
-    /* Espacio interior */
-    margin-bottom: 10px;
-    /* Margen inferior */
-    border-radius: 5px;
-    /* Bordes redondeados */
-    position: absolute;
-    right: 40%;
-    top: 30%;
-    z-index: 3;
-}
+        /* fondo para todo */
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #sidebar-container {
+            display: flex;
+        }
+        
+        #sidebar {
+            position: fixed;
+            width: 200px;
+            height: 100%;
+            background: #151719;
+            left: -200px;
+            transition: all 500ms linear;
+            display: flex;
+            flex-direction: column;
+            z-index: 5;
+        }
+        
+        #sidebar.active {
+            left: 0;
+        }
+        
+        #sidebar ul li {
+            color: rgb(230, 230, 230, .9);
+            text-align: center;
+            padding: 15px 10px;
+            list-style: none;
+            border-bottom: 1px solid rgb(100, 100, 100, .3);
+            cursor: pointer;
+        }
+        
+        .logop {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .toggle-btn {
+            cursor: pointer;
+        }
+        
+        .toggle-btn span {
+            display: block;
+            width: 40px;
+            text-align: center;
+            font-size: 30px;
+            border: 1px solid white;
+            position: absolute;
+            right: -50px;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background: url(../img/fondo\ lavado.jpg) no-repeat center top;
+            background-size: cover;
+            font-family: sans-serif;
+            max-height: 90vh;
+            max-width: 90vh;
+            overflow-y: auto;
+        }
+        
+        .capa-oscura {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        /* Login */
+        
+        .login-box {
+            width: 320px;
+            height: 420px;
+            background: rgba(0, 0, 0, 0.796);
+            color: #fff;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            padding: 70px 30px;
+            border-radius: 15%;
+        }
+        
+        .login-box .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: -50px;
+            left: calc(50% - 50px);
+        }
+        
+        .login-box h1 {
+            margin: 0;
+            padding: 0 0 20px;
+            text-align: center;
+            font-size: 22px;
+        }
+        
+        .login-box label {
+            margin: 0;
+            padding: 0;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .login-box input {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .login-box input[type="text"],
+        .login-box input[type="password"] {
+            border: none;
+            border-bottom: lpx solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .login-box a {
+            color: #fff;
+            line-height: 20px;
+            text-decoration: none;
+        }
+        
+        .login-box a:hover {
+            color: blue;
+        }
+        
+        .login-box button[class="btn-login"] {
+            position: absolute;
+            left: calc(50% - 50px);
+        }
+        /* principal */
+        
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Open Sans';
+        }
+        
+        nav {
+            max-width: 900px;
+            margin: auto;
+            background-color: #333333e1;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+        
+        .menu-horizontal {
+            list-style-type: none;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            top: 0;
+            right: 20%;
+            z-index: 2;
+        }
+        
+        .menu-horizontal>li>a {
+            display: block;
+            padding: 15px 20px;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .menu-horizontal>li:hover {
+            background-color: red;
+        }
+        
+        .menu-vertical {
+            position: absolute;
+            display: none;
+            list-style: none;
+            width: 200px;
+            background-color: rgb(0, 0, 0, .5);
+        }
+        
+        .menu-horizontal li:hover .menu-vertical {
+            display: block;
+        }
+        
+        .menu-vertical li:hover {
+            background-color: red;
+        }
+        
+        .menu-vertical li a {
+            display: block;
+            color: white;
+            padding: 15px 15px 15px 20px;
+            text-decoration: none;
+        }
+        /* paquetes predetermionados */
+        
+        .mi-div {
+            background-color: white;
+            width: 400px;
+            height: 250px;
+            flex: 1;
+            margin: 10px;
+            border-radius: 2%;
+        }
+        
+        .card-content {
+            overflow-y: auto;
+            max-height: 150px;
+            margin-top: 10px;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: none;
+            box-sizing: border-box;
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            right: 0;
+            top: 10%;
+        }
+        /*Menù lateral*/
+        
+        .list-group {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 20%;
+        }
+        
+        .list-group li:hover {
+            background-color: red;
+        }
+        /* paquetes editables */
+        
+        .container2 {
+            width: 35%;
+            margin: 0 auto;
+            padding: 20px;
+            border: none;
+            box-sizing: border-box;
+            position: absolute;
+            right: 40%;
+            top: 10%;
+            background-color: rgba(255, 255, 255, 0.797);
+            border-radius: 2%;
+            max-height: 700px;
+            height: 700px;
+        }
+        
+        .container3 {
+            width: 30%;
+            margin: 0 auto;
+            padding: 20px;
+            border: none;
+            box-sizing: border-box;
+            position: absolute;
+            right: 10%;
+            top: 10%;
+            background-color: rgba(255, 255, 255, 0.797);
+            border-radius: 2%;
+            overflow-y: auto;
+            max-height: 700px;
+            height: 700px;
+        }
+        
+        .container4 {
+            overflow-y: auto;
+            max-height: 450px;
+            height: 450px;
+            background-color: white;
+            border-radius: 2%;
+        }
+        
+        .list-group2 li:hover {
+            background-color: red;
+        }
+        
+        .alerta-exito {
+            background-color: #4CAF50;
+            /* Color de fondo verde */
+            color: white;
+            /* Color del texto blanco */
+            padding: 10px;
+            /* Espacio interior */
+            margin-bottom: 10px;
+            /* Margen inferior */
+            border-radius: 5px;
+            /* Bordes redondeados */
+            position: absolute;
+            right: 75%;
+            top: 12%;
+        }
+        
+        .alerta-campo-vacio {
+            background-color: rgba(255, 0, 0, 0.83);
+            /* Color de fondo verde */
+            color: white;
+            /* Color del texto blanco */
+            padding: 10px;
+            /* Espacio interior */
+            margin-bottom: 10px;
+            /* Margen inferior */
+            border-radius: 5px;
+            /* Bordes redondeados */
+            position: absolute;
+            right: 75%;
+            top: 12%;
+        }
+        
+        .oculto {
+            display: none;
+            /* Oculta el elemento por defecto */
+        }
+        /* pagos */
+        
+        .container5 {
+            overflow-y: auto;
+            max-height: 435px;
+            height: 435px;
+            background-color: white;
+            border-radius: 2%;
+        }
+        
+        .caja-pagos {
+            width: 35%;
+            margin: 0 auto;
+            padding: 20px;
+            border: none;
+            box-sizing: border-box;
+            position: absolute;
+            right: 40%;
+            top: 10%;
+            background-color: rgba(255, 255, 255, 0.797);
+            border-radius: 2%;
+            max-height: 700px;
+            height: 700px;
+        }
+        
+        .payuL {
+            position: absolute;
+            right: 0%;
+            top: 10%;
+            height: 700px;
+        }
+        
+        .contenedordepagos {
+            background-color: black;
+            /* Color de fondo verde */
+            color: white;
+            /* Color del texto blanco */
+            padding: 10px;
+            /* Espacio interior */
+            margin-bottom: 10px;
+            /* Margen inferior */
+            border-radius: 5px;
+            /* Bordes redondeados */
+            position: absolute;
+            right: 40%;
+            top: 30%;
+            z-index: 3;
+        }
+        /* turnos */
+        
+        #miTabla {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            border-collapse: collapse;
+            position: absolute;
+            right: 25%;
+            top: 10%;
+            max-height: 600px;
+            height: 600px;
+            max-width: 900px;
+            width: 900px;
+        }
+        
+        #miTabla table {
+            width: 100%;
+        }
+        
+        #miTabla th,
+        #miTabla td {
+            padding: 8px;
+            border: 1px solid black;
+        }
+        
+        #miTabla thead th {
+            background-color: lightgray;
+            font-weight: bold;
+        }
