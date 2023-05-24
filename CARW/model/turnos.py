@@ -4,7 +4,7 @@ class turnos(db.Model):
     __tablename__ = "tblturnos"
 
     
-    id = db.Column(db.String(50), primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_vehiculo = db.Column(db.String(50), db.ForeignKey('tblvehiculos.Matricula'))
     id_paquete = db.Column(db.Integer, db.ForeignKey('tblpaquetes.id'))
 

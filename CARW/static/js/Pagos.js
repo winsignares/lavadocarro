@@ -266,23 +266,33 @@ function guardar_ventas() {
 
     if (resultadoPayU === "exitoso") {
         axios.post('fronted/guardarventa', {
+            Matricula: newidvehiculo,
+            id_paquete: newidpaquete,
+            Total: newtotal,
+            Descripcion: newdescripcion
+        }).then((res) => {
+            console.log(res.data);
+            const alerta = document.getElementById("alerta6");
+            alerta.classList.remove("oculto");
+            alerta.classList.add("alerta-exito");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+                alerta.classList.remove("alerta-exito");
+            }, 3000);
+
+            // Realizar otra consulta POST para guardar en otra tabla
+            axios.post('fronted/guardarturno', {
                 Matricula: newidvehiculo,
-                id_paquete: newidpaquete,
-                Total: newtotal,
-                Descripcion: newdescripcion
-            }).then((res) => {
-                console.log(res.data);
-                const alerta = document.getElementById("alerta6");
-                alerta.classList.remove("oculto");
-                alerta.classList.add("alerta-exito");
-                setTimeout(function() {
-                    alerta.classList.add("oculto");
-                    alerta.classList.remove("alerta-exito");
-                }, 3000);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+                id_paquete: newidpaquete
+            }).then(function(response) {
+                console.log(response.data);
+                window.alert("si funciona")
+            }).catch(function(error) {
+                console.log(error);
+            });
+        }).catch((err) => {
+            console.log(err);
+        });
     } else {
         const alerta = document.getElementById("alerta5");
         alerta.classList.remove("oculto");

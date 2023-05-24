@@ -1,4 +1,4 @@
-let remplazo = document.getElementById('cambio');
+let remplazo = document.getElementById('reemplazame');
 
 function ver_paquetes() {
     axios.get('fronted/consulpaquetes', {
@@ -31,15 +31,4 @@ function ver_paquetes() {
         .catch(function(error) {
             console.log(error);
         });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    miFuncion();
-    setTimeout(function() {
-        document.removeEventListener('DOMContentLoaded', arguments.callee);
-    }, 1000);
-});
-
-function miFuncion() {
-    ver_paquetes();
 }
