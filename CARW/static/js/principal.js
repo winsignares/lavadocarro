@@ -1,3 +1,9 @@
+const btntoggle = document.querySelector('.toggle-btn');
+
+btntoggle.addEventListener('click', function() {
+    document.getElementById('sidebar').classList.toggle('active');
+});
+
 function gopredeterminados() {
     window.location.href = '/Ppredeterminados';
     return;
@@ -19,8 +25,8 @@ function goturnos() {
 }
 
 function seleccionado(id) {
-    console.log("ID seleccionado:", id);
-    const IDC = id;
-    localStorage.setItem('IDC', IDC);
     window.location.href = '/Pagos';
+    const IDC = id;
+
+    return;
 }

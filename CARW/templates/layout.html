@@ -12,42 +12,40 @@
 
 <body>
     <div class="capa-oscura"></div>
-    <nav>
-        <ul class="menu-horizontal">
-            <li>
-                <a onclick="gopredeterminados()" style="color:#FFFFFF">Opciones De Lavado</a>
-                <ul class="menu-vertical">
-                </ul>
-            </li>
-            <li>
-                <a onclick="gopagos()" style="color:#FFFFFF">Pagos</a>
-                <ul class="menu-vertical">
-                </ul>
-            </li>
-            <li>
-                <a onclick="goturnos()" style="color:#FFFFFF">Turnos</a>
-                <ul class="menu-vertical">
-                </ul>
-            </li>
-            <li>
-                <a href="#">Balances</a>
-                <ul class="menu-vertical">
-                </ul>
-            </li>
-            <li>
-                <a href="#">Ajustes</a>
-                <ul class="menu-vertical">
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    <div id="sidebar-container">
+        <div class="toggle-btn">
+            <span>&#9776;</span>
+        </div>
+        <div id="sidebar">
+            <ul>
+                <li>
+                    <img src="{{url_for('static', filename='img/logo.jpg')}}" alt="logoprincipal" class="logop">
+                </li>
+                <li>
+                    <a onclick="gopredeterminados()" style="color:#FFFFFF">Paquetes De Lavado</a>
+                </li>
+                <li>
+                    <a onclick="goeditables()" style="color:#FFFFFF">Crear Paquete</a>
+                </li>
+                <li>
+                    <a onclick="goturnos()" style="color:#FFFFFF">Turnos</a>
+                </li>
+                <li>
+                    <a href="#">Balances</a>
+                </li>
+                <li>
+                    <a href="#">Ajustes</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+{% block body %} {% endblock %}
+<script src="{{url_for('static', filename='js/principal.js')}} "></script>
+<script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.bundle.min.js') }}"></script>
 
-    {% block body %} {% endblock %}
-    <script src="{{url_for('static', filename='js/principal.js')}} "></script>
-    <script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.bundle.min.js') }}"></script>
-
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

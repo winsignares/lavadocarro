@@ -32,3 +32,17 @@ function ver_paquetes() {
             console.log(error);
         });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Código a ejecutar una vez que se haya cargado el DOM
+    // Aquí puedes realizar operaciones con los elementos del DOM
+    // y añadir eventos u otras acciones necesarias
+    miFuncion();
+    setTimeout(function() {
+        document.removeEventListener('DOMContentLoaded', arguments.callee);
+    }, 1000);
+});
+
+function miFuncion() {
+    ver_paquetes();
+}

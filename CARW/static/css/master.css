@@ -1,5 +1,59 @@
 /* fondo para todo */
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar-container {
+    display: flex;
+}
+
+#sidebar {
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: #151719;
+    left: -200px;
+    transition: all 500ms linear;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+#sidebar ul li {
+    color: rgb(230, 230, 230, .9);
+    text-align: center;
+    padding: 15px 10px;
+    list-style: none;
+    border-bottom: 1px solid rgb(100, 100, 100, .3);
+    cursor: pointer;
+}
+
+.logop {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+}
+
+.toggle-btn {
+    cursor: pointer;
+}
+
+.toggle-btn span {
+    display: block;
+    width: 40px;
+    text-align: center;
+    font-size: 30px;
+    border: 1px solid white;
+}
+
 body {
     margin: 0;
     padding: 0;
