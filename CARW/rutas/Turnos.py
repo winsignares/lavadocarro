@@ -12,13 +12,16 @@ def indexTurnos():
 @routes_Turnos.route('/consulTurnos', methods=['GET'])
 def consulTurnos():
     datos = []
-    resultado = db.session.query(turnos, paquetes).join(paquetes).all()
+    turnos_table = db.Model.metadata.tables['tblturnos']
+    paquetes_table = db.Model.metadata.tables['tblpaquetes']
+    resultado = db.session.query(turnos_table.c.id, turnos_table.c.id_vehiculo, paquetes_table.c.Nombre,paquetes_table.c.Duracion).select_from(turnos_table).join(paquetes_table).all()
+    
 
-    for turno, paquete in resultado:
+    for id, id_vehiculo,nombre,duracion in resultado:
         datos.append({
-            'id': turno.id,
-            'matricula': turno.id_vehiculo,
-            'paquete': paquete.Nombre
+            'ID': id,
+            'Matricula': id_vehiculo,
+            'Paquete': nombre,
+            'Duracion': duracion.strftime("%H:%M:%S")
         })
-
     return jsonify(datos)

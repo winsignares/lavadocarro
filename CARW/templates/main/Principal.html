@@ -1,1 +1,5 @@
-{% extends "./layout.html" %} {% block body %} {% endblock %}
+{% extends "./layout.html" %} {% block body %}
+<div class="Bienvenida">
+    <img class="saludo" src="{{ url_for('static', filename='img/bienvenido 2.jpg') }}" />
+    <img class="poster" src="{{ url_for('static', filename='img/bienvenido 1.jpg') }}" />
+</div> {% endblock %}

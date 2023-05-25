@@ -147,6 +147,23 @@
         }
         /* principal */
         
+        .saludo {
+            position: absolute;
+            right: 25%;
+            top: -5%;
+            width: 700px;
+            height: 300px;
+        }
+        
+        .poster {
+            position: absolute;
+            right: 25%;
+            top: 20%;
+            width: 700px;
+            height: 650px;
+        }
+        /* layout*/
+        
         @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
         * {
             margin: 0;

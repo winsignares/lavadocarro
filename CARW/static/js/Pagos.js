@@ -286,7 +286,6 @@ function guardar_ventas() {
                 id_paquete: newidpaquete
             }).then(function(response) {
                 console.log(response.data);
-                window.alert("si funciona")
             }).catch(function(error) {
                 console.log(error);
             });
