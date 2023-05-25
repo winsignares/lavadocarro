@@ -5,26 +5,39 @@ function ver_turnos() {
             var length = Object.keys(datos).length;
             let opciones = '';
             let dura; // Variable "dura" declarada aquí
+            let idArray = []; // Array para almacenar los IDs existentes
+
+            // Obtener los IDs existentes del HTML
+            let idElements = document.querySelectorAll('[id^="HI"]');
+            idElements.forEach(function(element) {
+                idArray.push(element.id);
+            });
 
             for (let index = 0; index < length; index++) {
                 let idHI = `HI${datos[index].ID}`;
+
+                // Verificar si el ID ya existe en el HTML
+                if (idArray.includes(idHI)) {
+                    continue; // Pasar al siguiente turno si ya existe el ID
+                }
+
                 let idDU = `DU${datos[index].ID}`;
                 let idHF = `HF${datos[index].ID}`;
                 let idET = `ET${datos[index].ID}`;
                 dura = `${datos[index].Duracion}`; // Asignar el valor de datos[index].Duracion a la variable "dura"
                 opciones +=
                     `<tr>
-              <td>${datos[index].ID}</td>
-              <td>${datos[index].Matricula}</td>
-              <td>${datos[index].Paquete}</td>
-              <td id="${idHI}">Fila ${index + 1}, Columna 4</td>
-              <td id="${idDU}">Fila ${index + 1}, Columna 5</td>
-              <td id="${idHF}">Fila ${index + 1}, Columna 6</td>
-              <td id="${idET}">Por Iniciar</td>
-              <td><button type="button" class="btn btn-dark" onclick="Empezar('${idHI}','${idDU}', '${idHF}', '${idET}', '${dura}')">Empezar</button></td>
-            </tr>`;
+                        <td>${datos[index].ID}</td>
+                        <td>${datos[index].Matricula}</td>
+                        <td>${datos[index].Paquete}</td>
+                        <td id="${idHI}">Fila ${index + 1}, Columna 4</td>
+                        <td id="${idDU}">Fila ${index + 1}, Columna 5</td>
+                        <td id="${idHF}">Fila ${index + 1}, Columna 6</td>
+                        <td id="${idET}">Por Iniciar</td>
+                        <td><button type="button" class="btn btn-dark" onclick="Empezar('${idHI}','${idDU}', '${idHF}', '${idET}', '${dura}')">Empezar</button></td>
+                    </tr>`;
             }
-            document.getElementById("tablaBody").innerHTML = opciones;
+            document.getElementById("tablaBody").innerHTML += opciones; // Agregar los nuevos turnos al final de la tabla
         })
         .catch(function(error) {
             console.log(error);
