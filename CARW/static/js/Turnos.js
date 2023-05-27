@@ -34,7 +34,7 @@ function ver_turnos() {
                         <td id="${idDU}">Fila ${index + 1}, Columna 5</td>
                         <td id="${idHF}">Fila ${index + 1}, Columna 6</td>
                         <td id="${idET}">Por Iniciar</td>
-                        <td><button type="button" class="btn btn-dark" onclick="Empezar('${idHI}','${idDU}', '${idHF}', '${idET}', '${dura}')">Empezar</button></td>
+                        <td><button type="button" class="btn btn-dark" onclick="Empezar('${idHI}','${idHI}','${idDU}', '${idHF}', '${idET}', '${dura}')">Empezar</button></td>
                     </tr>`;
             }
             document.getElementById("tablaBody").innerHTML += opciones; // Agregar los nuevos turnos al final de la tabla
@@ -95,6 +95,7 @@ function Empezar(idHI, idDU, idHF, idET, dura) {
     document.getElementById(idET).textContent = "En proceso";
 
     clonarTurnos(event);
+    location.reload();
 }
 
 
@@ -144,57 +145,25 @@ function guardarClonesEnLocalStorage() {
     localStorage.setItem("clones", JSON.stringify(clones));
 }
 // guardar clones fin
-// actualizar
-function actualizar() {
-    // Obtener los clones almacenados en el localStorage
-    const clonesGuardados = JSON.parse(localStorage.getItem("clones")) || [];
 
-    // Obtener todos los IDs de los clones
-    const cloneIDs = clonesGuardados.map((clon) => {
-        const tempElement = document.createElement("div");
-        tempElement.innerHTML = clon;
-        const turnoElement = tempElement.querySelector("tr");
-        return turnoElement ? turnoElement.id : null;
-    }).filter(id => id !== null);
-
-    // Obtener los turnos que no están en los clones
-    const turnosNoClonados = turnosDisponibles.filter((turno) => !cloneIDs.includes(turno.id));
-
-    // Limpiar la tabla de turnos por empezar
-    const tablaClones = document.getElementById("tablaTurnos-por-empezar");
-    tablaClones.innerHTML = "";
-
-    // Agregar los turnos no clonados a la tabla
-    turnosNoClonados.forEach((turno) => {
-        const fila = crearFilaTurno(turno);
-        tablaClones.appendChild(fila);
-    });
-
-    console.log("La función actualizar() se ejecutó correctamente");
-}
-
-// actualizar fin
 // eliminar turnos completos
-function verificarHoraFin() {
-    // Obtener los clones almacenados en el localStorage
-    const clonesGuardados = JSON.parse(localStorage.getItem("clones")) || [];
-
-    // Obtener todos los IDs de los clones
-    const cloneIDs = clonesGuardados.map((clon) => {
-        const tempElement = document.createElement("div");
-        tempElement.innerHTML = clon;
-        const turnoElement = tempElement.querySelector("tr");
-        return turnoElement ? turnoElement.id : null;
-    }).filter(id => id !== null);
-
-    // Eliminar los clones del localStorage
-    localStorage.removeItem("clones");
-
-    // Eliminar los turnos de la tabla con los IDs de los clones
-    cloneIDs.forEach((turnoID) => {
-        eliminarTurno(turnoID);
-    });
-
-    console.log("Los clones y turnos correspondientes han sido eliminados correctamente");
+function borrarclones() {
+    localStorage.clear();
+    location.reload();
 }
 // eliminar turnos completos fin
+function eliminarTurno(turnoId) {
+    fetch(`/eliminarTurno/${turnoId}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message); // Mensaje de respuesta del servidor
+            // Aquí puedes realizar cualquier acción adicional después de eliminar el turno
+            // Por ejemplo, recargar la página o actualizar la interfaz de usuario
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
