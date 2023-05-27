@@ -98,7 +98,13 @@ function comparar_ventas() {
     let buscafecha2 = document.getElementById('buscafechac2').value;
 
     if (buscafecha1 === '' || buscafecha2 === '') {
-        alert('Por favor, ingrese ambas fechas para comparar.');
+        const alerta = document.getElementById("alerta2");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio2");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio2");
+        }, 3000);
         return;
     }
 
