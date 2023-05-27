@@ -2,33 +2,34 @@
 <html lang="es">
 
 <head>
-    <title>
-    </title>
+    <title>Título de la página</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{url_for('static', filename='css/master.css')}}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/boostrap_css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/boostrap_css/bootstrap.min.css')}}">
 </head>
-<div class="login-box">
-    <img class="avatar" src="{{url_for('static', filename='img/logo.jpg')}}" alt="logo CW">
-    <h1>Ingrese aqui</h1>
-    <form>
-        <label for="nombre usuario">Nombre De Usuario</label>
-        <input id="nombre" type="text" placeholder="coloque su usuario">
 
-        <label for="contraseña">Contraseña</label>
-        <input id="contraseña" type="password" placeholder="coloque su contraseña">
-        </br>
-        <button class="btn-login" type="submit" onclick="ingresar()">Ingresar</button></br>
-        </br>
-        <a href="#">Olvidaste tu contraseña?</a></br>
-    </form>
-</div>
-<script src="{{url_for('static', filename='js/login.js')}} "></script>
-<script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.bundle.min.js') }}"></script>
+<body>
+    <div class="login-box">
+        <img class="avatar" src="{{url_for('static', filename='img/logo.jpg')}}" alt="logo CW">
+        <h1>Ingrese aquí</h1>
+        <form>
+            <label for="nombre-usuario">Nombre De Usuario</label>
+            <input id="nombre" type="text" placeholder="coloque su usuario">
 
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <label for="contraseña">Contraseña</label>
+            <input id="contraseña" type="password" placeholder="coloque su contraseña">
+            <br>
+            <button class="btn-login" type="submit" onclick="ingresar()">Ingresar</button><br><br>
+            <a href="#">Olvidaste tu contraseña?</a><br>
+        </form>
+    </div>
+
+    <script src="{{url_for('static', filename='js/login.js')}}"></script>
+    <script src="{{url_for('static', filename='js/boostrap_js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/boostrap_js/bootstrap.bundle.min.js')}}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

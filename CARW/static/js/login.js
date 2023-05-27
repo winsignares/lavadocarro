@@ -15,21 +15,19 @@ function updateSessionValue(newValue) {
 }
 
 function ingresar() {
-    axios.get('fronted/consulusuario', {
-            responseType: 'json'
-        })
+    let nombreu = document.getElementById('nombre').value;
+    let password = document.getElementById('contraseña').value;
+
+    axios.post('/verificar_credenciales', { usuario: nombreu, contrasena: password })
         .then(function(response) {
-            let datos = response.data
-            let nombreu = usuario.value;
-            let password = contra.value;
-            for (let i = 1; i <= Object.keys(datos).length; i++) {
-                if (datos[i].nombreu == nombreu && datos[i].password == password) {
-                    updateSessionValue('aprovado');
-                    window.location.href = '/Principal';
-                    return;
-                }
+            let resultado = response.data;
+            if (resultado.success) {
+                updateSessionValue('aprovado');
+                sessionStorage.setItem('rol', resultado.id_rol);
+                window.location.href = '/Principal';
+            } else {
+                window.alert("Usuario o contraseña incorrectos");
             }
-            window.alert("Usuario o contraseña incorrectos");
         })
         .catch(function(error) {
             console.log(error);

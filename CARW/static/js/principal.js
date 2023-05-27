@@ -27,6 +27,11 @@ function gobalances() {
     return;
 }
 
+function goajustes() {
+    window.location.href = '/Ajustes';
+    return;
+}
+
 function seleccionado(id) {
     localStorage.setItem('IDC', id);
     window.location.href = '/Pagos';
