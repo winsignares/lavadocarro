@@ -33,6 +33,7 @@ from rutas.Ppredeterminados import routes_Ppredeterminados
 from rutas.Peditables import routes_Peditables
 from rutas.Pagos import routes_Pagos
 from rutas.Turnos import routes_Turnos
+from rutas.Balances import routes_Balances
 
 #ubicacion de los html
 app.register_blueprint(routes_login, url_prefix="/fronted")
@@ -41,6 +42,7 @@ app.register_blueprint(routes_Ppredeterminados, url_prefix="/fronted")
 app.register_blueprint(routes_Peditables, url_prefix="/fronted")
 app.register_blueprint(routes_Pagos, url_prefix="/fronted")
 app.register_blueprint(routes_Turnos, url_prefix="/fronted")
+app.register_blueprint(routes_Balances, url_prefix="/fronted")
 
 
 #------------------------------------------------
@@ -76,6 +78,10 @@ def Pagos():
 @app.route('/Turnos')
 def Turnos():
     return render_template('/main/Turnos.html')
+
+@app.route('/Balances')
+def Balances():
+    return render_template('/main/Balances.html')
 
 
 if __name__ == '__main__':

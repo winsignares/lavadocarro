@@ -1,0 +1,47 @@
+{% extends "./layout.html" %} {% block body %}
+<div id="alerta" class="alerta-exito oculto">
+    No hay nada que imprimir!
+</div>
+<div id="barra-botones2">
+    <label class="sombreado" for="buscafecha">Coloque La Fecha</label>
+    <br><br>
+    <input id="buscafecha" type="text" placeholder="Dia/Mes/Año">
+    <br><br>
+    <button class="btn btn-info" type="submit" onclick="ver_ventas()">Buscar</button>
+    <br><br>
+    <button id="btnImprimir" class="btn btn-secondary" onclick="imprimirTabla()">Imprimir</button>
+</div>
+
+<div id="barra-botones3">
+    <label class="sombreado" for="buscafecha">Coloque Las Fecha a Comparar</label>
+    <br><br>
+    <input id="buscafechac1" type="text" placeholder="Dia/Mes/Año">
+    <br><br>
+    <input id="buscafechac2" type="text" placeholder="Dia/Mes/Año">
+    <br><br>
+    <button class="btn btn-warning" type="submit" onclick="comparar_ventas()">Comparar</button>
+</div>
+
+<div id="miTabla3">
+    <table id="tablabalances">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Matricula</th>
+                <th>Paquete</th>
+                <th>Total</th>
+                <th>Descripcion</th>
+            </tr>
+        </thead>
+        <tbody id="tablaBody3">
+        </tbody>
+    </table>
+</div>
+
+<div id="Grafica" style="visibility: hidden;">
+    <canvas id="myChart"></canvas>
+    <button class="btn btn-danger" onclick="ocultarGrafica()">X</button>
+</div>
+<script src="{{url_for('static', filename='js/Balances.js')}}"></script>
+
+{% endblock %}

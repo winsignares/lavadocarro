@@ -22,6 +22,11 @@ function goturnos() {
     return;
 }
 
+function gobalances() {
+    window.location.href = '/Balances';
+    return;
+}
+
 function seleccionado(id) {
     localStorage.setItem('IDC', id);
     window.location.href = '/Pagos';

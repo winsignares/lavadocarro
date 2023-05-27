@@ -1,4 +1,16 @@
 {% extends "./layout.html" %} {% block body %}
+<div id="turnosPA">
+    <p class="sombreado" style="text-align: center;">Turnos por aceptar</p>
+</div>
+<div id="turnosAT">
+    <p class="sombreado" style="text-align: center;">Turnos en proceso</p>
+</div>
+<div class="sombreado" id="barra-botones">
+    <button class="btn btn-info" type="submit" onclick="calcularpago()">Actualizar</button>
+    <br><br>
+    <button class="btn btn-info" type="submit" onclick="calcularpago()">Limpiar</button>
+    <br><br>
+</div>
 <div id="miTabla">
     <table id="tablaTurnos">
         <thead>
@@ -14,6 +26,25 @@
             </tr>
         </thead>
         <tbody id="tablaBody">
+            <!-- Los datos se reemplazarán aquí -->
+        </tbody>
+    </table>
+</div>
+<div id="miTabla2">
+    <table id="tablaTurnos-por-empezar">
+        <thead>
+            <tr>
+                <th># De Turno</th>
+                <th>Matricula</th>
+                <th>Paquete</th>
+                <th>Hora Inicio</th>
+                <th>Duracion</th>
+                <th>Hora Fin</th>
+                <th>Estado</th>
+                <th>Botones</th>
+            </tr>
+        </thead>
+        <tbody id="tablaBody2">
             <!-- Los datos se reemplazarán aquí -->
         </tbody>
     </table>
