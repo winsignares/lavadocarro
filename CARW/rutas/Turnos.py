@@ -25,3 +25,15 @@ def consulTurnos():
             'Duracion': duracion.strftime("%H:%M:%S")
         })
     return jsonify(datos)
+
+
+@routes_Turnos.route('/eliminarTurno/<int:turno_id>', methods=['DELETE'])
+def eliminarTurno(turno_id):
+    turno = turnos.query.get(turno_id)
+
+    if turno:
+        db.session.delete(turno)
+        db.session.commit()
+        return jsonify({'message': 'El turno ha sido eliminado correctamente'})
+    else:
+        return jsonify({'message': 'El turno no existe'})

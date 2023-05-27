@@ -94,15 +94,20 @@ function Empezar(idHI, idDU, idHF, idET, dura) {
     document.getElementById(idHF).textContent = horaFin + ":" + minutosFin + ":" + segundosFin;
     document.getElementById(idET).textContent = "En proceso";
 
-    // Guardar los datos en el almacenamiento local del navegador
-    localStorage.setItem(idHI, horaActual);
-    localStorage.setItem(idDU, dura);
-    localStorage.setItem(idHF, horaFin + ":" + minutosFin + ":" + segundosFin);
-    localStorage.setItem(idET, "En proceso");
+    clonarTurnos(event);
 }
 
 
 document.addEventListener('DOMContentLoaded', function() {
+    const tablaClones = document.getElementById("tablaTurnos-por-empezar").getElementsByTagName("tbody")[0];
+
+    // Restaurar clones desde el localStorage
+    const clonesGuardados = JSON.parse(localStorage.getItem("clones")) || [];
+
+    clonesGuardados.forEach(function(clon) {
+        tablaClones.innerHTML += clon;
+    });
+
     miFuncion();
     setTimeout(function() {
         document.removeEventListener('DOMContentLoaded', arguments.callee);
@@ -112,3 +117,84 @@ document.addEventListener('DOMContentLoaded', function() {
 function miFuncion() {
     ver_turnos();
 }
+
+// para clonar los turnos
+function clonarTurnos(event) {
+    const botonPresionado = event.target;
+    const contenedorOriginal = botonPresionado.closest("tr");
+    const contenedorClon = contenedorOriginal.cloneNode(true);
+    contenedorClon.querySelector("button").remove();
+
+    const tablaClones = document.getElementById("tablaTurnos-por-empezar").getElementsByTagName("tbody")[0];
+    tablaClones.appendChild(contenedorClon);
+
+    guardarClonesEnLocalStorage();
+}
+// para clonar los turnos fin
+// guardar clones 
+function guardarClonesEnLocalStorage() {
+    const tablaClones = document.getElementById("tablaTurnos-por-empezar").getElementsByTagName("tbody")[0];
+    const filasClones = tablaClones.getElementsByTagName("tr");
+    const clones = [];
+
+    for (let i = 0; i < filasClones.length; i++) {
+        clones.push(filasClones[i].outerHTML);
+    }
+
+    localStorage.setItem("clones", JSON.stringify(clones));
+}
+// guardar clones fin
+// actualizar
+function actualizar() {
+    // Obtener los clones almacenados en el localStorage
+    const clonesGuardados = JSON.parse(localStorage.getItem("clones")) || [];
+
+    // Obtener todos los IDs de los clones
+    const cloneIDs = clonesGuardados.map((clon) => {
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = clon;
+        const turnoElement = tempElement.querySelector("tr");
+        return turnoElement ? turnoElement.id : null;
+    }).filter(id => id !== null);
+
+    // Obtener los turnos que no están en los clones
+    const turnosNoClonados = turnosDisponibles.filter((turno) => !cloneIDs.includes(turno.id));
+
+    // Limpiar la tabla de turnos por empezar
+    const tablaClones = document.getElementById("tablaTurnos-por-empezar");
+    tablaClones.innerHTML = "";
+
+    // Agregar los turnos no clonados a la tabla
+    turnosNoClonados.forEach((turno) => {
+        const fila = crearFilaTurno(turno);
+        tablaClones.appendChild(fila);
+    });
+
+    console.log("La función actualizar() se ejecutó correctamente");
+}
+
+// actualizar fin
+// eliminar turnos completos
+function verificarHoraFin() {
+    // Obtener los clones almacenados en el localStorage
+    const clonesGuardados = JSON.parse(localStorage.getItem("clones")) || [];
+
+    // Obtener todos los IDs de los clones
+    const cloneIDs = clonesGuardados.map((clon) => {
+        const tempElement = document.createElement("div");
+        tempElement.innerHTML = clon;
+        const turnoElement = tempElement.querySelector("tr");
+        return turnoElement ? turnoElement.id : null;
+    }).filter(id => id !== null);
+
+    // Eliminar los clones del localStorage
+    localStorage.removeItem("clones");
+
+    // Eliminar los turnos de la tabla con los IDs de los clones
+    cloneIDs.forEach((turnoID) => {
+        eliminarTurno(turnoID);
+    });
+
+    console.log("Los clones y turnos correspondientes han sido eliminados correctamente");
+}
+// eliminar turnos completos fin
