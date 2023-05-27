@@ -16,7 +16,6 @@ def consullist():
     usuarios_table = db.Model.metadata.tables['tblusuarios']
     roles_table = db.Model.metadata.tables['tblroles']
     resultado = db.session.query(usuarios, roles).select_from(usuarios_table).join(roles_table).all()
-    users = []
     i = 0
     for usuario, rol in resultado:
         i += 1
@@ -25,6 +24,4 @@ def consullist():
             'password':usuario.Contraseña,
             'rolsito': rol.id                   
         }
-        users.append(datos)
-        print(users)
     return jsonify(datos)

@@ -1,9 +1,12 @@
-from flask import Flask, redirect, request, jsonify, json, session, render_template, url_for
+from flask import Flask,  redirect, request, jsonify, json, session, render_template, url_for
 from db import db, app, ma
 import os
 
 #generar llave y sesion
 app.secret_key = os.urandom(24)
+
+#----------------------datos de payu inicio-----------------------
+#----------------------datos de payu fin--------------------------
 
 #importar routes de las tablas 
 from api.paquete import routes_paquetes
@@ -54,23 +57,13 @@ def index():
 
 @app.route('/update_session', methods=['POST'])
 def update_session():
-    usuario = request.json['usuario']
-    contrasena = request.json['contrasena']
-    
-    id_rol = verificar_credenciales(usuario, contrasena)
-    if id_rol is not None:
-        session['id_rol'] = id_rol
-        return jsonify({'success': True})
-    else:
-        return jsonify({'success': False})
-
+    new_value = request.json['new_value']
+    session['my_variable'] = new_value
+    return jsonify({'success': True})
 
 @app.route('/Principal')
 def principal():
-    if 'id_rol' in session:
-        return render_template('/main/Principal.html')
-    else:
-        return redirect(url_for('index'))
+    return render_template('/main/Principal.html')
     
 @app.route('/Ppredeterminados')
 def Paquetes_predeterminados():
@@ -95,17 +88,6 @@ def Balances():
 @app.route('/Ajustes')
 def Ajustes():
     return render_template('/main/Ajustes.html')
-
-@app.route('/verificar_credenciales', methods=['POST'])
-def verificar_credenciales():
-    usuario = request.json['usuario']
-    contrasena = request.json['contrasena']
-
-    id_rol = verificar_credenciales(usuario, contrasena)
-    if id_rol is not None:
-        return jsonify({'success': True, 'id_rol': id_rol})
-    else:
-        return jsonify({'success': False})
 
 
 if __name__ == '__main__':
