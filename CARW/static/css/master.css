@@ -585,3 +585,68 @@ nav {
     flex-wrap: wrap;
     overflow: auto;
 }
+
+
+/* ajustes */
+
+.ajustes-box {
+    width: 35%;
+    margin: 0 auto;
+    padding: 20px;
+    border: none;
+    box-sizing: border-box;
+    position: absolute;
+    right: 5%;
+    top: 2%;
+    background-color: rgba(255, 255, 255, 0.797);
+    border-radius: 2%;
+    max-height: 600px;
+    height: 600px;
+    max-width: 880px;
+    width: 880px;
+}
+
+#ajustes-botones {
+    height: 100px;
+    width: 100px;
+}
+
+#ajustes-botones2 {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    right: 63%;
+    top: 3.5%;
+}
+
+#ajvehiculos {
+    height: 560px;
+    width: 525px;
+    position: absolute;
+    right: 1%;
+    top: 3.5%;
+}
+
+#ajusuarios {
+    height: 560px;
+    width: 525px;
+    position: absolute;
+    right: 1%;
+    top: 3.5%;
+}
+
+#ajpaquetes {
+    height: 560px;
+    width: 525px;
+    position: absolute;
+    right: 1%;
+    top: 3.5%;
+}
+
+#ajeliminar {
+    height: 560px;
+    width: 525px;
+    position: absolute;
+    right: 1%;
+    top: 3.5%;
+}

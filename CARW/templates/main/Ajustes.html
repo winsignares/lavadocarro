@@ -1,3 +1,87 @@
 {% extends "./layout.html" %} {% block body %}
-<script src="{{url_for('static', filename='js/Ajutes.js')}}"></script>
+<div class="ajustes-box">
+    <div class="sombreado" id="ajustes-botones">
+        <button type="button" class="btn btn-primary">Usuarios</button>
+    </div>
+    <div class="sombreado" id="ajustes-botones2">
+        <button type="button" class="btn btn-primary" onclick="mostrarRvehiculos()">Registrar Vehiculos</button>
+        <br></br>
+        <button type="button" class="btn btn-primary" onclick="mostrarRuarios()">Registrar Usuarios</button>
+        <br></br>
+        <button type="button" class="btn btn-danger" onclick="eliminarRuarios()">Eliminar Usuario</button>
+    </div>
+    <div class="sombreado" id="ajvehiculos" style="visibility: hidden;">
+        <label for="Rmatricula">Matricula:</label>
+        <input id="Rmatricula" type="text" placeholder="" style="position: relative; left: 10px;">
+        <br></br>
+        <label for="Rmodelo">Modelo:</label>
+        <input id="Rmodelo" type="text" placeholder="" style="position: relative; left: 23px;">
+        <br></br>
+        <label for="Rcolor">Color:</label>
+        <input id="Rcolor" type="text" placeholder="" style="position: relative; left: 35px;">
+        <br></br>
+        <label for="Rtipo">Tipo:</label>
+        <input id="Rtipo" type="text" placeholder="" style="position: relative; left: 42px;">
+        <br></br>
+        <button type="button" class="btn btn-primary">Registrar</button>
+        <button type="button" class="btn btn-danger">Limpiar</button>
+    </div>
+    <div class="sombreado" id="ajusuarios" style="visibility: hidden;">
+        <label for="Rusuario">Usuario:</label>
+        <input id="Rusuario" type="text" placeholder="" style="position: relative; left: 75px;">
+        <br></br>
+        <label for="Rnombre">Nombre:</label>
+        <input id="Rnombre" type="text" placeholder="" style="position: relative; left: 75px;">
+        <br></br>
+        <label for="Rapellido">Apellido:</label>
+        <input id="Rapellido" type="text" placeholder="" style="position: relative; left: 70px;">
+        <br></br>
+        <label for="Rcedula">Cedula:</label>
+        <input id="Rcedula" type="number" placeholder="" style="position: relative; left: 80px;">
+        <br></br>
+        <label for="Rmail">Correo Electronico:</label>
+        <input id="Rmail" type="text" placeholder="" style="position: relative; left: 5px;">
+        <br></br>
+        <label for="Rtelefono"># De Telefono:</label>
+        <input id="Rtelefono" type="number" placeholder="" style="position: relative; left: 37px;">
+        <br></br>
+        <label for="Rpassword">Contraseña:</label>
+        <input id="Rpassword" type="password" placeholder="" style="position: relative; left: 55px;">
+        <br></br>
+        <label for="Rmatricula">Matricula:</label>
+        <input id="Rmatricula" type="text" placeholder="" style="position: relative; left: 65px;">
+        <br></br>
+        <label for="Rrol">Rol:</label>
+        <input id="Rrol" type="text" placeholder="" style="position: relative; left: 105px;">
+        <br></br>
+        <button type="button" class="btn btn-primary">Registrar</button>
+        <button type="button" class="btn btn-danger">Limpiar</button>
+    </div>
+    <div class="sombreado" id="ajpaquetes" style="visibility: hidden;">
+        <label for="Rmatricula">Matricula:pollo2m</label>
+        <input id="Rmatricula" type="text" placeholder="" style="position: relative; left: 10px;">
+        <br></br>
+        <label for="Rmodelo">Modelo:</label>
+        <input id="Rmodelo" type="text" placeholder="" style="position: relative; left: 23px;">
+        <br></br>
+        <label for="Rcolor">Color:</label>
+        <input id="Rcolor" type="text" placeholder="" style="position: relative; left: 35px;">
+        <br></br>
+        <label for="Rtipo">Tipo:</label>
+        <input id="Rtipo" type="text" placeholder="" style="position: relative; left: 42px;">
+        <br></br>
+        <button type="button" class="btn btn-primary">Registrar</button>
+        <button type="button" class="btn btn-danger">Limpiar</button>
+    </div>
+    <div class="sombreado" id="ajeliminar" style="visibility: hidden;">
+        <label for="Dusuario">Usuario:</label>
+        <input id="Dusuario" type="text" placeholder="" style="position: relative; left: 25px;">
+        <br></br>
+        <label for="Dcontra">Contraseña:</label>
+        <input id="Dcontra" type="password" placeholder="" style="position: relative; left: 5px;">
+        <br></br>
+        <button type="button" class="btn btn-danger">Eliminar</button>
+    </div>
+</div>
+<script src="{{url_for('static', filename='js/Ajustes.js')}}"></script>
 {% endblock %}
