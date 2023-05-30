@@ -10,10 +10,12 @@
         <h1 style="text-align: center;">Diseñe Un Paquete</h1>
         </br>
         <label for="nombre paquete">Titulo :</label>
-        <input id="Titulo" type="text" placeholder=" coloque el Titulo">
+        <input id="Titulo" type="text" placeholder=" coloque el Titulo" style="width: 150px;">
 
         <label for="valor paquete">Valor Total $</label>
-        <input id="Valor" type="text" placeholder="$">
+        <input id="Valor" type="text" placeholder="$" style="width: 150px;">
+
+        <label class="sombreado" for="lista procedimientos" style="position: relative; left: 100px;">Lista De Procedimientos</label>
         </br>
         </br>
         <div id="miContainer" class="container4">
@@ -26,11 +28,9 @@
 
     </form>
 </div>
-<div class="container3">
-    <h1 style="text-align: center;">Lista De Procedimientos</h1>
-    </br>
-    <ul id="cambio" class=" list-group2 ">
-        <li class="list-group-item " onclick="ver_procedimientos()">Mostrar Procedimientos</li>
+<div class="sombreado" id="container3">
+    <ul id="cambio" class="list-group2">
+        <li class="list-group-item" onclick="ver_procedimientos()">Mostrar Procedimientos</li>
     </ul>
 </div>
 <script src="{{url_for('static', filename='js/Peditables.js')}} "></script>

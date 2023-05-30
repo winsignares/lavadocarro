@@ -15,8 +15,8 @@ function ver_procedimientos() {
             let opciones = '';
             for (let index = 1; index < length; index++) {
                 opciones +=
-                    `<ul id="${index}" class=" list-group2 ">
-                    <li class="list-group-item " onclick="añadir(event)" value="${datos[index].valor}">>${datos[index].descripcion}</li><li class="list-group-item ">$${datos[index].valor}</li>
+                    `<ul id="${index}" class="list-group2">
+                    <li class="list-group-item" onclick="añadir(event)" value="${datos[index].valor}">>${datos[index].descripcion}</li><li class="list-group-item">$${datos[index].valor}</li>
                 </ul>`;
             }
             remplazo.innerHTML = opciones;

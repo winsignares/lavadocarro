@@ -262,20 +262,6 @@ nav {
 }
 
 
-/*Menù lateral*/
-
-.list-group {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    top: 20%;
-}
-
-.list-group li:hover {
-    background-color: red;
-}
-
-
 /* paquetes editables */
 
 .container2 {
@@ -285,34 +271,56 @@ nav {
     border: none;
     box-sizing: border-box;
     position: absolute;
-    right: 40%;
+    right: 9%;
     top: 10%;
     background-color: rgba(255, 255, 255, 0.797);
     border-radius: 2%;
     max-height: 700px;
     height: 700px;
+    max-width: 880px;
+    width: 880px;
 }
 
-.container3 {
+#container3 {
     width: 30%;
     margin: 0 auto;
     padding: 20px;
     border: none;
     box-sizing: border-box;
     position: absolute;
-    right: 10%;
-    top: 10%;
-    background-color: rgba(255, 255, 255, 0.797);
+    right: 9.5%;
+    top: 40%;
     border-radius: 2%;
     overflow-y: auto;
-    max-height: 700px;
-    height: 700px;
+    max-height: 450px;
+    height: 450px;
+    max-width: 395px;
+    width: 395px;
+}
+
+.list-group2 {
+    position: absolute;
+    right: 30%;
+    top: 5%;
+    width: 300px;
+}
+
+.list-group-item {
+    width: 300px;
+    position: absolute;
+    background-color: green;
+}
+
+.list-group li:hover {
+    background-color: red;
 }
 
 .container4 {
     overflow-y: auto;
     max-height: 450px;
     height: 450px;
+    max-width: 450px;
+    width: 450px;
     background-color: white;
     border-radius: 2%;
 }
