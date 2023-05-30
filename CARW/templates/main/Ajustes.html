@@ -1,14 +1,27 @@
 {% extends "./layout.html" %} {% block body %}
+<div id="alerta" class="alerta-EXoFL oculto">
+    No Debe haber Campos Vacio!
+</div>
+<div id="alerta2" class="alerta-EXoFL oculto">
+    Guardado Exitoso!
+</div>
 <div class="ajustes-box">
     <div class="sombreado" id="ajustes-botones">
-        <button type="button" class="btn btn-primary">Usuarios</button>
+        <button type="button" class="btn btn-primary" onclick="mostrarmenuUS()">Usuarios</button>
+        <br></br>
+        <button type="button" class="btn btn-primary" onclick="mostrarmenuPQ()">Paquetes</button>
     </div>
-    <div class="sombreado" id="ajustes-botones2">
+    <div class="sombreado" id="ajustes-botones2" style="visibility: hidden;">
         <button type="button" class="btn btn-primary" onclick="mostrarRvehiculos()">Registrar Vehiculos</button>
         <br></br>
         <button type="button" class="btn btn-primary" onclick="mostrarRuarios()">Registrar Usuarios</button>
         <br></br>
         <button type="button" class="btn btn-danger" onclick="eliminarRuarios()">Eliminar Usuario</button>
+    </div>
+    <div class="sombreado" id="ajustes-botones3" style="visibility: hidden;">
+        <button type="button" class="btn btn-primary" onclick="mostrarpaquetesPQ()">Registrar Paquetes Permanentes</button>
+        <br></br>
+        <button type="button" class="btn btn-danger" onclick="eliminarpaquetes()">Eliminar Paquetes Permanentes</button>
     </div>
     <div class="sombreado" id="ajvehiculos" style="visibility: hidden;">
         <label for="Rmatricula">Matricula:</label>
@@ -52,7 +65,12 @@
         <input id="Rmatricula" type="text" placeholder="" style="position: relative; left: 65px;">
         <br></br>
         <label for="Rrol">Rol:</label>
-        <input id="Rrol" type="text" placeholder="" style="position: relative; left: 105px;">
+        <select style="position: relative; left: 105px;">
+            <option selected>Selecciona una opción</option>
+            <option value="1">Administrador</option>
+            <option value="2">Vendedor</option>
+            <option value="3">Cliente</option>
+          </select>
         <br></br>
         <button type="button" class="btn btn-primary">Registrar</button>
         <button type="button" class="btn btn-danger">Limpiar</button>
@@ -81,6 +99,28 @@
         <input id="Dcontra" type="password" placeholder="" style="position: relative; left: 5px;">
         <br></br>
         <button type="button" class="btn btn-danger">Eliminar</button>
+    </div>
+    <div class="sombreado" id="ajeliminarPQ" style="visibility: hidden;">
+        <label for="Dpaquete">Paquete:</label>
+        <input id="Dpaquete" type="text" placeholder="" style="position: relative; left: 25px;">
+        <br></br>
+        <button type="button" class="btn btn-danger">Eliminar</button>
+    </div>
+    <div class="sombreado" id="ajregistrarPQ" style="visibility: hidden;">
+        <label for="Rtitulo">Titulo:</label>
+        <input id="Rtitulo" type="text" placeholder="" style="position: relative; left: 45px;">
+        <br></br>
+        <label for="Rdescripcion">Descripcion:</label>
+        <input id="Rdescripcion" type="text" placeholder="" style="position: relative; left: 5px;">
+        <br></br>
+        <label for="Rvalor">Valor:</label>
+        <input id="Rvalor" type="number" placeholder="$" style="position: relative; left: 45px;">
+        <br></br>
+        <label for="Rduracion">Duracion:</label>
+        <input id="Rduracion" type="text" placeholder="ej 00:30:00" style="position: relative; left: 20px;">
+        <br></br>
+        <button type="button" class="btn btn-primary">Registrar</button>
+        <button type="button" class="btn btn-danger">Limpiar</button>
     </div>
 </div>
 <script src="{{url_for('static', filename='js/Ajustes.js')}}"></script>

@@ -607,11 +607,19 @@ nav {
 }
 
 #ajustes-botones {
-    height: 100px;
+    height: 120px;
     width: 100px;
 }
 
 #ajustes-botones2 {
+    height: 180px;
+    width: 180px;
+    position: absolute;
+    right: 63%;
+    top: 3.5%;
+}
+
+#ajustes-botones3 {
     height: 180px;
     width: 180px;
     position: absolute;
@@ -649,4 +657,44 @@ nav {
     position: absolute;
     right: 1%;
     top: 3.5%;
+}
+
+#ajeliminarPQ {
+    height: 560px;
+    width: 525px;
+    position: absolute;
+    right: 1%;
+    top: 3.5%;
+}
+
+#ajregistrarPQ {
+    height: 560px;
+    width: 525px;
+    position: absolute;
+    right: 1%;
+    top: 3.5%;
+}
+
+.alerta-campo-vacio3 {
+    background-color: rgba(255, 0, 0, 0.83);
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: absolute;
+    right: 50%;
+    top: 40%;
+    z-index: 5;
+}
+
+.alerta-Exito2 {
+    background-color: rgb(26, 128, 0);
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: absolute;
+    right: 50%;
+    top: 40%;
+    z-index: 5;
 }
