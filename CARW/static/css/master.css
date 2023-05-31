@@ -298,23 +298,6 @@ nav {
     width: 395px;
 }
 
-.list-group2 {
-    position: absolute;
-    right: 30%;
-    top: 5%;
-    width: 300px;
-}
-
-.list-group-item {
-    width: 300px;
-    position: absolute;
-    background-color: green;
-}
-
-.list-group li:hover {
-    background-color: red;
-}
-
 .container4 {
     overflow-y: auto;
     max-height: 450px;
@@ -323,10 +306,6 @@ nav {
     width: 450px;
     background-color: white;
     border-radius: 2%;
-}
-
-.list-group2 li:hover {
-    background-color: red;
 }
 
 .alerta-exito {
@@ -360,10 +339,27 @@ nav {
 
 .container5 {
     overflow-y: auto;
-    max-height: 435px;
-    height: 435px;
+    max-height: 290px;
+    height: 290px;
     background-color: white;
     border-radius: 2%;
+}
+
+#containerPG {
+    width: 30%;
+    margin: 0 auto;
+    padding: 20px;
+    border: none;
+    box-sizing: border-box;
+    position: absolute;
+    right: 9.5%;
+    top: 28%;
+    border-radius: 2%;
+    overflow-y: auto;
+    max-height: 450px;
+    height: 450px;
+    max-width: 395px;
+    width: 395px;
 }
 
 .caja-pagos {
@@ -373,12 +369,14 @@ nav {
     border: none;
     box-sizing: border-box;
     position: absolute;
-    right: 40%;
-    top: 10%;
+    right: 9%;
+    top: 5%;
     background-color: rgba(255, 255, 255, 0.797);
     border-radius: 2%;
-    max-height: 700px;
-    height: 700px;
+    max-height: 600px;
+    height: 600px;
+    max-width: 880px;
+    width: 880px;
 }
 
 .payuL {

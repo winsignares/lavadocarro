@@ -37,30 +37,31 @@
     <br>
     <form>
         <label for="nombre-usuario">Usuario:</label>
-        <li id="Nusuario" class="list-group-item" style="display: inline;">Nombre Del Usuario</li>
-        <input id="identificacion" type="text" placeholder="Coloque la cédula">
-        <button class="btn btn-info" type="submit" onclick="verificarCedula(event)">Buscar</button>
+        <li id="Nusuario" class="list-group-item" style="display: inline; position: relative; left: 70px;">Nombre Del Usuario</li>
+        <input id="identificacion" type="text" placeholder="Coloque la cédula" style="width: 145px; position: relative; left: 77px;">
+        <button class="btn btn-info" type="submit" style="position: relative; left: 77px;" onclick="verificarCedula(event)">Buscar</button>
+        <label class="sombreado" for="lista procedimientos" style="position: relative; left: 100px;">Descripción Del Paquete</label>
         <br><br>
         <label for="correo">Correo:</label>
-        <li id="Email" class="list-group-item" style="display: inline;">Email</li>
+        <li id="Email" class="list-group-item" style="display: inline; position: relative; left: 75px;">Email</li>
         <br><br>
         <label for="matricula">Matricula:</label>
-        <li id="Nmatricula" class="list-group-item" style="display: inline;"># De Matricula</li>
+        <li id="Nmatricula" class="list-group-item" style="display: inline; position: relative; left: 55px;"># De Matricula</li>
         <br><br>
         <label for="tipo vehiculo" style="display: inline; ">Tipo De Vehiculo: </label>
-        <li id="Tvehiculo" class="list-group-item" style="display: inline;">---</li>
+        <li id="Tvehiculo" class="list-group-item" style="display: inline; position: relative; left: 5px;">---</li>
         <br><br>
         <label for="nombre-paquete">Paquete:</label>
-        <li id="Tpaquete" class="list-group-item" style="display: inline;">Tipo De Paquete</li>
+        <li id="Tpaquete" class="list-group-item" style="display: inline; position: relative; left: 65px;">Tipo De Paquete</li>
         <br><br>
         <label for="valor" style="display: inline; ">Valor: </label>
-        <li id="Pvalor" class="list-group-item" style="display: inline;">$</li>
+        <li id="Pvalor" class="list-group-item" style="display: inline; position: relative; left: 79px;">$</li>
         <br><br>
         <label for="Fecha ">Fecha: </label>
-        <li id="Fecha" class="list-group-item " style="display: inline; ">Dia/Mes/Año</li>
+        <li id="Fecha" class="list-group-item " style="display: inline; position: relative; left: 77px;">Dia/Mes/Año</li>
         <br><br>
         <label for="Duracion Proseso " style="display: inline; ">Tiempo Estimado: </label>
-        <li id="Testimado" class="list-group-item " style="display: inline; ">00:00</li>
+        <li id="Testimado" class="list-group-item " style="display: inline;">00:00</li>
         </br>
         <br>
         <button type="button" class="btn btn-info" onclick="pagofisico()">Pago Físico</button>
@@ -69,9 +70,7 @@
     </form>
 </div>
 
-<div class="container3">
-    <h1 style="text-align: center;">Descripción Del Paquete</h1>
-    <br>
+<div class="sombreado" id="containerPG">
     <div id="miContainer" class="container5">
         <p id="GID" class="card-text"></p>
         <p id="cambio" class="card-text"></p>

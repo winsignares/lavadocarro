@@ -4,7 +4,8 @@ function ver_turnos() {
             let datos = response.data;
             var length = Object.keys(datos).length;
             let opciones = '';
-            let dura; // Variable "dura" declarada aquí
+            let dura;
+            let idt;
             let idArray = []; // Array para almacenar los IDs existentes
 
             // Obtener los IDs existentes del HTML
@@ -24,7 +25,8 @@ function ver_turnos() {
                 let idDU = `DU${datos[index].ID}`;
                 let idHF = `HF${datos[index].ID}`;
                 let idET = `ET${datos[index].ID}`;
-                dura = `${datos[index].Duracion}`; // Asignar el valor de datos[index].Duracion a la variable "dura"
+                dura = `${datos[index].Duracion}`;
+                idt = `${datos[index].ID}`;
                 opciones +=
                     `<tr>
                         <td>${datos[index].ID}</td>
@@ -34,7 +36,7 @@ function ver_turnos() {
                         <td id="${idDU}">Fila ${index + 1}, Columna 5</td>
                         <td id="${idHF}">Fila ${index + 1}, Columna 6</td>
                         <td id="${idET}">Por Iniciar</td>
-                        <td><button type="button" class="btn btn-dark" onclick="Empezar('${idHI}','${idHI}','${idDU}', '${idHF}', '${idET}', '${dura}')">Empezar</button></td>
+                        <td><button type="button" class="btn btn-dark" onclick="Empezar('${idHI}','${idDU}', '${idHF}', '${idET}', '${dura}', '${idt}')">Empezar</button></td>
                     </tr>`;
             }
             document.getElementById("tablaBody").innerHTML += opciones; // Agregar los nuevos turnos al final de la tabla
@@ -44,29 +46,14 @@ function ver_turnos() {
         });
 }
 
-function Empezar(idHI, idDU, idHF, idET, dura) {
-    var fecha = new Date();
-    var hora = fecha.getHours();
-    var minutos = fecha.getMinutes();
-    var segundos = fecha.getSeconds();
-
-    // Formatear la hora, minutos y segundos para que siempre tengan 2 dígitos
-    if (hora < 10) {
-        hora = "0" + hora;
-    }
-    if (minutos < 10) {
-        minutos = "0" + minutos;
-    }
-    if (segundos < 10) {
-        segundos = "0" + segundos;
-    }
-
-    var horaActual = hora + ":" + minutos + ":" + segundos;
+function Empezar(idHI, idDU, idHF, idET, dura, idt) {
+    var horaActual = obtenerHoraActual(); // Obtener la hora actual utilizando la función obtenerHoraActual() definida anteriormente
 
     // Convertir la duración en milisegundos
     var duracionMilisegundos = parseInt(dura.split(':')[0]) * 60 * 60 * 1000 + parseInt(dura.split(':')[1]) * 60 * 1000 + parseInt(dura.split(':')[2]) * 1000;
 
     // Calcular la hora de finalización sumando la duración en milisegundos al tiempo actual en milisegundos
+    var fecha = new Date();
     var horaFinMilisegundos = fecha.getTime() + duracionMilisegundos;
 
     // Crear un objeto Date con la hora de finalización
@@ -93,9 +80,11 @@ function Empezar(idHI, idDU, idHF, idET, dura) {
     document.getElementById(idDU).textContent = dura;
     document.getElementById(idHF).textContent = horaFin + ":" + minutosFin + ":" + segundosFin;
     document.getElementById(idET).textContent = "En proceso";
+    Id = idt;
 
     clonarTurnos(event);
     location.reload();
+    eliminarTurno(Id);
 }
 
 
@@ -152,8 +141,8 @@ function borrarclones() {
     location.reload();
 }
 // eliminar turnos completos fin
-function eliminarTurno(turnoId) {
-    fetch(`/eliminarTurno/${turnoId}`, {
+function eliminarTurno(Id) {
+    fetch(`fronted/eliminarTurno/${Id}`, {
             method: 'DELETE'
         })
         .then(response => response.json())
@@ -167,3 +156,26 @@ function eliminarTurno(turnoId) {
             console.error('Error:', error);
         });
 }
+
+// odetener la hora
+function obtenerHoraActual() {
+    var fecha = new Date();
+    var hora = fecha.getHours();
+    var minutos = fecha.getMinutes();
+    var segundos = fecha.getSeconds();
+
+    // Formatear la hora, minutos y segundos para que siempre tengan 2 dígitos
+    if (hora < 10) {
+        hora = "0" + hora;
+    }
+    if (minutos < 10) {
+        minutos = "0" + minutos;
+    }
+    if (segundos < 10) {
+        segundos = "0" + segundos;
+    }
+
+    var horaActual = hora + ":" + minutos + ":" + segundos;
+    return horaActual;
+}
+// odetener la hora fin

@@ -1,6 +1,7 @@
 from db import db, app, ma
 from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, render_template
 from model.paquetes import paquetes,paquetesSchema
+from model.turnos import turnos,turnosSchema
 
 routes_Turnos = Blueprint("routes_Turnos", __name__)
 
@@ -27,9 +28,9 @@ def consulTurnos():
     return jsonify(datos)
 
 
-@routes_Turnos.route('/eliminarTurno/<int:turno_id>', methods=['DELETE'])
-def eliminarTurno(turno_id):
-    turno = turnos.query.get(turno_id)
+@routes_Turnos.route('/eliminarTurno/<int:Id>', methods=['DELETE'])
+def eliminarTurno(Id):
+    turno = turnos.query.get(Id)
 
     if turno:
         db.session.delete(turno)
