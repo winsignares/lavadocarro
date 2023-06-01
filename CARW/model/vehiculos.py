@@ -10,8 +10,9 @@ class vehiculos(db.Model):
     Tipo = db.Column(db.String(50))
     
 
-    def __init__(self, Modelo,Color,Tipo ):
+    def __init__(self, Matricula, Modelo,Color,Tipo ):
         
+        self.Matricula = Matricula
         self.Modelo = Modelo
         self.Color = Color
         self.Tipo = Tipo

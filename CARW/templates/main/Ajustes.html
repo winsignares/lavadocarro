@@ -1,6 +1,6 @@
 {% extends "./layout.html" %} {% block body %}
 <div id="alerta" class="alerta-EXoFL oculto">
-    No Debe haber Campos Vacio!
+    No Debe haber Campos Vacios!
 </div>
 <div id="alerta2" class="alerta-EXoFL oculto">
     Guardado Exitoso!
@@ -36,10 +36,10 @@
         <label for="Rtipo">Tipo:</label>
         <input id="Rtipo" type="text" placeholder="" style="position: relative; left: 42px;">
         <br></br>
-        <button type="button" class="btn btn-primary">Registrar</button>
-        <button type="button" class="btn btn-danger">Limpiar</button>
+        <button type="button" class="btn btn-primary" onclick="guardar_vehiculos()">Registrar</button>
+        <button type="button" class="btn btn-danger" onclick="limpiartodo()">Limpiar</button>
     </div>
-    <div class="sombreado" id="ajusuarios" style="visibility: hidden;">
+    <div class="sombreado" id="ajusuarios">
         <label for="Rusuario">Usuario:</label>
         <input id="Rusuario" type="text" placeholder="" style="position: relative; left: 75px;">
         <br></br>
@@ -61,35 +61,19 @@
         <label for="Rpassword">Contraseña:</label>
         <input id="Rpassword" type="password" placeholder="" style="position: relative; left: 55px;">
         <br></br>
-        <label for="Rmatricula">Matricula:</label>
-        <input id="Rmatricula" type="text" placeholder="" style="position: relative; left: 65px;">
+        <label for="Rmatricula2">Matricula:</label>
+        <input id="Rmatricula2" type="text" placeholder="" style="position: relative; left: 65px;">
         <br></br>
-        <label for="Rrol">Rol:</label>
-        <select style="position: relative; left: 105px;">
+        <label id="Rrol" for="Rrol">Rol:</label>
+        <select id="rolSelect" style="position: relative; left: 105px;">
             <option selected>Selecciona una opción</option>
             <option value="1">Administrador</option>
             <option value="2">Vendedor</option>
             <option value="3">Cliente</option>
-          </select>
+        </select>
         <br></br>
-        <button type="button" class="btn btn-primary">Registrar</button>
-        <button type="button" class="btn btn-danger">Limpiar</button>
-    </div>
-    <div class="sombreado" id="ajpaquetes" style="visibility: hidden;">
-        <label for="Rmatricula">Matricula:pollo2m</label>
-        <input id="Rmatricula" type="text" placeholder="" style="position: relative; left: 10px;">
-        <br></br>
-        <label for="Rmodelo">Modelo:</label>
-        <input id="Rmodelo" type="text" placeholder="" style="position: relative; left: 23px;">
-        <br></br>
-        <label for="Rcolor">Color:</label>
-        <input id="Rcolor" type="text" placeholder="" style="position: relative; left: 35px;">
-        <br></br>
-        <label for="Rtipo">Tipo:</label>
-        <input id="Rtipo" type="text" placeholder="" style="position: relative; left: 42px;">
-        <br></br>
-        <button type="button" class="btn btn-primary">Registrar</button>
-        <button type="button" class="btn btn-danger">Limpiar</button>
+        <button type="button" class="btn btn-primary" onclick="guardar_usuarios()">Registrar</button>
+        <button type="button" class="btn btn-danger" onclick="test()">Limpiar</button>
     </div>
     <div class="sombreado" id="ajeliminar" style="visibility: hidden;">
         <label for="Dusuario">Usuario:</label>

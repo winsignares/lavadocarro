@@ -34,6 +34,10 @@
     cursor: pointer;
 }
 
+#sidebar a:hover {
+    background-color: blue;
+}
+
 .logop {
     width: 100px;
     height: 100px;
@@ -689,7 +693,7 @@ nav {
     border-radius: 5px;
     position: absolute;
     right: 50%;
-    top: 40%;
+    top: 50%;
     z-index: 5;
 }
 

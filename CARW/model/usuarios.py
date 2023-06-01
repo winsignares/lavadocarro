@@ -15,8 +15,9 @@ class usuarios(db.Model):
     id_rol = db.Column(db.Integer, db.ForeignKey('tblroles.id'))
     
 
-    def __init__(self, Nombre,Apellido,Cedula,Correo,Telefono,Contraseña,id_vehiculo,id_rol ):
+    def __init__(self, Usuario, Nombre,Apellido,Cedula,Correo,Telefono,Contraseña,id_vehiculo,id_rol ):
         
+        self.Usuario = Usuario
         self.Nombre = Nombre
         self.Apellido = Apellido
         self.Cedula = Cedula
