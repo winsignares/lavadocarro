@@ -34,6 +34,23 @@ def consullist():
         }
     return jsonify(datos)
 
+@routes_Pagos.route('/consulvehiculosPAG', methods=['GET'])
+def consulvehiculosPAG():
+    datos = {}
+    vehiculos_table = db.Model.metadata.tables['tblvehiculos']
+    resultado = db.session.query(vehiculos_table.c.Matricula, vehiculos_table.c.Modelo, vehiculos_table.c.Color, vehiculos_table.c.Tipo).select_from(vehiculos_table).all()
+    
+    i = 0
+    for matricula, modelo, color, tipo in resultado:
+        i += 1
+        datos[i] = {
+            'Matricula': matricula,
+            'Modelo': modelo,
+            'Color': color,
+            'Tipo': tipo            
+        }
+    return jsonify(datos)
+
 @routes_Pagos.route('/guardarventa', methods=['POST'])
 def guardarventa():
     data = request.json

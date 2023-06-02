@@ -142,7 +142,7 @@ function guardar_usuarios() {
         return;
     }
 
-    axios.get('fronted/consulusuarioPAG', {
+    axios.get('fronted/consulvehiculosPAG', {
             responseType: 'json'
         })
         .then(function(response) {
@@ -216,8 +216,10 @@ function limpiartodo2() {
     newid_vehiculo.value = "";
 }
 // limpiar fin
+
+// probar consultas y asy
 function test() {
-    axios.get('fronted/consulusuarioPAG', {
+    axios.get('fronted/consulvehiculosPAG', {
             responseType: 'json'
         })
         .then(function(response) {
@@ -235,3 +237,5 @@ function test() {
             console.error('Error al obtener los datos:', error);
         });
 }
+
+// probar consultas y asy fin
