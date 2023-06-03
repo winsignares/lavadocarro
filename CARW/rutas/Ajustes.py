@@ -2,6 +2,7 @@ from db import db, app, ma
 from flask import Blueprint, Flask,  redirect, request, jsonify, json, session, render_template
 from model.vehiculos import vehiculos,vehiculosSchema
 from model.usuarios import usuarios,usuariosSchema
+from model.paquetes import paquetes,paquetesSchema
 
 routes_Ajustes = Blueprint("routes_Ajustes", __name__)
 
@@ -37,6 +38,17 @@ def guardarusuariosAJ():
 @routes_Ajustes.route('/eliminarUS/<string:Usuario>', methods=['DELETE'])
 def eliminarUS(Usuario):
     persona = usuarios.query.get(Usuario)
+
+    if persona:
+        db.session.delete(persona)
+        db.session.commit()
+        return jsonify({'message': 'El usuario ha sido eliminado correctamente'})
+    else:
+        return jsonify({'message': 'El usuario no existe'})
+
+@routes_Ajustes.route('/eliminarPQ/<int:id>', methods=['DELETE'])
+def eliminarPQ(id):
+    persona = paquetes.query.get(id)
 
     if persona:
         db.session.delete(persona)

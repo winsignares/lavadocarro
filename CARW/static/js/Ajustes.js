@@ -219,6 +219,18 @@ function limpiartodo2() {
     newContraseña.value = "";
     newid_vehiculo.value = "";
 }
+
+function limpiartodo3() {
+    const newTitulo = document.getElementById("Rtitulo");
+    const newDescripcion = document.getElementById("Rdescripcion");
+    const newValor = document.getElementById("Rvalor");
+    const newDuracion = document.getElementById("Rduracion");
+
+    newTitulo.value = "";
+    newDescripcion.value = "";
+    newValor.value = "";
+    newDuracion.value = "";
+}
 // limpiar fin
 
 // eliminar usuario y vehiculo
@@ -283,24 +295,78 @@ function verificarUSaDL() {
 
 //verficar usuario a borrar fin
 
+// guardarpaquetes 
+function guardar_paqueteAJ() {
+    const newNombre = document.getElementById("Rtitulo").value;
+    const newDescripcion = document.getElementById("Rdescripcion").value;
+    const newValor = document.getElementById("Rvalor").value;
+    const newDuracion = document.getElementById("Rduracion").value;
+    console.log(newNombre, newDescripcion, newValor, newDuracion);
+
+    if (newNombre.trim() === "" || newDescripcion.trim() === "" || newValor.trim() === "" || newDuracion.trim() === "") {
+        console.log("Debe llenarse todos los campos");
+        const alerta = document.getElementById("alerta");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio3");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio3");
+        }, 3000);
+        return;
+    }
+
+    axios.post('fronted/guardarpaquetes', {
+            Nombre: newNombre,
+            Descripcion: newDescripcion,
+            Valor: newValor,
+            Duracion: newDuracion
+        }).then((res) => {
+            console.log(res.data);
+            const alerta = document.getElementById("alerta2");
+            alerta.classList.remove("oculto");
+            alerta.classList.add("alerta-Exito2");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+                alerta.classList.remove("alerta-Exito2");
+            }, 3000);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    limpiartodo3();
+}
+// guardarpaquetes fin
+
 // probar consultas y asy
-function test() {
-    axios.get('fronted/verifyusuario', {
+function DEL_PQ() {
+    axios.get('fronted/consulpaquetes', {
             responseType: 'json'
         })
         .then(function(response) {
             let datos = response.data;
-            const nombrecillo = document.getElementById("Dusuario").value;
-            const contra = document.getElementById("Dcontra").value;
-            let carrito = "";
+            const titulito = document.getElementById("Dpaquete").value;
             for (let i = 1; i <= Object.keys(datos).length; i++) {
-                if (datos[i].nombreu == nombrecillo && datos[i].password == contra) {
-                    carrito = datos[i].matricula;
-                    window.alert(carrito);
+                if (titulito.trim() === "") {
+                    console.log("Debe llenarse todos los campos");
+                    const alerta = document.getElementById("alerta");
+                    alerta.classList.remove("oculto");
+                    alerta.classList.add("alerta-campo-vacio3");
+                    setTimeout(function() {
+                        alerta.classList.add("oculto");
+                        alerta.classList.remove("alerta-campo-vacio3");
+                    }, 3000);
+                    return;
+                }
+
+                if (datos[i].titulo == titulito) {
+                    id = datos[i].id;
+                    eliminarPQ(id);
+                    window.alert("Paquete eliminado");
+                    titulito.value = "";
                     return;
                 }
             }
-            window.alert("Matrícula no registrada");
+            window.alert("Paquete no encontrado");
         })
         .catch(function(error) {
             console.error('Error al obtener los datos:', error);
@@ -308,3 +374,20 @@ function test() {
 }
 
 // probar consultas y asy fin
+
+// eliminar paquete 
+function eliminarPQ(id) {
+    fetch(`fronted/eliminarPQ/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            window.alert("paquete eliminado");
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+// eliminar paquete fin

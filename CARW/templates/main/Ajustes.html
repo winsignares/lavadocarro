@@ -88,7 +88,7 @@
         <label for="Dpaquete">Paquete:</label>
         <input id="Dpaquete" type="text" placeholder="" style="position: relative; left: 25px;">
         <br></br>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <button type="button" class="btn btn-danger" onclick="DEL_PQ()">Eliminar</button>
     </div>
     <div class="sombreado" id="ajregistrarPQ" style="visibility: hidden;">
         <label for="Rtitulo">Titulo:</label>
@@ -103,8 +103,8 @@
         <label for="Rduracion">Duracion:</label>
         <input id="Rduracion" type="text" placeholder="ej 00:30:00" style="position: relative; left: 20px;">
         <br></br>
-        <button type="button" class="btn btn-primary">Registrar</button>
-        <button type="button" class="btn btn-danger">Limpiar</button>
+        <button type="button" class="btn btn-primary" onclick="guardar_paqueteAJ()">Registrar</button>
+        <button type="button" class="btn btn-danger" onclick="limpiartodo3()">Limpiar</button>
     </div>
 </div>
 <div id="confirdelete" class="sombreado" style="visibility: hidden;">
