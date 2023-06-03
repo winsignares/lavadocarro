@@ -708,3 +708,10 @@ nav {
     top: 40%;
     z-index: 5;
 }
+
+#confirdelete {
+    position: absolute;
+    right: 30%;
+    top: 25%;
+    z-index: 5;
+}

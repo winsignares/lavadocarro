@@ -1,12 +1,13 @@
+let usuarioaDEL = "";
 // mostrar u ocultar menus
 function mostrarmenuUS() {
     document.getElementById('ajustes-botones2').style.visibility = 'visible';
     document.getElementById('ajustes-botones3').style.visibility = 'hidden';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
-    document.getElementById('ajpaquetes').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
+    document.getElementById('confirdelete').style.visibility = 'hidden';
 }
 
 function mostrarmenuPQ() {
@@ -14,64 +15,67 @@ function mostrarmenuPQ() {
     document.getElementById('ajustes-botones2').style.visibility = 'hidden';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
-    document.getElementById('ajpaquetes').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
+    document.getElementById('confirdelete').style.visibility = 'hidden';
 }
 
 function mostrarRvehiculos() {
     document.getElementById('ajvehiculos').style.visibility = 'visible';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
-    document.getElementById('ajpaquetes').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
+    document.getElementById('confirdelete').style.visibility = 'hidden';
 }
 
 function mostrarRuarios() {
     document.getElementById('ajusuarios').style.visibility = 'visible';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
-    document.getElementById('ajpaquetes').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
-}
-
-function mostrarRpaquetes() {
-    document.getElementById('ajpaquetes').style.visibility = 'visible';
-    document.getElementById('ajusuarios').style.visibility = 'hidden';
-    document.getElementById('ajvehiculos').style.visibility = 'hidden';
-    document.getElementById('ajeliminar').style.visibility = 'hidden';
-    document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
-    document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
+    document.getElementById('confirdelete').style.visibility = 'hidden';
 }
 
 function eliminarRuarios() {
     document.getElementById('ajeliminar').style.visibility = 'visible';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
-    document.getElementById('ajpaquetes').style.visibility = 'hidden';
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
+    document.getElementById('confirdelete').style.visibility = 'hidden';
 }
 
 function eliminarpaquetes() {
     document.getElementById('ajeliminarPQ').style.visibility = 'visible';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
-    document.getElementById('ajpaquetes').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
+    document.getElementById('confirdelete').style.visibility = 'hidden';
 }
 
 function mostrarpaquetesPQ() {
     document.getElementById('ajregistrarPQ').style.visibility = 'visible';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
-    document.getElementById('ajpaquetes').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
+    document.getElementById('confirdelete').style.visibility = 'hidden';
+}
+
+function mostrarconfirdeleteUS() {
+    document.getElementById('confirdelete').style.visibility = 'visible';
+}
+
+function ocultarconfirdeleteUS() {
+    document.getElementById('confirdelete').style.visibility = 'hidden';
+    nombrecillo = document.getElementById("Dusuario");
+    contra = document.getElementById("Dcontra");
+    nombrecillo.value = "";
+    contra.value = "";
 }
 // mostrar u ocultar menus fin
 
@@ -217,17 +221,82 @@ function limpiartodo2() {
 }
 // limpiar fin
 
-// probar consultas y asy
-function test() {
-    axios.get('fronted/consulvehiculosPAG', {
+// eliminar usuario y vehiculo
+function eliminarusuario(Usuario) {
+    fetch(`fronted/eliminarUS/${Usuario}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            window.alert("Usuario eliminado");
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function deletearUS() {
+    let Usuario = usuarioaDEL;
+    eliminarusuario(Usuario);
+}
+// eliminar usuario y vehiculo fin
+
+//verficar usuario a borrar
+function verificarUSaDL() {
+    axios.get('fronted/verifyusuario', {
             responseType: 'json'
         })
         .then(function(response) {
             let datos = response.data;
-            const newid_vehiculo = document.getElementById("Rmatricula2").value;
+            const nombrecillo = document.getElementById("Dusuario").value;
+            const contra = document.getElementById("Dcontra").value;
+            let carrito = "";
             for (let i = 1; i <= Object.keys(datos).length; i++) {
-                if (datos[i].Matricula == newid_vehiculo) {
-                    window.alert("Sí existe");
+                if (nombrecillo.trim() === "" || contra.trim() === "") {
+                    const alerta = document.getElementById("alerta");
+                    alerta.classList.remove("oculto");
+                    alerta.classList.add("alerta-campo-vacio3");
+                    setTimeout(function() {
+                        alerta.classList.add("oculto");
+                        alerta.classList.remove("alerta-campo-vacio3");
+                    }, 3000);
+                    return;
+                }
+                if (datos[i].nombreu == nombrecillo && datos[i].password == contra) {
+                    let dnombre = document.getElementById("USpaDEL");
+                    let dvehi = document.getElementById("VHpaDEL");
+                    dnombre.innerHTML = `<label id="USpaDEL">${datos[i].nombre}-${datos[i].apellido}</label>`;
+                    dvehi.innerHTML = `<label id="VHpaDEL">${datos[i].matricula}</label>`;
+                    usuarioaDEL = datos[i].nombreu;
+                    mostrarconfirdeleteUS();
+                    return;
+                }
+            }
+            window.alert("Usuario Inexistente");
+        })
+        .catch(function(error) {
+            console.error('Error al obtener los datos:', error);
+        });
+}
+
+//verficar usuario a borrar fin
+
+// probar consultas y asy
+function test() {
+    axios.get('fronted/verifyusuario', {
+            responseType: 'json'
+        })
+        .then(function(response) {
+            let datos = response.data;
+            const nombrecillo = document.getElementById("Dusuario").value;
+            const contra = document.getElementById("Dcontra").value;
+            let carrito = "";
+            for (let i = 1; i <= Object.keys(datos).length; i++) {
+                if (datos[i].nombreu == nombrecillo && datos[i].password == contra) {
+                    carrito = datos[i].matricula;
+                    window.alert(carrito);
                     return;
                 }
             }

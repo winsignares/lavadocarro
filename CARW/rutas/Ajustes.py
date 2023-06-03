@@ -34,7 +34,7 @@ def guardarusuariosAJ():
     db.session.commit()
     return redirect('/Ajustes')
 
-@routes_Ajustes.route('/eliminarUS/<String:Usuario>', methods=['DELETE'])
+@routes_Ajustes.route('/eliminarUS/<string:Usuario>', methods=['DELETE'])
 def eliminarUS(Usuario):
     persona = usuarios.query.get(Usuario)
 
@@ -44,18 +44,6 @@ def eliminarUS(Usuario):
         return jsonify({'message': 'El usuario ha sido eliminado correctamente'})
     else:
         return jsonify({'message': 'El usuario no existe'})
-    
-
-@routes_Ajustes.route('/eliminarVH/<String:Matricula>', methods=['DELETE'])
-def eliminarVH(Matricula):
-    persona = vehiculos.query.get(Matricula)
-
-    if persona:
-        db.session.delete(persona)
-        db.session.commit()
-        return jsonify({'message': 'El vehiculo ha sido eliminado correctamente'})
-    else:
-        return jsonify({'message': 'El vehiculo no existe'})
     
 @routes_Ajustes.route('/verifyusuario', methods=['GET'])
 def verifyusuario():
@@ -69,6 +57,8 @@ def verifyusuario():
         datos[i] = {
             'nombreu':usuario.Usuario,
             'password':usuario.Contraseña,
+            'nombre':usuario.Nombre,
+            'apellido':usuario.Apellido,
             'matricula':vehiculo.Matricula              
         }
     return jsonify(datos)

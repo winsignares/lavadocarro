@@ -82,7 +82,7 @@
         <label for="Dcontra">Contraseña:</label>
         <input id="Dcontra" type="password" placeholder="" style="position: relative; left: 5px;">
         <br></br>
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <button type="button" class="btn btn-danger" onclick="verificarUSaDL()">Eliminar</button>
     </div>
     <div class="sombreado" id="ajeliminarPQ" style="visibility: hidden;">
         <label for="Dpaquete">Paquete:</label>
@@ -106,6 +106,23 @@
         <button type="button" class="btn btn-primary">Registrar</button>
         <button type="button" class="btn btn-danger">Limpiar</button>
     </div>
+</div>
+<div id="confirdelete" class="sombreado" style="visibility: hidden;">
+    <h1 style="text-align: center; color: red;">ADVERTENCIA</h1>
+    <br>
+    <label>El usuario identificado a continuacion sera eliminado</label>
+    <br>
+    <label>Y desligado de su vehiculo asociado en el sistema</label>
+    <br><br>
+    <label>Nombre Usuario :</label>
+    <label id="USpaDEL">---</label>
+    <br><br>
+    <label>Vehiculo asociado :</label>
+    <label id="VHpaDEL">---</label>
+    <br><br>
+    <button type="button" class="btn btn-danger" onclick="deletearUS()">Borrar</button>
+    <button type="button" class="btn btn-secondary" onclick="ocultarconfirdeleteUS()">Cancelar</button>
+    <br><br>
 </div>
 <script src="{{url_for('static', filename='js/Ajustes.js')}}"></script>
 {% endblock %}
