@@ -1,21 +1,8 @@
 const usuario = document.getElementById("nombre");
 const contra = document.getElementById("contraseña");
 
-function updateSessionValue(newValue) {
-    fetch('/update_session', {
-            method: 'POST',
-            body: JSON.stringify({ 'new_value': newValue }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error(error))
-}
-
 function ingresar() {
-    axios.get('fronted/consulusuario', {
+    axios.get('fronted/consulusuariolG', {
             responseType: 'json'
         })
         .then(function(response) {

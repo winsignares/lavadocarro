@@ -1,12 +1,15 @@
 from flask import Flask,  redirect, request, jsonify, json, session, render_template, url_for
 from db import db, app, ma
+from flask_jwt_extended import (JWTManager, jwt_required, create_access_token,get_jwt_identity)
 import os
 
 #generar llave y sesion
 app.secret_key = os.urandom(24)
 
-#----------------------datos de payu inicio-----------------------
-#----------------------datos de payu fin--------------------------
+#----------------------jwt inicio-----------------------
+app.config['JWT_SECRET_KEY'] = 'ZEROGT2558'
+jwt = JWTManager(app)
+#----------------------jwt fin--------------------------
 
 #importar routes de las tablas 
 from api.paquete import routes_paquetes
@@ -48,18 +51,22 @@ app.register_blueprint(routes_Ajustes, url_prefix="/fronted")
 
 
 #------------------------------------------------
+@app.route('/consulusuario', methods=['POST'])
+def login():
+    username = request.json.get('username')
+    password = request.json.get('password')
+
+    # Verificar las credenciales del usuario (aquí deberías realizar la lógica de autenticación)
+    if username == 'usuario' and password == 'contraseña':
+        access_token = create_access_token(identity=username)
+        return jsonify(access_token=access_token), 200
+    else:
+        return jsonify(message='Usuario o contraseña incorrectos'), 401
 
 @app.route("/")
 def index():
     titulo= "Pagina Princiapl"
-    session['my_variable'] = 'initial_value'
     return render_template('/main/login.html', titles=titulo)
-
-@app.route('/update_session', methods=['POST'])
-def update_session():
-    new_value = request.json['new_value']
-    session['my_variable'] = new_value
-    return jsonify({'success': True})
 
 @app.route('/Principal')
 def principal():
