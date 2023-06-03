@@ -32,6 +32,11 @@ function goajustes() {
     return;
 }
 
+function back_to_login() {
+    window.location.href = '/';
+    return;
+}
+
 function seleccionado(id) {
     localStorage.setItem('IDC', id);
     window.location.href = '/Pagos';

@@ -1,20 +1,15 @@
 from flask import Flask,  redirect, request, jsonify, json, session, render_template, url_for
-from flask_session import Session
 from db import db, app, ma
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
+from flask_session import Session
 import os
-import jwt
 
 #generar llave y sesion
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_PERMANENT'] = False
-Session(app)
 app.secret_key = os.urandom(24)
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_FILE_DIR'] = '/path/to/session/directory'
+Session(app)
 
 #----------------------jwt inicio-----------------------
-app.config['JWT_SECRET_KEY'] = 'ZEROGT2558'
-jwt = JWTManager(app)
 #----------------------jwt fin--------------------------
 
 #importar routes de las tablas 
@@ -57,6 +52,16 @@ app.register_blueprint(routes_Ajustes, url_prefix="/fronted")
 
 
 #------------------------------------------------
+@app.route('/set_session')
+def set_session():
+    session['username'] = 'John'
+    return 'Session set'
+
+@app.route('/get_session')
+def get_session():
+    username = session.get('username')
+    return f'Username: {username}'
+
 @app.route("/")
 def index():
     titulo= "Pagina Princiapl"

@@ -357,7 +357,7 @@ nav {
     box-sizing: border-box;
     position: absolute;
     right: 9.5%;
-    top: 28%;
+    top: 22%;
     border-radius: 2%;
     overflow-y: auto;
     max-height: 450px;
@@ -377,8 +377,8 @@ nav {
     top: 5%;
     background-color: rgba(255, 255, 255, 0.797);
     border-radius: 2%;
-    max-height: 600px;
-    height: 600px;
+    max-height: 650px;
+    height: 650px;
     max-width: 880px;
     width: 880px;
 }
