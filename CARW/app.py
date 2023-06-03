@@ -1,9 +1,15 @@
 from flask import Flask,  redirect, request, jsonify, json, session, render_template, url_for
+from flask_session import Session
 from db import db, app, ma
-from flask_jwt_extended import (JWTManager, jwt_required, create_access_token,get_jwt_identity)
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 import os
+import jwt
 
 #generar llave y sesion
+app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SESSION_PERMANENT'] = False
+Session(app)
 app.secret_key = os.urandom(24)
 
 #----------------------jwt inicio-----------------------
@@ -51,18 +57,6 @@ app.register_blueprint(routes_Ajustes, url_prefix="/fronted")
 
 
 #------------------------------------------------
-@app.route('/consulusuario', methods=['POST'])
-def login():
-    username = request.json.get('username')
-    password = request.json.get('password')
-
-    # Verificar las credenciales del usuario (aquí deberías realizar la lógica de autenticación)
-    if username == 'usuario' and password == 'contraseña':
-        access_token = create_access_token(identity=username)
-        return jsonify(access_token=access_token), 200
-    else:
-        return jsonify(message='Usuario o contraseña incorrectos'), 401
-
 @app.route("/")
 def index():
     titulo= "Pagina Princiapl"

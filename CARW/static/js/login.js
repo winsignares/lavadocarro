@@ -7,11 +7,11 @@ function ingresar() {
         })
         .then(function(response) {
             let datos = response.data
-            let nombreu = usuario.value;
+            let nombre = usuario.value;
             let password = contra.value;
             for (let i = 1; i <= Object.keys(datos).length; i++) {
-                if (datos[i].nombreu == nombreu && datos[i].password == password) {
-                    window.location.href = '/Principal';
+                if (datos[i].nombreu == nombre && datos[i].password == password) {
+                    window.location.replace('/Principal');
                     return;
                 }
             }
