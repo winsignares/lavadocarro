@@ -65,10 +65,8 @@ function verificarpaquete() {
             }
             const alerta = document.getElementById("alerta");
             alerta.classList.remove("oculto");
-            alerta.classList.add("alerta-campo-vacio");
             setTimeout(function() {
                 alerta.classList.add("oculto");
-                alerta.classList.remove("alerta-campo-vacio");
             }, 3000);
             return;
         })
@@ -133,19 +131,15 @@ function calcularpago() {
         const alerta = document.getElementById("alerta4");
         const alerta2 = document.getElementById("pagofisico");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-exito");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-exito");
             alerta2.classList.add("oculto");
         }, 3000);
     } else {
         const alerta = document.getElementById("alerta3");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-campo-vacio");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-campo-vacio");
         }, 3000);
     }
 }
@@ -226,14 +220,12 @@ function verificarCampos() {
     if (usuario === "Nombre Del Usuario") {
         const alerta = document.getElementById("alerta2");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-campo-vacio");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-campo-vacio");
         }, 3000);
-        return false; // Evita que el formulario se envíe
+        return false;
     }
-    return true; // Permite continuar con el envío del formulario
+    return true;
 }
 // Función para verificar si se puede usar el botón PayU fin
 
@@ -244,10 +236,8 @@ function pagofisico() {
     if (usuario === "Nombre Del Usuario") {
         const alerta = document.getElementById("alerta2");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-campo-vacio");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-campo-vacio");
         }, 3000);
         return;
     }
@@ -274,10 +264,8 @@ function guardar_ventas() {
             console.log(res.data);
             const alerta = document.getElementById("alerta6");
             alerta.classList.remove("oculto");
-            alerta.classList.add("alerta-exito");
             setTimeout(function() {
                 alerta.classList.add("oculto");
-                alerta.classList.remove("alerta-exito");
             }, 3000);
 
             // Realizar otra consulta POST para guardar en otra tabla
@@ -295,10 +283,8 @@ function guardar_ventas() {
     } else {
         const alerta = document.getElementById("alerta5");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-campo-vacio");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-campo-vacio");
         }, 3000);
     }
 }

@@ -8,31 +8,29 @@
 <div class="container2">
     <form>
         <h1 style="text-align: center;">Diseñe Un Paquete</h1>
-        </br>
+        <br>
         <label for="nombre paquete">Titulo :</label>
         <input id="Titulo" type="text" placeholder=" coloque el Titulo" style="width: 150px;">
 
         <label for="valor paquete">Valor Total $</label>
         <input id="Valor" type="text" placeholder="$" style="width: 150px;">
 
-        <label class="sombreado" for="lista procedimientos" style="position: relative; left: 100px;">Lista De Procedimientos</label>
-        </br>
-        </br>
-        <div id="miContainer" class="container4">
+        <label class="sombreado" for="lista procedimientos" style="position: relative; left: 10vw;">Lista De Procedimientos</label>
+        <br><br>
+        <div class="flex-container">
+            <div id="miContainer" class="container4">
+            </div>
+            <div class="sombreado" id="container3">
+                <ul id="cambio" class="list-group">
+                    <li class="list-group-item" onclick="ver_procedimientos()">Mostrar Procedimientos</li>
+                </ul>
+            </div>
         </div>
-        </br>
+        <br>
         <button type="button" class="btn btn-info" onclick="guardar_paquete()">Guardar</button>
-
         <button type="button" class="btn btn-danger" onclick="eliminarTodo()">Descartar Lista</button>
-        </br>
-
+        <br>
     </form>
 </div>
-<div class="sombreado" id="container3">
-    <ul id="cambio" class="list-group">
-        <li class="list-group-item" onclick="ver_procedimientos()">Mostrar Procedimientos</li>
-    </ul>
-</div>
-
 <script src="{{url_for('static', filename='js/Peditables.js')}} "></script>
 {% endblock %}
