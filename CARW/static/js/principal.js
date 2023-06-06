@@ -33,13 +33,12 @@ function goajustes() {
 }
 
 function backtologin() {
-    let ROL = 0;
+    let ROL = "0";
     const data = new FormData();
     data.append('rol', ROL);
     axios.post('/verificar_usuario', data)
         .then(function(response) {
             sessionStorage.removeItem('userROL');
-            window.location.replace("/");
         })
         .catch(function(error) {
             window.alert("Algo salió mal");
