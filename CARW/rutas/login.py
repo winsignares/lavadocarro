@@ -25,6 +25,6 @@ def consulusuariolG():
         datos[i] = {
             'nombreu': usuario.Usuario,
             'password': usuario.Contraseña,
-            'rolsito': rol.id
+            'rol': rol.id
         }
     return jsonify(datos)

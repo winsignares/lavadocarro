@@ -1,13 +1,12 @@
 from flask import Flask,  redirect, request, jsonify, json, session, render_template, url_for
 from db import db, app, ma
-from flask_session import Session
 import os
+from flask_session import Session
+
 
 #generar llave y sesion
 app.secret_key = os.urandom(24)
-app.config['SESSION_TYPE'] = 'filesystem'
-app.config['SESSION_FILE_DIR'] = '/path/to/session/directory'
-Session(app)
+app.secret_key = 'DRAGONFORCE'
 
 #----------------------jwt inicio-----------------------
 #----------------------jwt fin--------------------------
@@ -52,24 +51,27 @@ app.register_blueprint(routes_Ajustes, url_prefix="/fronted")
 
 
 #------------------------------------------------
-@app.route('/set_session')
-def set_session():
-    session['username'] = 'John'
-    return 'Session set'
+@app.route('/verificar_usuario', methods=['POST'])
+def verificar_usuario():
+    ROL_usuario = request.form['rol']
+    if int(ROL_usuario) > 0:
+        session['userROL'] = ROL_usuario
+        return render_template('/main/Principal.html')
 
-@app.route('/get_session')
-def get_session():
-    username = session.get('username')
-    return f'Username: {username}'
+    return redirect(url_for("routes_login.indexlogin"))
+
+# Ruta de la página principal que requiere la sesión del usuario
+@app.route('/Principal')
+def principal():
+    if 'userROL' in session and int(session['userROL']) > 0:
+        return render_template('/main/Principal.html')
+    return redirect(url_for("routes_login.indexlogin"))
 
 @app.route("/")
 def index():
     titulo= "Pagina Princiapl"
     return render_template('/main/login.html', titles=titulo)
 
-@app.route('/Principal')
-def principal():
-    return render_template('/main/Principal.html')
     
 @app.route('/Ppredeterminados')
 def Paquetes_predeterminados():
