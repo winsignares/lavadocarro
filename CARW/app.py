@@ -7,7 +7,6 @@ from flask_session import Session
 #generar llave y sesion
 app.secret_key = os.urandom(24)
 app.secret_key = 'DRAGONFORCE'
-session['userROL'] = 0
 
 #----------------------jwt inicio-----------------------
 #----------------------jwt fin--------------------------
@@ -58,22 +57,20 @@ def verificar_usuario():
     if int(ROL_usuario) > 0:
         session['userROL'] = ROL_usuario
         return render_template('/main/Principal.html')
+    return redirect(url_for("index"))
 
-    return redirect(url_for("routes_login.indexlogin"))
-
-# Ruta de la página principal que requiere la sesión del usuario
 @app.route('/Principal')
 def principal():
     if 'userROL' in session and int(session['userROL']) > 0:
         return render_template('/main/Principal.html')
-    return redirect(url_for("routes_login.indexlogin"))
+    return redirect(url_for("index"))
 
 @app.route("/")
 def index():
-    titulo= "Pagina Princiapl"
+    session['userROL'] = 0
+    titulo = "Pagina Principal"
     return render_template('/main/login.html', titles=titulo)
 
-    
 @app.route('/Ppredeterminados')
 def Paquetes_predeterminados():
     return render_template('/main/Ppredeterminados.html')

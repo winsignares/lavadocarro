@@ -39,12 +39,14 @@ function backtologin() {
     axios.post('/verificar_usuario', data)
         .then(function(response) {
             sessionStorage.removeItem('userROL');
+            window.location.href = "/";
+            // Reemplazar la URL actual en el historial del navegador
+            history.replaceState(null, '', '/');
         })
         .catch(function(error) {
             window.alert("Algo salió mal");
             console.log(error);
         });
-    return;
 }
 
 function seleccionado(id) {
