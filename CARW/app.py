@@ -73,27 +73,54 @@ def index():
 
 @app.route('/Ppredeterminados')
 def Paquetes_predeterminados():
-    return render_template('/main/Ppredeterminados.html')
+    if 'userROL' in session and int(session['userROL']) > 0:
+        return render_template('/main/Ppredeterminados.html')
+    return redirect(url_for("index"))
 
 @app.route('/Peditables')
 def Peditables():
-    return render_template('/main/Peditables.html')
+    if 'userROL' in session and int(session['userROL']) > 0:
+        userROL = int(session['userROL'])
+        if userROL == 3:
+            return render_template('/main/Principal.html', mostrar_alerta=True)
+        return render_template('/main/Peditables.html')
+    return redirect(url_for("index"))
 
 @app.route('/Pagos')
 def Pagos():
-    return render_template('/main/Pagos.html')
+    if 'userROL' in session and int(session['userROL']) > 0:
+        userROL = int(session['userROL'])
+        if userROL == 3:
+            return render_template('/main/Ppredeterminados.html', mostrar_alerta=True)
+        return render_template('/main/Pagos.html')
+    return redirect(url_for("index"))
 
 @app.route('/Turnos')
 def Turnos():
-    return render_template('/main/Turnos.html')
+    if 'userROL' in session and int(session['userROL']) > 0:
+        userROL = int(session['userROL'])
+        if userROL == 3:
+            return render_template('/main/Principal.html', mostrar_alerta=True)
+        return render_template('/main/Turnos.html')
+    return redirect(url_for("index"))
 
 @app.route('/Balances')
 def Balances():
-    return render_template('/main/Balances.html')
+    if 'userROL' in session and int(session['userROL']) > 0:
+        userROL = int(session['userROL'])
+        if userROL == 3:
+            return render_template('/main/Principal.html', mostrar_alerta=True)
+        return render_template('/main/Balances.html')
+    return redirect(url_for("index"))
 
 @app.route('/Ajustes')
 def Ajustes():
-    return render_template('/main/Ajustes.html')
+    if 'userROL' in session and int(session['userROL']) > 0:
+        userROL = int(session['userROL'])
+        if userROL == 3 or userROL == 2:
+            return render_template('/main/Principal.html', mostrar_alerta=True)
+        return render_template('/main/Ajustes.html')
+    return redirect(url_for("index"))
 
 
 if __name__ == '__main__':

@@ -81,6 +81,18 @@ body {
     z-index: -1;
 }
 
+.alerta-Restringido {
+    background-color: rgba(255, 0, 0, 0.83);
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: absolute;
+    right: 65%;
+    top: 5%;
+    z-index: 2;
+}
+
 
 /* Login */
 

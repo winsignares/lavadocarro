@@ -13,6 +13,9 @@
 </head>
 
 <body>
+    <div id="alerta" class="alerta-Restringido oculto">
+        No tienes acceso a esta sección.!
+    </div>
     <div class="capa-oscura"></div>
     <div id="sidebar-container">
         <div id="sidebar">
@@ -45,7 +48,17 @@
         </div>
     </div>
 </body>
-{% block body %} {% endblock %}
+{% block body %} {% endblock %} {% if mostrar_alerta %}
+<script>
+    // Mostrar la alerta
+    document.getElementById("alerta").classList.remove("oculto");
+
+    // Ocultar la alerta después de 2 segundos
+    setTimeout(function() {
+        document.getElementById("alerta").classList.add("oculto");
+    }, 2000);
+</script>
+{% endif %}
 <script src="{{url_for('static', filename='js/principal.js')}} "></script>
 <script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/boostrap_js/bootstrap.bundle.min.js') }}"></script>
