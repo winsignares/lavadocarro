@@ -1,4 +1,5 @@
 let usuarioaDEL = "";
+
 // mostrar u ocultar menus
 function mostrarmenuUS() {
     document.getElementById('ajustes-botones2').style.visibility = 'visible';
@@ -137,6 +138,28 @@ function guardar_usuarios() {
         newCorreo.trim() === "" || newTelefono.trim() === "" || newContraseña.trim() === "" ||
         newid_vehiculo.trim() === "") {
         const alerta = document.getElementById("alerta");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio3");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio3");
+        }, 3000);
+        return;
+    }
+
+    if (!validarCorreo(newCorreo)) {
+        const alerta = document.getElementById("alerta3");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio3");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio3");
+        }, 3000);
+        return;
+    }
+
+    if (newid_vehiculo !== newid_vehiculo.toUpperCase()) {
+        const alerta = document.getElementById("alerta4");
         alerta.classList.remove("oculto");
         alerta.classList.add("alerta-campo-vacio3");
         setTimeout(function() {
@@ -391,3 +414,14 @@ function eliminarPQ(id) {
         });
 }
 // eliminar paquete fin
+
+// validar correo
+function validarCorreo(correo) {
+    const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (regexCorreo.test(correo)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+// validar correo fin

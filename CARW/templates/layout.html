@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div id="alerta" class="alerta-Restringido oculto">
+    <div id="alertaSC" class="alerta-Restringido oculto">
         No tienes acceso a esta sección.!
     </div>
     <div class="capa-oscura"></div>
@@ -51,11 +51,11 @@
 {% block body %} {% endblock %} {% if mostrar_alerta %}
 <script>
     // Mostrar la alerta
-    document.getElementById("alerta").classList.remove("oculto");
+    document.getElementById("alertaSC").classList.remove("oculto");
 
     // Ocultar la alerta después de 2 segundos
     setTimeout(function() {
-        document.getElementById("alerta").classList.add("oculto");
+        document.getElementById("alertaSC").classList.add("oculto");
     }, 2000);
 </script>
 {% endif %}
