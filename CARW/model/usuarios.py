@@ -9,7 +9,7 @@ class usuarios(db.Model):
     Apellido = db.Column(db.String(50))
     Cedula = db.Column(db.INT)
     Correo = db.Column(db.String(100))
-    Telefono = db.Column(db.INT)
+    Telefono = db.Column(db.String(20))
     Contraseña = db.Column(db.String(20))
     id_vehiculo = db.Column(db.String(50), db.ForeignKey('tblvehiculos.Matricula'))
     id_rol = db.Column(db.Integer, db.ForeignKey('tblroles.id'))
