@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{url_for('static', filename='css/master.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/boostrap_css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -19,6 +20,10 @@
 
             <label for="contraseña">Contraseña</label>
             <input id="contraseña" type="password" placeholder="coloque su contraseña">
+
+            <span id="mostrar-ocultar" class="eye-icon" onclick="togglePasswordVisibility()">
+                <i class="fa-solid fa-eye-slash"></i>
+            </span>
             <br>
             <button class="btn btn-info" type="submit" onclick="ingresar()">Ingresar</button><br><br>
         </form>

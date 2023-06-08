@@ -1,6 +1,7 @@
 const usuario = document.getElementById("nombre");
 const contra = document.getElementById("contraseña");
 
+// verificar el usuario 
 function ingresar() {
     axios.get('fronted/consulusuariolG', {
             responseType: 'json'
@@ -31,3 +32,19 @@ function ingresar() {
             console.log(error);
         });
 }
+// verificar el usuario fin
+
+// mirar y ocultar contraseña 
+function togglePasswordVisibility() {
+    var contraseñaInput = document.getElementById('contraseña');
+    var mostrarOcultarIcono = document.getElementById('mostrar-ocultar');
+
+    if (contraseñaInput.type === 'password') {
+        contraseñaInput.type = 'text';
+        mostrarOcultarIcono.innerHTML = '<i class="fas fa-eye"></i>';
+    } else {
+        contraseñaInput.type = 'password';
+        mostrarOcultarIcono.innerHTML = '<i class="fas fa-eye-slash"></i>';
+    }
+}
+// mirar y ocultar contraseña fin
