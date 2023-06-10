@@ -32,6 +32,11 @@ function goajustes() {
     return;
 }
 
+function gorecovery() {
+    window.location.href = '/Recovery';
+    return;
+}
+
 function backtologin() {
     let ROL = "0";
     const data = new FormData();

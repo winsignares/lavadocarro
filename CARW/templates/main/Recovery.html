@@ -13,24 +13,20 @@
 <body>
     <div class="login-box">
         <img class="avatar" src="{{url_for('static', filename='img/logo.jpg')}}" alt="logo CW">
-        <h1>Ingrese aquí</h1>
+        <h1>Recuperar Usuario</h1>
         <form>
-            <label for="nombre">Nombre De Usuario</label>
-            <input id="nombre" type="text" placeholder="coloque su usuario">
+            <label for="Email">Correo Registardo</label>
+            <input id="Email" type="text" placeholder="coloque su Email">
 
-            <label for="contraseña">Contraseña</label>
-            <input id="contraseña" type="password" placeholder="coloque su contraseña">
-
-            <span id="mostrar-ocultar" class="eye-icon" onclick="togglePasswordVisibility()">
-                <i class="fa-solid fa-eye-slash"></i><label style="display: inline; position: relative; left: 5px;">Mostrar Contraseña</label>
-            </span>
-            <br><br>
-            <button class="btn btn-info" type="submit" onclick="ingresar()">Ingresar</button><br><br>
-            <a href="/Recovery">Olvidaste Tu Contraseña?</a>
+            <label for="#cel">Numero Regisstrado</label>
+            <input id="#cel" type="text" placeholder="coloque su # de telefono">
+            <br>
+            <button class="btn btn-info" type="submit" onclick="RecoveryCT()">Recuperar</button><br><br>
+            <a href="/">Regresar a Login</a>
         </form>
     </div>
 
-    <script src="{{url_for('static', filename='js/login.js')}}"></script>
+    <script src="{{url_for('static', filename='js/Recovery.js')}}"></script>
     <script src="{{url_for('static', filename='js/boostrap_js/bootstrap.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/boostrap_js/bootstrap.bundle.min.js')}}"></script>
 
