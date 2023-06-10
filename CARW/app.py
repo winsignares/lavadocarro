@@ -4,6 +4,7 @@ import os
 from flask_session import Session
 
 
+
 #generar llave y sesion
 app.secret_key = os.urandom(24)
 app.secret_key = 'DRAGONFORCE'

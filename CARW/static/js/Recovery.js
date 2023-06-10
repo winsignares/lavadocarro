@@ -14,8 +14,8 @@ function RecoveryCT() {
                 if (datos[i].email === nombre && datos[i].numero === password) {
                     let nuevaContraseña = Math.floor(1000 + Math.random() * 9000);
                     axios.post('fronted/actualizar_contraseña', {
-                            id: datos[i].nombreu,
-                            contraseña: nuevaContraseña
+                            Usuario: datos[i].nombreu,
+                            Contraseña: nuevaContraseña
                         })
                         .then(function(response) {
                             console.log(response.data.mensaje);
