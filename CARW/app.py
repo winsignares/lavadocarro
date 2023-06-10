@@ -2,15 +2,12 @@ from flask import Flask,  redirect, request, jsonify, json, session, render_temp
 from db import db, app, ma
 import os
 from flask_session import Session
-
-
+import smtplib
+from email.mime.text import MIMEText
 
 #generar llave y sesion
 app.secret_key = os.urandom(24)
 app.secret_key = 'DRAGONFORCE'
-
-#----------------------jwt inicio-----------------------
-#----------------------jwt fin--------------------------
 
 #importar routes de las tablas 
 from api.paquete import routes_paquetes
@@ -129,6 +126,31 @@ def Ajustes():
         return render_template('/main/Ajustes.html')
     return redirect(url_for("index"))
 
+#----------------------email inicio-----------------------
+@app.route('/enviar_correo', methods=['POST'])
+def enviar_correo():
+    destinatario = request.form.get('destinatario')
+    asunto = request.form.get('asunto')
+    cuerpo = request.form.get('cuerpo')
+    # Configura los detalles del servidor SMTP y las credenciales de autenticación
+    smtp_server = 'smtp.gmail.com'
+    smtp_port = 587
+    smtp_username = 'CARWsoluciones@gmail.com'
+    smtp_password = 'CARW2558'
+
+    # Crea el objeto del correo electrónico
+    mensaje = MIMEText(cuerpo)
+    mensaje['From'] = smtp_username
+    mensaje['To'] = destinatario
+    mensaje['Subject'] = asunto
+
+    # Conéctate al servidor SMTP y envía el correo electrónico
+    with smtplib.SMTP(smtp_server, smtp_port) as server:
+        server.starttls()
+        server.login(smtp_username, smtp_password)
+        server.send_message(mensaje)
+        return 'Correo enviado correctamente.'
+#----------------------email fin--------------------------
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')

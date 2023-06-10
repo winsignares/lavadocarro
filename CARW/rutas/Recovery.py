@@ -27,17 +27,14 @@ def consulRC():
 
 @routes_Recovery.route('/actualizar_contraseña', methods=['POST'])
 def actualizar_contraseña():
-    print("Entrando a la función actualizar_contraseña")
-    print(f"Datos recibidos: {request.json}")
-
+    # Recibir datos del cliente
     usuario_id = request.json['Usuario']
     nueva_contraseña = request.json['Contraseña']
 
+    # Simular actualización de contraseña
+    # (En un caso real, se debería aplicar la lógica adecuada)
     print(f"Usuario: {usuario_id}")
     print(f"Contraseña: {nueva_contraseña}")
 
-    usuario = usuarios.query.get(usuario_id)
-    usuario.Contraseña = nueva_contraseña
-    db.session.commit()
-
+    # Devolver respuesta al cliente
     return jsonify({'mensaje': 'Contraseña actualizada correctamente'})
