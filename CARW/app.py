@@ -1,15 +1,26 @@
-from flask import Flask,  redirect, request, jsonify, json, session, render_template, url_for
+from flask import Flask, redirect, request, jsonify, json, session, render_template, url_for
 from db import db, app, ma
 import os
 from flask_session import Session
 import smtplib
-from email.mime.text import MIMEText
+from flask_mail import Mail, Message
 
-#generar llave y sesion
-app.secret_key = os.urandom(24)
+# generar llave y sesion
+app.config['SESSION_TYPE'] = 'filesystem'
+Session(app)
 app.secret_key = 'DRAGONFORCE'
 
-#importar routes de las tablas 
+# ----------------------email inicio-----------------------
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'CARWsoluciones@gmail.com'
+app.config['MAIL_PASSWORD'] = 'CARW2558'
+
+mail = Mail(app)
+# ----------------------email fin--------------------------
+
+# importar routes de las tablas
 from api.paquete import routes_paquetes
 from api.rol import routes_roles
 from api.servicio import routes_servicios
@@ -18,8 +29,8 @@ from api.usuario import routes_usuarios
 from api.turno import routes_turnos
 from api.venta import routes_ventas
 
-#ubicacion del api de las tablas 
-app.register_blueprint(routes_paquetes, url_prefix="/api") 
+# ubicacion del api de las tablas
+app.register_blueprint(routes_paquetes, url_prefix="/api")
 app.register_blueprint(routes_roles, url_prefix="/api")
 app.register_blueprint(routes_servicios, url_prefix="/api")
 app.register_blueprint(routes_vehiculos, url_prefix="/api")
@@ -27,7 +38,7 @@ app.register_blueprint(routes_usuarios, url_prefix="/api")
 app.register_blueprint(routes_turnos, url_prefix="/api")
 app.register_blueprint(routes_ventas, url_prefix="/api")
 
-#importar routes de los html
+# importar routes de los html
 from rutas.login import routes_login
 from rutas.Principal import routes_principal
 from rutas.Ppredeterminados import routes_Ppredeterminados
@@ -38,8 +49,8 @@ from rutas.Balances import routes_Balances
 from rutas.Ajustes import routes_Ajustes
 from rutas.Recovery import routes_Recovery
 
-#ubicacion de los html
-app.register_blueprint(routes_login, url_prefix="/fronted")
+# ubicacion de los html
+app.register_blueprint(routes_login)
 app.register_blueprint(routes_principal, url_prefix="/fronted")
 app.register_blueprint(routes_Ppredeterminados, url_prefix="/fronted")
 app.register_blueprint(routes_Peditables, url_prefix="/fronted")
@@ -49,18 +60,19 @@ app.register_blueprint(routes_Balances, url_prefix="/fronted")
 app.register_blueprint(routes_Ajustes, url_prefix="/fronted")
 app.register_blueprint(routes_Recovery, url_prefix="/fronted")
 
-
 #------------------------------------------------
+from flask import redirect, url_for
+
 @app.route('/verificar_usuario', methods=['POST'])
 def verificar_usuario():
     ROL_usuario = request.form['rol']
     if int(ROL_usuario) > 0:
         session['userROL'] = ROL_usuario
-        return render_template('/main/Principal.html')
-    return redirect(url_for("index"))
+        return redirect(url_for('Principal'))  # Reemplaza 'principal' con el nombre de la función o vista que renderiza la página principal
+    return redirect(url_for('index'))  # Reemplaza 'index' con el nombre de la función o vista que renderiza la página de inicio
 
 @app.route('/Principal')
-def principal():
+def Principal():
     if 'userROL' in session and int(session['userROL']) > 0:
         return render_template('/main/Principal.html')
     return redirect(url_for("index"))
@@ -74,6 +86,20 @@ def index():
     session['userROL'] = 0
     titulo = "Pagina Principal"
     return render_template('/main/login.html', titles=titulo)
+
+#----------------------email inicio-----------------------
+
+@app.route('/enviar_correo', methods=['POST'])
+def enviar_correo():
+    destinatario = request.form['destinatario']
+    asunto = request.form['asunto']
+    cuerpo = request.form['cuerpo']
+
+    msg = Message(asunto, sender='CARWsoluciones@gmail.com', recipients=[destinatario])
+    msg.body = cuerpo
+    mail.send(msg)
+
+    return 'Correo enviado correctamente'
 
 @app.route('/Ppredeterminados')
 def Paquetes_predeterminados():
@@ -126,31 +152,6 @@ def Ajustes():
         return render_template('/main/Ajustes.html')
     return redirect(url_for("index"))
 
-#----------------------email inicio-----------------------
-@app.route('/enviar_correo', methods=['POST'])
-def enviar_correo():
-    destinatario = request.form.get('destinatario')
-    asunto = request.form.get('asunto')
-    cuerpo = request.form.get('cuerpo')
-    # Configura los detalles del servidor SMTP y las credenciales de autenticación
-    smtp_server = 'smtp.gmail.com'
-    smtp_port = 587
-    smtp_username = 'CARWsoluciones@gmail.com'
-    smtp_password = 'CARW2558'
-
-    # Crea el objeto del correo electrónico
-    mensaje = MIMEText(cuerpo)
-    mensaje['From'] = smtp_username
-    mensaje['To'] = destinatario
-    mensaje['Subject'] = asunto
-
-    # Conéctate al servidor SMTP y envía el correo electrónico
-    with smtplib.SMTP(smtp_server, smtp_port) as server:
-        server.starttls()
-        server.login(smtp_username, smtp_password)
-        server.send_message(mensaje)
-        return 'Correo enviado correctamente.'
-#----------------------email fin--------------------------
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')

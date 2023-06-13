@@ -2,8 +2,9 @@ const usuario = document.getElementById("nombre");
 const contra = document.getElementById("contraseña");
 
 // verificar el usuario 
-function ingresar() {
-    axios.get('fronted/consulusuariolG', {
+function ingresar(event) {
+    event.preventDefault();
+    axios.get('/consulusuariolG', {
             responseType: 'json'
         })
         .then(function(response) {
