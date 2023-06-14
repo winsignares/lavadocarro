@@ -14,9 +14,8 @@ app.secret_key = 'DRAGONFORCE'
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'CARWsoluciones@gmail.com'
-app.config['MAIL_PASSWORD'] = 'CARW2558'
-
+app.config['MAIL_USERNAME'] = 'carwsoluciones@gmail.com'
+app.config['MAIL_PASSWORD'] = 'mgnuxljuchchszza'
 mail = Mail(app)
 # ----------------------email fin--------------------------
 
@@ -68,8 +67,8 @@ def verificar_usuario():
     ROL_usuario = request.form['rol']
     if int(ROL_usuario) > 0:
         session['userROL'] = ROL_usuario
-        return redirect(url_for('Principal'))  # Reemplaza 'principal' con el nombre de la función o vista que renderiza la página principal
-    return redirect(url_for('index'))  # Reemplaza 'index' con el nombre de la función o vista que renderiza la página de inicio
+        return redirect(url_for('Principal')) 
+    return redirect(url_for('index')) 
 
 @app.route('/Principal')
 def Principal():

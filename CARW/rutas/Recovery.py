@@ -31,10 +31,10 @@ def actualizar_contraseña():
     usuario_id = request.json['Usuario']
     nueva_contraseña = request.json['Contraseña']
 
-    # Simular actualización de contraseña
-    # (En un caso real, se debería aplicar la lógica adecuada)
     print(f"Usuario: {usuario_id}")
     print(f"Contraseña: {nueva_contraseña}")
 
-    # Devolver respuesta al cliente
+    usuario = usuarios.query.get(usuario_id)
+    usuario.Contraseña = nueva_contraseña
+    db.session.commit()
     return jsonify({'mensaje': 'Contraseña actualizada correctamente'})
