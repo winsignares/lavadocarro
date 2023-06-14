@@ -27,7 +27,6 @@ def consulRC():
 
 @routes_Recovery.route('/actualizar_contraseña', methods=['POST'])
 def actualizar_contraseña():
-    # Recibir datos del cliente
     usuario_id = request.json['Usuario']
     nueva_contraseña = request.json['Contraseña']
 

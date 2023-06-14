@@ -20,8 +20,8 @@ function RecoveryCT(event) {
                             Contraseña: nuevaContraseña
                         })
                         .then(function(response) {
-                            window.alert(response.data.mensaje);
                             enviarCorreo(nuevaContraseña, Destinatario);
+
                         })
                         .catch(function(error) {
                             window.alert("Algo salió mal");
@@ -30,7 +30,12 @@ function RecoveryCT(event) {
                     return;
                 }
             }
-            window.alert("Email o Telefono incorrectos");
+            const alerta = document.getElementById("alerta");
+            alerta.classList.remove("oculto");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+            }, 3000);
+            return;
         })
         .catch(function(error) {
             console.log(error);
@@ -47,7 +52,12 @@ function enviarCorreo(nuevaContraseña, Destinatario) {
 
     axios.post('/enviar_correo', formData)
         .then(function(response) {
-            window.alert(response.data.mensaje);
+            const alerta = document.getElementById("alerta2");
+            alerta.classList.remove("oculto");
+            setTimeout(function() {
+                alerta.classList.add("oculto");
+            }, 3000);
+            return;
         })
         .catch(function(error) {
             window.alert('Error al enviar el correo');
