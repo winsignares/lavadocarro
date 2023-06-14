@@ -60,7 +60,6 @@ app.register_blueprint(routes_Ajustes, url_prefix="/fronted")
 app.register_blueprint(routes_Recovery, url_prefix="/fronted")
 
 #------------------------------------------------
-from flask import redirect, url_for
 
 @app.route('/verificar_usuario', methods=['POST'])
 def verificar_usuario():

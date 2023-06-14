@@ -1,15 +1,21 @@
 {% extends "./layout.html" %} {% block body %}
-<div id="alerta" class="alerta-EXoFL oculto">
+<div id="alerta" class="alerta-campo-vacio3 oculto">
     No Debe haber Campos Vacios!
 </div>
-<div id="alerta2" class="alerta-EXoFL oculto">
+<div id="alerta2" class="alerta-Exito2 oculto">
     Guardado Exitoso!
 </div>
-<div id="alerta3" class="alerta-EXoFL oculto">
+<div id="alerta3" class="alerta-campo-vacio3 oculto">
     Correo electrónico inválido!
 </div>
-<div id="alerta4" class="alerta-EXoFL oculto">
+<div id="alerta4" class="alerta-campo-vacio3 oculto">
     Matricula invalida solo usar mayusculas!
+</div>
+<div id="alerta5" class="alerta-campo-vacio3 oculto">
+    Solo usar numeros en los campos Cedula u Telefono!
+</div>
+<div id="alerta6" class="alerta-campo-vacio3 oculto">
+    Solo usar letras en los campos diferentes a matricula!
 </div>
 <div class="ajustes-box">
     <div class="sombreado" id="ajustes-botones">
@@ -31,7 +37,7 @@
     </div>
     <div class="sombreado" id="ajvehiculos" style="visibility: hidden;">
         <label for="Rmatricula">Matricula:</label>
-        <input id="Rmatricula" type="text" placeholder="" style="position: relative; left: 10px;">
+        <input id="Rmatricula" type="text" placeholder="SOLO MAYUSCULAS" style="position: relative; left: 10px;">
         <br></br>
         <label for="Rmodelo">Modelo:</label>
         <input id="Rmodelo" type="text" placeholder="" style="position: relative; left: 23px;">
@@ -56,13 +62,13 @@
         <input id="Rapellido" type="text" placeholder="" style="position: relative; left: 70px;">
         <br></br>
         <label for="Rcedula">Cedula:</label>
-        <input id="Rcedula" type="number" placeholder="" style="position: relative; left: 80px;">
+        <input id="Rcedula" type="text" placeholder="" style="position: relative; left: 80px;">
         <br></br>
         <label for="Rmail">Correo Electronico:</label>
         <input id="Rmail" type="text" placeholder="" style="position: relative; left: 5px;">
         <br></br>
         <label for="Rtelefono"># De Telefono:</label>
-        <input id="Rtelefono" type="number" placeholder="" style="position: relative; left: 37px;">
+        <input id="Rtelefono" type="text" placeholder="" style="position: relative; left: 37px;">
         <br></br>
         <label for="Rpassword">Contraseña:</label>
         <input id="Rpassword" type="password" placeholder="" style="position: relative; left: 55px;">
@@ -72,7 +78,7 @@
         <br></br>
         <label id="Rrol" for="Rrol">Rol:</label>
         <select id="rolSelect" style="position: relative; left: 105px;">
-            <option selected>Selecciona una opción</option>
+            <option value="0" selected>Selecciona una opción</option>
             <option value="1">Administrador</option>
             <option value="2">Vendedor</option>
             <option value="3">Cliente</option>

@@ -266,6 +266,7 @@ nav {
 
 .container {
     width: 80%;
+    height: 60%;
     margin: 0 auto;
     padding: 20px;
     border: none;
@@ -275,6 +276,7 @@ nav {
     position: fixed;
     right: -5%;
     top: 10%;
+    overflow-y: auto;
 }
 
 

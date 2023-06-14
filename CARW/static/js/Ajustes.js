@@ -99,6 +99,25 @@ function guardar_vehiculos() {
         return;
     }
 
+    if (newMatricula !== newMatricula.toUpperCase()) {
+        const alerta = document.getElementById("alerta4");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+        }, 3000);
+        return;
+    }
+
+    if (!/^[a-zA-Z]+$/.test(newColor)) {
+        const alerta = document.getElementById("alerta6");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+        }, 3000);
+        return;
+    }
+
+
     axios.post('fronted/guardarvehiculosAJ', {
             Matricula: newMatricula,
             Modelo: newModelo,
@@ -136,24 +155,30 @@ function guardar_usuarios() {
 
     if (newUsuario.trim() === "" || newNombre.trim() === "" || newApellido.trim() === "" || newCedula.trim() === "" ||
         newCorreo.trim() === "" || newTelefono.trim() === "" || newContraseña.trim() === "" ||
-        newid_vehiculo.trim() === "") {
+        newid_vehiculo.trim() === "" || newid_rol.trim() === "0") {
         const alerta = document.getElementById("alerta");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-campo-vacio3");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-campo-vacio3");
         }, 3000);
         return;
     }
 
+    if (!/^\d+$/.test(newTelefono) || !/^\d+$/.test(newCedula)) {
+        const alerta = document.getElementById("alerta5");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+        }, 3000);
+        return;
+    }
+
+
     if (!validarCorreo(newCorreo)) {
         const alerta = document.getElementById("alerta3");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-campo-vacio3");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-campo-vacio3");
         }, 3000);
         return;
     }
@@ -161,10 +186,8 @@ function guardar_usuarios() {
     if (newid_vehiculo !== newid_vehiculo.toUpperCase()) {
         const alerta = document.getElementById("alerta4");
         alerta.classList.remove("oculto");
-        alerta.classList.add("alerta-campo-vacio3");
         setTimeout(function() {
             alerta.classList.add("oculto");
-            alerta.classList.remove("alerta-campo-vacio3");
         }, 3000);
         return;
     }
@@ -190,10 +213,8 @@ function guardar_usuarios() {
                             console.log(res.data);
                             const alerta = document.getElementById("alerta2");
                             alerta.classList.remove("oculto");
-                            alerta.classList.add("alerta-Exito2");
                             setTimeout(function() {
                                 alerta.classList.add("oculto");
-                                alerta.classList.remove("alerta-Exito2");
                             }, 3000);
                         })
                         .catch((err) => {
