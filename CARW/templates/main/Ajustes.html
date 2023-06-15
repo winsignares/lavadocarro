@@ -17,6 +17,15 @@
 <div id="alerta6" class="alerta-campo-vacio3 oculto">
     Solo usar letras en los campos diferentes a matricula!
 </div>
+<div id="alerta7" class="alerta-campo-vacio3 oculto">
+    Coloque una duracion valida!
+</div>
+<div id="alerta8" class="alerta-campo-vacio3 oculto">
+    Duracion demasiado extensa!
+</div>
+<div id="alerta9" class="alerta-campo-vacio3 oculto">
+    Coloque un valor valido!
+</div>
 <div class="ajustes-box">
     <div class="sombreado" id="ajustes-botones">
         <button type="button" class="btn btn-primary" onclick="mostrarmenuUS()">Usuarios</button>
@@ -46,7 +55,15 @@
         <input id="Rcolor" type="text" placeholder="" style="position: relative; left: 35px;">
         <br></br>
         <label for="Rtipo">Tipo:</label>
-        <input id="Rtipo" type="text" placeholder="" style="position: relative; left: 42px;">
+        <select id="Rtipo" style="position: relative; left: 42px;">
+            <option value="0" selected>Selecciona una opción</option>
+            <option value="Automóvil">Automóvil.</option>
+            <option value="Bus">Bus.</option>
+            <option value="Camión">Camión.</option>
+            <option value="Furgoneta">Furgoneta.</option>
+            <option value="Motocicleta">Motocicleta.</option>
+            <option value="Ciclomotor">Ciclomotor.</option>
+        </select>
         <br></br>
         <button type="button" class="btn btn-primary" onclick="guardar_vehiculos()">Registrar</button>
         <button type="button" class="btn btn-danger" onclick="limpiartodo()">Limpiar</button>
@@ -107,13 +124,13 @@
         <input id="Rtitulo" type="text" placeholder="" style="position: relative; left: 45px;">
         <br></br>
         <label for="Rdescripcion">Descripcion:</label>
-        <input id="Rdescripcion" type="text" placeholder="" style="position: relative; left: 5px;">
+        <textarea id="Rdescripcion" name="mensaje" placeholder="Coloca los Servicios disponibles en este paquete!" style="position: relative; left: 5px; width: 200px; height: 100px; resize: vertical;"></textarea>
         <br></br>
         <label for="Rvalor">Valor:</label>
-        <input id="Rvalor" type="number" placeholder="$" style="position: relative; left: 45px;">
+        <input id="Rvalor" type="text" placeholder="$" style="position: relative; left: 45px;">
         <br></br>
         <label for="Rduracion">Duracion:</label>
-        <input id="Rduracion" type="text" placeholder="ej 00:30:00" style="position: relative; left: 20px;">
+        <input id="Rduracion" type="text" placeholder="horas:minutos:segundos" style="position: relative; left: 20px;">
         <br></br>
         <button type="button" class="btn btn-primary" onclick="guardar_paqueteAJ()">Registrar</button>
         <button type="button" class="btn btn-danger" onclick="limpiartodo3()">Limpiar</button>

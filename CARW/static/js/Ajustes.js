@@ -88,7 +88,7 @@ function guardar_vehiculos() {
     const newTipo = document.getElementById("Rtipo").value;
     console.log(newMatricula, newModelo, newColor, newTipo);
 
-    if (newMatricula.trim() === "" || newModelo.trim() === "" || newColor.trim() === "" || newTipo.trim() === "") {
+    if (newMatricula.trim() === "" || newModelo.trim() === "" || newColor.trim() === "" || newTipo.trim() === "0") {
         const alerta = document.getElementById("alerta");
         alerta.classList.remove("oculto");
         alerta.classList.add("alerta-campo-vacio3");
@@ -108,7 +108,7 @@ function guardar_vehiculos() {
         return;
     }
 
-    if (!/^[a-zA-Z]+$/.test(newColor)) {
+    if (!/^[a-zA-Z]+$/.test(newModelo)) {
         const alerta = document.getElementById("alerta6");
         alerta.classList.remove("oculto");
         setTimeout(function() {
@@ -117,6 +117,14 @@ function guardar_vehiculos() {
         return;
     }
 
+    if (!/^[a-zA-Z]+$/.test(newColor)) {
+        const alerta = document.getElementById("alerta6");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+        }, 3000);
+        return;
+    }
 
     axios.post('fronted/guardarvehiculosAJ', {
             Matricula: newMatricula,
@@ -341,6 +349,8 @@ function verificarUSaDL() {
 
 // guardarpaquetes 
 function guardar_paqueteAJ() {
+    var duracionRegex = /^(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)$/;
+    var duracionMaxima = "01:59:59";
     const newNombre = document.getElementById("Rtitulo").value;
     const newDescripcion = document.getElementById("Rdescripcion").value;
     const newValor = document.getElementById("Rvalor").value;
@@ -355,6 +365,33 @@ function guardar_paqueteAJ() {
         setTimeout(function() {
             alerta.classList.add("oculto");
             alerta.classList.remove("alerta-campo-vacio3");
+        }, 3000);
+        return;
+    }
+
+    if (!/^\d+$/.test(newValor)) {
+        const alerta = document.getElementById("alerta9");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+        }, 3000);
+        return;
+    }
+
+    if (/[a-zA-Z]/.test(newDuracion)) {
+        const alerta = document.getElementById("alerta7");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+        }, 3000);
+        return;
+    }
+
+    if (!duracionRegex.test(newDuracion) || newDuracion > duracionMaxima) {
+        const alerta = document.getElementById("alerta8");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
         }, 3000);
         return;
     }

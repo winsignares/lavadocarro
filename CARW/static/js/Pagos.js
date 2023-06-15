@@ -125,6 +125,15 @@ function calcularpago() {
 
     const resultado = document.getElementById("Vareturn");
 
+    if (!/^\d+$/.test(pagado)) {
+        const alerta = document.getElementById("alerta7");
+        alerta.classList.remove("oculto");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+        }, 3000);
+        return;
+    }
+
     if (valorcito <= valorPagado) {
         resultado.innerHTML = valorPagado - valorcito;
         resultadoPayU = "exitoso";
