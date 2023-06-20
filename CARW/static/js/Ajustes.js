@@ -1,9 +1,11 @@
 let usuarioaDEL = "";
+let remplazo = document.getElementById('Mvehiculos');
 
 // mostrar u ocultar menus
 function mostrarmenuUS() {
     document.getElementById('ajustes-botones2').style.visibility = 'visible';
     document.getElementById('ajustes-botones3').style.visibility = 'hidden';
+    document.getElementById('ajustes-botones4').style.visibility = 'hidden';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
@@ -14,6 +16,7 @@ function mostrarmenuUS() {
 function mostrarmenuPQ() {
     document.getElementById('ajustes-botones3').style.visibility = 'visible';
     document.getElementById('ajustes-botones2').style.visibility = 'hidden';
+    document.getElementById('ajustes-botones4').style.visibility = 'hidden';
     document.getElementById('ajvehiculos').style.visibility = 'hidden';
     document.getElementById('ajusuarios').style.visibility = 'hidden';
     document.getElementById('ajeliminar').style.visibility = 'hidden';
@@ -29,6 +32,7 @@ function mostrarRvehiculos() {
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
     document.getElementById('confirdelete').style.visibility = 'hidden';
+    document.getElementById('ajustes-botones4').style.visibility = 'hidden';
 }
 
 function mostrarRuarios() {
@@ -38,6 +42,7 @@ function mostrarRuarios() {
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
     document.getElementById('confirdelete').style.visibility = 'hidden';
+    document.getElementById('ajustes-botones4').style.visibility = 'visible';
 }
 
 function eliminarRuarios() {
@@ -47,6 +52,7 @@ function eliminarRuarios() {
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
     document.getElementById('confirdelete').style.visibility = 'hidden';
+    document.getElementById('ajustes-botones4').style.visibility = 'hidden';
 }
 
 function eliminarpaquetes() {
@@ -56,6 +62,7 @@ function eliminarpaquetes() {
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajregistrarPQ').style.visibility = 'hidden';
     document.getElementById('confirdelete').style.visibility = 'hidden';
+    document.getElementById('ajustes-botones4').style.visibility = 'hidden';
 }
 
 function mostrarpaquetesPQ() {
@@ -65,6 +72,7 @@ function mostrarpaquetesPQ() {
     document.getElementById('ajeliminar').style.visibility = 'hidden';
     document.getElementById('ajeliminarPQ').style.visibility = 'hidden';
     document.getElementById('confirdelete').style.visibility = 'hidden';
+    document.getElementById('ajustes-botones4').style.visibility = 'hidden';
 }
 
 function mostrarconfirdeleteUS() {
@@ -483,3 +491,33 @@ function validarCorreo(correo) {
     }
 }
 // validar correo fin
+
+// mostrar matriculas  registradas
+function ver_matriculasR() {
+    axios.get('fronted/consulvehiculosPAG', {
+        responseType: 'json'
+    })
+
+    .then(function(response) {
+            let datos = response.data
+            var length = (Object.keys(datos).length) + 1;
+            let opciones = '';
+            for (let index = 1; index < length; index++) {
+                Matricula = datos[index].Matricula;
+                opciones +=
+                    `<li class="list-group-item" onclick="copiar(Matricula)" value="${datos[index].Matricula}">>${datos[index].Matricula}</li>`;
+            }
+            remplazo.innerHTML = opciones;
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
+}
+// mostrar matriculas  registradas fin
+
+// copiar matriculas 
+function copiar(Matricula) {
+    let matricula = document.getElementById("Rmatricula2");
+    matricula.value = Matricula;
+}
+// copiar matriculas fin

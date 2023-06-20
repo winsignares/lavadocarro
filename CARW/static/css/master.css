@@ -682,6 +682,15 @@ nav {
     top: 3.5%;
 }
 
+#ajustes-botones4 {
+    text-align: center;
+    height: 19vw;
+    width: 13vw;
+    position: absolute;
+    right: 60%;
+    top: 40%;
+}
+
 #ajvehiculos {
     height: 25vw;
     width: 33vw;
@@ -728,6 +737,18 @@ nav {
     position: absolute;
     right: 1%;
     top: 3.5%;
+}
+
+#Mvehiculos {
+    background-color: white;
+    height: 11vw;
+    width: 12vw;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.list-group-item:hover {
+    background-color: aqua;
 }
 
 .alerta-campo-vacio3 {

@@ -63,6 +63,44 @@ function imprimirTabla() {
     window.print();
 }
 
+function imprimirTabla() {
+    var tablaBody = document.getElementById("tablaBody3");
+
+    if (tablaBody.innerHTML.trim() === "") {
+        const alerta = document.getElementById("alerta");
+        alerta.classList.remove("oculto");
+        alerta.classList.add("alerta-campo-vacio2");
+        setTimeout(function() {
+            alerta.classList.add("oculto");
+            alerta.classList.remove("alerta-campo-vacio2");
+        }, 3000);
+        return;
+    }
+
+    // Crear un nuevo libro de Excel
+    var workbook = XLSX.utils.book_new();
+
+    // Obtener los datos de la tabla
+    var tableData = [];
+    var rows = tablaBody.getElementsByTagName("tr");
+    for (var i = 0; i < rows.length; i++) {
+        var rowData = [];
+        var cells = rows[i].getElementsByTagName("td");
+        for (var j = 0; j < cells.length; j++) {
+            rowData.push(cells[j].innerText);
+        }
+        tableData.push(rowData);
+    }
+
+    // Crear una nueva hoja en el libro y agregar los datos de la tabla
+    var worksheet = XLSX.utils.aoa_to_sheet(tableData);
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Tabla");
+
+    // Guardar el libro como archivo Excel
+    XLSX.writeFile(workbook, "tabla.xlsx");
+}
+
+
 function generarGrafica(dataLabels, dataValues1, dataValues2) {
     var ctx = document.getElementById('myChart').getContext('2d');
     chart = new Chart(ctx, {
