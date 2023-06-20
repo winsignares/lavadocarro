@@ -3,7 +3,7 @@ from db import db, app, ma
 import os
 from flask_session import Session
 import smtplib
-from flask_mail import Mail, Message
+#from flask_mail import Mail, Message
 
 # generar llave y sesion
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -16,7 +16,7 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'carwsoluciones@gmail.com'
 app.config['MAIL_PASSWORD'] = 'mgnuxljuchchszza'
-mail = Mail(app)
+#mail = Mail(app)
 # ----------------------email fin--------------------------
 
 # importar routes de las tablas
@@ -116,12 +116,7 @@ def Peditables():
 
 @app.route('/Pagos')
 def Pagos():
-    if 'userROL' in session and int(session['userROL']) > 0:
-        userROL = int(session['userROL'])
-        if userROL == 3:
-            return render_template('/main/Ppredeterminados.html', mostrar_alerta=True)
         return render_template('/main/Pagos.html')
-    return redirect(url_for("index"))
 
 @app.route('/Turnos')
 def Turnos():

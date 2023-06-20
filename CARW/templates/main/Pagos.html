@@ -79,27 +79,11 @@
         <p id="cambio" class="card-text"></p>
     </div>
     <br><br>
-    <form method="post" action="https://sandbox.checkout.payulatam.com/ppp-web-gateway-payu/" onsubmit="return verificarCampos();">
-        <input name="merchantId" type="hidden" value="508029">
-        <input name="accountId" type="hidden" value="512326">
-        <input name="description" type="hidden" value="Test PAYU">
-        <input name="referenceCode" type="hidden" value="TestPayU2">
-        <input name="amount" type="hidden" value="20000">
-        <input name="tax" type="hidden" value="3193">
-        <input name="taxReturnBase" type="hidden" value="16806">
-        <input name="currency" type="hidden" value="COP">
-        <input name="signature" type="hidden" value="195715d7e6debbd737940dacd34b15fc32a6529b">
-        <input name="test" type="hidden" value="0">
-        <input name="buyerEmail" type="hidden" value="test@test.com">
-        <input name="responseUrl" type="hidden" value="http://192.168.1.8:5000/Pagos">
-        <input name="confirmationUrl" type="hidden" value="http://192.168.1.8:5000/Pagos">
-        <input name="Submit" type="image" src="{{ url_for('static', filename='img/boton_pagar_mediano.png') }}" alt="Enviar">
-    </form>
+    <script async src="https://js.stripe.com/v3/buy-button.js">
+    </script>
 
-    <script type="text/javascript" src="https://maf.pagosonline.net/ws/fp/tags.js?id={{ device_session_id }}80200"></script>
-    <noscript>
-    <iframe style="width: 100px; height: 100px; border: 0; position: absolute; top: -5000px;" src="https://maf.pagosonline.net/ws/fp/tags.js?id={{ device_session_id }}80200"></iframe>
-  </noscript>
+    <stripe-buy-button buy-button-id="buy_btn_1NLAiwEQOcF2fMb4q7JoSvBE" publishable-key="pk_test_51NLAAbEQOcF2fMb4TF4X9CZ5uhpgsJuJHoep3h6BIaFq56prosSMeQz2WAGm0rAGxR0XRJVgzkUaJGtrDwyd32nl00GI6OXaBB">
+    </stripe-buy-button>
 </div>
 <img class="payuL" src="{{ url_for('static', filename='img/Medios_Pago_Verde_Oscuro_120x60.jpg') }}" title="PayU - Medios de pago" alt="PayU - Medios de pago" width="120" height="600" />
 <script src="{{url_for('static', filename='js/Pagos.js')}}"></script>
