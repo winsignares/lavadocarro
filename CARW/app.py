@@ -3,7 +3,7 @@ from db import db, app, ma
 import os
 from flask_session import Session
 import smtplib
-#from flask_mail import Mail, Message
+from flask_mail import Mail, Message
 
 # generar llave y sesion
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -16,7 +16,7 @@ app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = 'carwsoluciones@gmail.com'
 app.config['MAIL_PASSWORD'] = 'mgnuxljuchchszza'
-#mail = Mail(app)
+mail = Mail(app)
 # ----------------------email fin--------------------------
 
 # importar routes de las tablas
@@ -47,6 +47,7 @@ from rutas.Turnos import routes_Turnos
 from rutas.Balances import routes_Balances
 from rutas.Ajustes import routes_Ajustes
 from rutas.Recovery import routes_Recovery
+from rutas.Pagoex import routes_Pagoex
 
 # ubicacion de los html
 app.register_blueprint(routes_login)
@@ -58,6 +59,7 @@ app.register_blueprint(routes_Turnos, url_prefix="/fronted")
 app.register_blueprint(routes_Balances, url_prefix="/fronted")
 app.register_blueprint(routes_Ajustes, url_prefix="/fronted")
 app.register_blueprint(routes_Recovery, url_prefix="/fronted")
+app.register_blueprint(routes_Pagoex, url_prefix="/fronted")
 
 #------------------------------------------------
 
@@ -116,7 +118,22 @@ def Peditables():
 
 @app.route('/Pagos')
 def Pagos():
+    if 'userROL' in session and int(session['userROL']) > 0:
+        userROL = int(session['userROL'])
+        if userROL == 3:
+            return render_template('/main/Ppredeterminados.html', mostrar_alerta=True)
         return render_template('/main/Pagos.html')
+    return redirect(url_for("index"))
+
+@app.route('/Pagoex')
+def Pagoex():
+    if 'userROL' in session and int(session['userROL']) > 0:
+        userROL = int(session['userROL'])
+        if userROL == 3:
+            return render_template('/main/Principal.html', mostrar_alerta=True)
+        return render_template('/main/Pagoex.html')
+    return redirect(url_for("index"))
+        
 
 @app.route('/Turnos')
 def Turnos():

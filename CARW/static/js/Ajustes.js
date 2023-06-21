@@ -505,7 +505,7 @@ function ver_matriculasR() {
             for (let index = 1; index < length; index++) {
                 Matricula = datos[index].Matricula;
                 opciones +=
-                    `<li class="list-group-item" onclick="copiar(Matricula)" value="${datos[index].Matricula}">>${datos[index].Matricula}</li>`;
+                    `<li id="listH" class="list-group-item" onclick="copiar(Matricula)" value="${datos[index].Matricula}">>${datos[index].Matricula}</li>`;
             }
             remplazo.innerHTML = opciones;
         })

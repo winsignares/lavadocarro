@@ -27,8 +27,10 @@ function verificarCedula(event) {
                     matriculaN.innerHTML = `<li id="Nmatricula" class="list-group-item" style="display: inline;">${datos[i].Matricula}</li>`;
                     vehiculoT.innerHTML = `<li id="Tvehiculo" class="list-group-item" style="display: inline;">${datos[i].Tipo}</li>`;
 
-                    document.getElementsByName('buyerEmail')[0].value = datos[i].Correo;
-
+                    setTimeout(function() {
+                        verpagoenlinea();
+                        savepagodigital();
+                    }, 100);
                     return;
                 }
             }
@@ -156,64 +158,17 @@ function calcularpago() {
 
 // auto seleccion del paquete elegido por el cliente inicio
 document.addEventListener('DOMContentLoaded', function() {
-    // Código para guardar y recuperar datos del almacenamiento local
-    const cedula = document.getElementById("identificacion");
-    const usuarioN = document.getElementById("Nusuario");
-    const correo = document.getElementById("Email");
-    const matriculaN = document.getElementById("Nmatricula");
-    const vehiculoT = document.getElementById("Tvehiculo");
-    const paqueteT = document.getElementById("Tpaquete");
-    const valorP = document.getElementById("Pvalor");
-    const FechaACT = document.getElementById("Fecha");
-    const Tduracion = document.getElementById("Testimado");
-
-    // Recuperar los datos del almacenamiento local
-    const storedData = JSON.parse(localStorage.getItem("datosFormulario"));
-
-    if (storedData) {
-        cedula.value = storedData.cedula;
-        usuarioN.textContent = storedData.usuario;
-        correo.textContent = storedData.correo;
-        matriculaN.textContent = storedData.matricula;
-        vehiculoT.textContent = storedData.vehiculo;
-        paqueteT.textContent = storedData.paquete;
-        valorP.textContent = storedData.valor;
-        FechaACT.textContent = storedData.fecha;
-        Tduracion.textContent = storedData.duracion;
+    // Verificar si se accedió desde Stripe
+    if (document.referrer.startsWith("https://checkout.stripe.com/")) {
+        window.alert("funciona");
+        resultadoPayU = "exitoso";
     }
-
-    document.querySelector("form").addEventListener("submit", function(event) {
-        // Guardar los datos en el almacenamiento local
-        const data = {
-            cedula: cedula.value,
-            usuario: usuarioN.textContent,
-            correo: correo.textContent,
-            matricula: matriculaN.textContent,
-            vehiculo: vehiculoT.textContent,
-            paquete: paqueteT.textContent,
-            valor: valorP.textContent,
-            fecha: FechaACT.textContent,
-            duracion: Tduracion.textContent
-        };
-
-        localStorage.setItem("datosFormulario", JSON.stringify(data));
-    });
-
-    // Código adicional para verificar el resultado de PayU al regresar
-    const urlParams = new URLSearchParams(window.location.search);
-    const resultado = urlParams.get('resultado');
-
-    // Verificar si hay un resultado válido de PayU
-    if (resultado && (resultado === "exitoso" || resultado === "fallido")) {
-        resultadoPayU = resultado;
-    }
-
-    // Código adicional que quieres agregar
     miFuncion();
     setTimeout(function() {
         document.removeEventListener('DOMContentLoaded', arguments.callee);
     }, 1000);
 });
+
 
 function miFuncion() {
     verificarpaquete();
@@ -222,21 +177,34 @@ function miFuncion() {
 }
 // auto seleccion del paquete elegido por el cliente fin
 
-// Función para verificar si se puede usar el botón PayU
-function verificarCampos() {
-    const usuario = document.getElementById("Nusuario").textContent.trim();
-
-    if (usuario === "Nombre Del Usuario") {
-        const alerta = document.getElementById("alerta2");
-        alerta.classList.remove("oculto");
-        setTimeout(function() {
-            alerta.classList.add("oculto");
-        }, 3000);
-        return false;
+// Función para verificar si se puede usar el botón strip
+function verpagoenlinea() {
+    if (IDC == 1) {
+        document.getElementById('containerSTsencillo').style.visibility = 'visible';
+        document.getElementById('containerSTprofundo').style.visibility = 'hidden';
+        document.getElementById('containerSTprofundo+DS').style.visibility = 'hidden';
+        document.getElementById('containerSTdesinfeccion').style.visibility = 'hidden';
     }
-    return true;
+    if (IDC == 2) {
+        document.getElementById('containerSTprofundo').style.visibility = 'visible';
+        document.getElementById('containerSTsencillo').style.visibility = 'hidden';
+        document.getElementById('containerSTprofundo+DS').style.visibility = 'hidden';
+        document.getElementById('containerSTdesinfeccion').style.visibility = 'hidden';
+    }
+    if (IDC == 3) {
+        document.getElementById('containerSTprofundo+DS').style.visibility = 'visible';
+        document.getElementById('containerSTsencillo').style.visibility = 'hidden';
+        document.getElementById('containerSTprofundo').style.visibility = 'hidden';
+        document.getElementById('containerSTdesinfeccion').style.visibility = 'hidden';
+    }
+    if (IDC == 4) {
+        document.getElementById('containerSTdesinfeccion').style.visibility = 'visible';
+        document.getElementById('containerSTsencillo').style.visibility = 'hidden';
+        document.getElementById('containerSTprofundo').style.visibility = 'hidden';
+        document.getElementById('containerSTprofundo+DS').style.visibility = 'hidden';
+    }
 }
-// Función para verificar si se puede usar el botón PayU fin
+// Función para verificar si se puede usar el botón strip fin
 
 // Función para pago fisico
 function pagofisico() {
@@ -298,3 +266,18 @@ function guardar_ventas() {
     }
 }
 // Función para generar el turno y guardar el pago fin
+
+// Función para generar el turno y guardar el pago de una venta con tarjeta fin
+function savepagodigital() {
+    const newidvehiculo = matriculaN.textContent;
+    const newidpaquete = idpaquete.value;
+    const newtotal = valorP.textContent;
+    const newdescripcion = document.getElementById("miContainer").textContent;
+
+    localStorage.setItem('MTC', newidvehiculo);
+    localStorage.setItem('IDC', newidpaquete);
+    localStorage.setItem('VLR', newtotal);
+    localStorage.setItem('FCH', fechaFormateada);
+    localStorage.setItem('DCP', newdescripcion);
+}
+// Función para generar el turno y guardar el pago de una venta con tarjeta fin

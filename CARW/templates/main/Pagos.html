@@ -78,12 +78,30 @@
         <p id="GID" class="card-text"></p>
         <p id="cambio" class="card-text"></p>
     </div>
-    <br><br>
-    <script async src="https://js.stripe.com/v3/buy-button.js">
-    </script>
-
-    <stripe-buy-button buy-button-id="buy_btn_1NLAiwEQOcF2fMb4q7JoSvBE" publishable-key="pk_test_51NLAAbEQOcF2fMb4TF4X9CZ5uhpgsJuJHoep3h6BIaFq56prosSMeQz2WAGm0rAGxR0XRJVgzkUaJGtrDwyd32nl00GI6OXaBB">
-    </stripe-buy-button>
+    <br>
+    <div id="containerSTsencillo" class="containerST" style="visibility: hidden;">
+        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
+        <stripe-buy-button buy-button-id="buy_btn_1NLAiwEQOcF2fMb4q7JoSvBE" publishable-key="pk_test_51NLAAbEQOcF2fMb4TF4X9CZ5uhpgsJuJHoep3h6BIaFq56prosSMeQz2WAGm0rAGxR0XRJVgzkUaJGtrDwyd32nl00GI6OXaBB" onclick="return verificarCampo();">
+        </stripe-buy-button>
+    </div>
+    <div id="containerSTprofundo" class="containerST" style="visibility: hidden;">
+        <script async src="https://js.stripe.com/v3/buy-button.js">
+        </script>
+        <stripe-buy-button buy-button-id="buy_btn_1NLHfMEQOcF2fMb4gS1NgskN" publishable-key="pk_test_51NLAAbEQOcF2fMb4TF4X9CZ5uhpgsJuJHoep3h6BIaFq56prosSMeQz2WAGm0rAGxR0XRJVgzkUaJGtrDwyd32nl00GI6OXaBB">
+        </stripe-buy-button>
+    </div>
+    <div id="containerSTprofundo+DS" class="containerST" style="visibility: hidden;">
+        <script async src="https://js.stripe.com/v3/buy-button.js">
+        </script>
+        <stripe-buy-button buy-button-id="buy_btn_1NLI26EQOcF2fMb4HTWU3NVI" publishable-key="pk_test_51NLAAbEQOcF2fMb4TF4X9CZ5uhpgsJuJHoep3h6BIaFq56prosSMeQz2WAGm0rAGxR0XRJVgzkUaJGtrDwyd32nl00GI6OXaBB">
+        </stripe-buy-button>
+    </div>
+    <div id="containerSTdesinfeccion" class="containerST" style="visibility: hidden;">
+        <script async src="https://js.stripe.com/v3/buy-button.js">
+        </script>
+        <stripe-buy-button buy-button-id="buy_btn_1NLI97EQOcF2fMb4FN6muBWD" publishable-key="pk_test_51NLAAbEQOcF2fMb4TF4X9CZ5uhpgsJuJHoep3h6BIaFq56prosSMeQz2WAGm0rAGxR0XRJVgzkUaJGtrDwyd32nl00GI6OXaBB">
+        </stripe-buy-button>
+    </div>
 </div>
 <img class="payuL" src="{{ url_for('static', filename='img/Medios_Pago_Verde_Oscuro_120x60.jpg') }}" title="PayU - Medios de pago" alt="PayU - Medios de pago" width="120" height="600" />
 <script src="{{url_for('static', filename='js/Pagos.js')}}"></script>

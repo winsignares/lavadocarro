@@ -445,6 +445,12 @@ nav {
     z-index: 2;
 }
 
+.containerST {
+    position: absolute;
+    top: 23vw;
+    left: 5vw;
+}
+
 
 /* turnos */
 
@@ -747,7 +753,7 @@ nav {
     overflow-y: auto;
 }
 
-.list-group-item:hover {
+#listH:hover {
     background-color: aqua;
 }
 
@@ -780,4 +786,31 @@ nav {
     right: 30%;
     top: 25%;
     z-index: 5;
+}
+
+
+/* pagosex */
+
+.saludo2 {
+    position: absolute;
+    right: 40%;
+    top: 2%;
+    height: 8vw;
+    width: 20vw;
+    z-index: 2;
+}
+
+.saludo3 {
+    position: absolute;
+    right: 35%;
+    top: 2%;
+    border-radius: 5%;
+}
+
+#Mpagoex {
+    height: 20vw;
+    width: 33vw;
+    position: absolute;
+    right: 1%;
+    top: 5%;
 }
