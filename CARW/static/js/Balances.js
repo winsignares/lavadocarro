@@ -63,11 +63,11 @@ function imprimirTabla() {
     window.print();
 }
 
-function imprimirTabla() {
+function imprimirTabla2() {
     var tablaBody = document.getElementById("tablaBody3");
 
     if (tablaBody.innerHTML.trim() === "") {
-        const alerta = document.getElementById("alerta");
+        const alerta = document.getElementById("alerta3");
         alerta.classList.remove("oculto");
         alerta.classList.add("alerta-campo-vacio2");
         setTimeout(function() {
@@ -94,10 +94,15 @@ function imprimirTabla() {
 
     // Crear una nueva hoja en el libro y agregar los datos de la tabla
     var worksheet = XLSX.utils.aoa_to_sheet(tableData);
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Tabla");
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Ventas");
 
     // Guardar el libro como archivo Excel
-    XLSX.writeFile(workbook, "tabla.xlsx");
+    const alerta = document.getElementById("alerta4");
+    alerta.classList.remove("oculto");
+    setTimeout(function() {
+        alerta.classList.add("oculto");
+    }, 3000);
+    XLSX.writeFile(workbook, "Ventas.xlsx");
 }
 
 

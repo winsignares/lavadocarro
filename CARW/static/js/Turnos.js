@@ -39,7 +39,7 @@ function ver_turnos() {
                         <td><button type="button" class="btn btn-dark" onclick="Empezar('${idHI}','${idDU}', '${idHF}', '${idET}', '${dura}', '${idt}')">Empezar</button></td>
                     </tr>`;
             }
-            document.getElementById("tablaBody").innerHTML += opciones; // Agregar los nuevos turnos al final de la tabla
+            document.getElementById("tablaBody").innerHTML += opciones;
         })
         .catch(function(error) {
             console.log(error);
@@ -47,24 +47,18 @@ function ver_turnos() {
 }
 
 function Empezar(idHI, idDU, idHF, idET, dura, idt) {
-    var horaActual = obtenerHoraActual(); // Obtener la hora actual utilizando la función obtenerHoraActual() definida anteriormente
-
-    // Convertir la duración en milisegundos
+    var horaActual = obtenerHoraActual();
     var duracionMilisegundos = parseInt(dura.split(':')[0]) * 60 * 60 * 1000 + parseInt(dura.split(':')[1]) * 60 * 1000 + parseInt(dura.split(':')[2]) * 1000;
 
-    // Calcular la hora de finalización sumando la duración en milisegundos al tiempo actual en milisegundos
     var fecha = new Date();
     var horaFinMilisegundos = fecha.getTime() + duracionMilisegundos;
 
-    // Crear un objeto Date con la hora de finalización
     var horaFinDate = new Date(horaFinMilisegundos);
 
-    // Obtener la hora, minutos y segundos de la hora de finalización
     var horaFin = horaFinDate.getHours();
     var minutosFin = horaFinDate.getMinutes();
     var segundosFin = horaFinDate.getSeconds();
 
-    // Formatear la hora, minutos y segundos de la hora de finalización para que siempre tengan 2 dígitos
     if (horaFin < 10) {
         horaFin = "0" + horaFin;
     }
@@ -74,8 +68,6 @@ function Empezar(idHI, idDU, idHF, idET, dura, idt) {
     if (segundosFin < 10) {
         segundosFin = "0" + segundosFin;
     }
-
-    // Actualizar los elementos de la tabla con la hora actual, la duración y la hora de finalización
     document.getElementById(idHI).textContent = horaActual;
     document.getElementById(idDU).textContent = dura;
     document.getElementById(idHF).textContent = horaFin + ":" + minutosFin + ":" + segundosFin;
@@ -91,7 +83,6 @@ function Empezar(idHI, idDU, idHF, idET, dura, idt) {
 document.addEventListener('DOMContentLoaded', function() {
     const tablaClones = document.getElementById("tablaTurnos-por-empezar").getElementsByTagName("tbody")[0];
 
-    // Restaurar clones desde el localStorage
     const clonesGuardados = JSON.parse(localStorage.getItem("clones")) || [];
 
     clonesGuardados.forEach(function(clon) {
@@ -147,9 +138,7 @@ function eliminarTurno(Id) {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data.message); // Mensaje de respuesta del servidor
-            // Aquí puedes realizar cualquier acción adicional después de eliminar el turno
-            // Por ejemplo, recargar la página o actualizar la interfaz de usuario
+            console.log(data.message);
             location.reload();
         })
         .catch(error => {
@@ -164,7 +153,6 @@ function obtenerHoraActual() {
     var minutos = fecha.getMinutes();
     var segundos = fecha.getSeconds();
 
-    // Formatear la hora, minutos y segundos para que siempre tengan 2 dígitos
     if (hora < 10) {
         hora = "0" + hora;
     }
