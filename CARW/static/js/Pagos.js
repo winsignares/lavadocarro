@@ -28,8 +28,8 @@ function verificarCedula(event) {
                     vehiculoT.innerHTML = `<li id="Tvehiculo" class="list-group-item" style="display: inline;">${datos[i].Tipo}</li>`;
 
                     setTimeout(function() {
+                        localStorage.setItem('MTC', datos[i].Matricula);
                         verpagoenlinea();
-                        savepagodigital();
                     }, 100);
                     return;
                 }
@@ -62,6 +62,8 @@ function verificarpaquete() {
                     Tduracion.innerHTML = `<li id="Testimado" class="list-group-item" style="display: inline;">${datos[i].tiempo}</li>`;
                     apagar.innerHTML = `<li id="Vacan" class="list-group-item" style="display: inline;">${datos[i].valor}</li>`;
                     idpaquete.value = datos[i].id;
+                    localStorage.setItem('VLR', datos[i].valor);
+                    localStorage.setItem('TLP', datos[i].titulo);
                     return;
                 }
             }
@@ -88,8 +90,8 @@ function obtenerFechaActual() {
     var anio = fechaActual.getFullYear();
 
     var fechaFormateada = dia + '/' + mes + '/' + anio;
+    localStorage.setItem('FCH', fechaFormateada);
     FechaACT.innerHTML = `<li id="Fecha" class="list-group-item" style="display: inline;">${fechaFormateada}</li>`;
-
     return fechaFormateada;
 }
 // odtener fecha fin
@@ -107,6 +109,7 @@ function ver_descrpcion() {
                 if (datos[index].id == IDC) {
                     opciones +=
                         `<p class="card-text">${datos[index].descripcion}</p>`;
+                    localStorage.setItem('DCP', datos[index].descripcion);
                 }
             }
             remplazo.innerHTML = opciones;
@@ -266,18 +269,3 @@ function guardar_ventas() {
     }
 }
 // Función para generar el turno y guardar el pago fin
-
-// Función para generar el turno y guardar el pago de una venta con tarjeta fin
-function savepagodigital() {
-    const newidvehiculo = matriculaN.textContent;
-    const newidpaquete = idpaquete.value;
-    const newtotal = valorP.textContent;
-    const newdescripcion = document.getElementById("miContainer").textContent;
-
-    localStorage.setItem('MTC', newidvehiculo);
-    localStorage.setItem('IDC', newidpaquete);
-    localStorage.setItem('VLR', newtotal);
-    localStorage.setItem('FCH', fechaFormateada);
-    localStorage.setItem('DCP', newdescripcion);
-}
-// Función para generar el turno y guardar el pago de una venta con tarjeta fin

@@ -2,9 +2,17 @@
 <div class="Bienvenida">
     <img class="saludo2" src="{{ url_for('static', filename='img/pago-exitoso.png') }}" />
     <img class="saludo3" src="{{ url_for('static', filename='img/pago-exitoso2.jpg') }}" />
+    <div id="alerta6" class="alerta-exitoPG oculto">
+        Tuno Generado Con Exito!
+    </div>
+    <div id="alerta5" class="alerta-campo-vacioPG oculto">
+        No hay pagos registrados!
+    </div>
     <div class="sombreado" id="Mpagoex">
+        <p style="text-align: center; font-family: Arial, sans-serif; font-size: 20px;">Descripcion De la compra</p>
         <label for="matricula">Matricula:</label>
         <li id="PNmatricula" class="list-group-item" style="display: inline; position: relative; left: 55px;"># De Matricula</li>
+        <label for="exdescripcion" style="display: inline; position: relative; left: 145px;">Descripcion</label>
         <br><br>
         <label for="nombre-paquete">Paquete:</label>
         <li id="PTpaquete" class="list-group-item" style="display: inline; position: relative; left: 65px;">Tipo De Paquete</li>
@@ -15,7 +23,8 @@
         <label for="Fecha ">Fecha: </label>
         <li id="PFecha" class="list-group-item " style="display: inline; position: relative; left: 77px;">Dia/Mes/Año</li>
         <br></br>
-        <button type="button" class="btn btn-primary" onclick="guardar_paqueteAJ()">Registrar</button>
+        <button type="button" class="btn btn-primary" onclick="guardar_ventas()">Generar Turno</button>
+        <div id="exdescripcion"></div>
     </div>
 </div>
 <script src="{{url_for('static', filename='js/Pagoex.js')}}"></script>

@@ -808,9 +808,20 @@ nav {
 }
 
 #Mpagoex {
-    height: 20vw;
+    height: 22vw;
     width: 33vw;
     position: absolute;
     right: 1%;
     top: 5%;
+}
+
+#exdescripcion {
+    background-color: white;
+    height: 11vw;
+    width: 12vw;
+    border-radius: 5px;
+    overflow-y: auto;
+    position: absolute;
+    right: 3%;
+    top: 27%;
 }
